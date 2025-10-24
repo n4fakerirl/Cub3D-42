@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
 
 # include "../mlx_linux/mlx.h"
@@ -26,42 +26,42 @@
 
 typedef struct s_mx
 {
-	void *mlx;
-	void *win;
-	struct s_data *data;
-} t_mx;
+	void			*mlx;
+	void			*win;
+	struct s_data	*data;
+}	t_mx;
 
 typedef struct s_cub
 {
-	char *file;
-	char **full_file;
-	char **map;
-	char **txt_file;
-	int **fl_cl;
-	int p_pos;
-} t_cub;
+	char	*file;
+	char	**full_file;
+	char	**map;
+	char	**txt_file;
+	int		**fl_cl;
+	int		p_pos;
+}	t_cub;
 
 typedef struct s_data
 {
-	t_cub info;
-	t_mx mx;
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-	long int x;
-	long int y;
-} t_data;
+	t_cub	info;
+	t_mx	mx;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	long	x;
+	long	y;
+}	t_data;
 
 // FREE
 void	free_tab(char **str);
 void	free_int_tab(int **tab, int size);
-int	get_size_file(int fd);
+int		get_size_file(int fd);
 void	free_struct(t_data *data);
 
 // PARSING
-int	txt_init(t_data *data);
-int	read_infile(int fd, t_data *data);
+int		txt_init(t_data *data);
+int		read_infile(int fd, t_data *data);
 
 #endif
