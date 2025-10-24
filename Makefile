@@ -33,7 +33,7 @@ MLX_DIR     = includes/mlx_linux
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-SRC_FILES   = main.c read_map.c
+SRC_FILES   = main.c read_map.c free.c parse_ext.c
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
