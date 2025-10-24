@@ -12,7 +12,48 @@
 
 #include "../includes/cub3d.h"
 
+int	get_size(int fd)
+{
+	char    *line;
+	int     i;
 
+	line = NULL;
+	i = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		free(line);
+		i++;
+	}
+	close(fd);
+	return (i);
+}
+
+
+int	get_file(t_data *data, int size, char **file)
+{
+	int		fd2;
+	int		i;
+
+	i = 0;
+	fd2 = open(data->info.file, O_RDONLY);
+	if (fd2 < 0)
+		return (1);
+	while (i < size)
+	{
+		file[i] = get_next_line(fd2);
+		if (!file[i])
+			break ;
+		printf("%s", file[i]);
+		i++;
+	}
+	file[i] = NULL;
+	close(fd2);
+	data->info.full_file = file; 
+	return (0);
+}
 
 int read_infile(int fd, char **file, t_data *data)
 {
