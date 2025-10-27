@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/24 17:09:15 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:22:05 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,15 @@ void	free_int_tab(int **tab, int size)
 
 void	free_struct(t_data *data)
 {
-	free_tab(data->info.full_file);
-	free_tab(data->info.txt_file);
-	free_int_tab(data->info.fl_cl, 2);
+	if (data->info.full_file)
+		free_tab(data->info.full_file);
+	if (data->info.file)
+		free(data->info.file);
+	if (data->info.map)
+		free_tab(data->info.map);
+	if (data->txt->ceiling)
+		free(data->txt->ceiling);
+	if (data->txt->floor)
+		free(data->txt->floor);
 	return ;
 }

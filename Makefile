@@ -33,7 +33,7 @@ MLX_DIR     = includes/mlx_linux
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-SRC_FILES   = main.c read_map.c free.c parse_ext.c
+SRC_FILES   = main.c read_map.c free.c parse_ext.c parse_fc.c split.c divers.c
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -45,7 +45,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 MLX         = $(MLX_DIR)/libmlx_Linux.a
 
 LIBS        = -L$(LIBFT_DIR) -lft \
-            ##-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
+            -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 
 # **************************************************************************** #
 #                                   RULES                                      #

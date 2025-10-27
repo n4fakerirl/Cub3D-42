@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-//# include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -31,13 +31,21 @@ typedef struct s_mx
 	struct s_data	*data;
 }	t_mx;
 
+typedef struct s_txt
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		*floor;
+	int		*ceiling;
+}	t_txt;
+
 typedef struct s_cub
 {
 	char	*file;
-	char	**full_file;
 	char	**map;
-	char	**txt_file;
-	int		**fl_cl;
+	char 	**full_file;
 	int		p_pos;
 }	t_cub;
 
@@ -45,13 +53,7 @@ typedef struct s_data
 {
 	t_cub	info;
 	t_mx	mx;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	long	x;
-	long	y;
+	t_txt	*txt;
 }	t_data;
 
 // FREE
@@ -63,5 +65,12 @@ void	free_struct(t_data *data);
 // PARSING
 int		txt_init(t_data *data);
 int		read_infile(int fd, t_data *data);
+int		get_fc(t_data *data);
+
+// UTILS
+char	**split(char *str, char *charset);
+
+// PRINT (A DELETE)
+void 	print_data(t_data *data);
 
 #endif
