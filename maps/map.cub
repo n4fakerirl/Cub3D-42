@@ -2,7 +2,6 @@ NO ./txt_n.xpm
 SO ./txt_s.xpm
 WE ./txt_w.xpm
 EA ./txt_e.xpm
-
 F 220,100,0
 C 225,30,0
 

@@ -29,52 +29,51 @@ int	init_fc_cl(t_data *data)
 	return (0);
 }
 
+int	get_nbr(int l, char **file, t_data *data)
+{
+	int		k;
+	char	**tmp;
+
+	tmp = NULL;
+	if (ft_isdigit(file[l][2]))
+	{
+		k = 0;
+		tmp = ft_split(&file[l][2], ',');
+		while (k < 3)
+		{
+			if (l == 4)
+				data->info.fl_cl[0][k] = ft_atoi(tmp[k]);
+			else if (l == 5)
+				data->info.fl_cl[1][k] = ft_atoi(tmp[k]);
+			k++;
+		}
+		free_tab(tmp);
+		return (1);
+	}
+	else
+		return (0);
+}
+
 int	get_fc(t_data *data)
 {
-	int i;
-	char **tmp;
-	char **file;
-	int j;
-	int k;
-	int l;
+	char	**file;
 
-	j = 2;
-	i = 0;
-	l = 0;
-	k = 0;
 	file = data->info.full_file;
-	tmp = NULL;
 	if (init_fc_cl(data))
 		return (1);
-	while (file[i] && ft_strncmp(file[i], "F", ft_strlen("F")) != 0)
-		i++;
-	// if ((file[i+1] && file[i+1][0] != 'C'))
-	// return (1);
-	while (l < 2)
-	{
-		if (ft_isdigit(file[i + l][j]))
-		{
-			k = 0;
-			tmp = ft_split(&file[i + l][j], ',');
-			while (k < 3)
-			{
-				data->info.fl_cl[l][k] = ft_atoi(tmp[k]);
-				printf("%d\n", data->info.fl_cl[l][k]);
-				k++;
-			}
-			free_tab(tmp);
-		}
-		l++;
-	}
+	if (file[4][0] != 'F' || file[5][0] != 'C')
+		return (1);
+	if (!get_nbr(4, file, data))
+		return (1);
+	if (!get_nbr(5, file, data))
+		return (1);
 	return (0);
 }
 
 int	parsing_start(char *infile, t_data *data)
 {
-	int fd;
-	char **file;
+	int	fd;
 
-	file = NULL;
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
 		return (perror("Error fd"), 1);
@@ -90,7 +89,7 @@ int	parsing_start(char *infile, t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	ft_memset(&data, 0, sizeof(t_data));
 	if (argc != 2)

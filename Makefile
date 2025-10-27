@@ -45,7 +45,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 MLX         = $(MLX_DIR)/libmlx_Linux.a
 
 LIBS        = -L$(LIBFT_DIR) -lft \
-              -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
+            ##-L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 
 # **************************************************************************** #
 #                                   RULES                                      #

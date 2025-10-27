@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx_linux/mlx.h"
+//# include "../mlx_linux/mlx.h"
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft.h"
 # include <fcntl.h>
