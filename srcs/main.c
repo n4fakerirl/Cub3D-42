@@ -83,7 +83,7 @@ t_data	*init_data(void)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return (0);
+		return (NULL);
 	ft_memset(data, 0, sizeof(t_data));
 	data->txt = malloc(sizeof(t_txt));
 	if (!data->txt)
@@ -91,10 +91,10 @@ t_data	*init_data(void)
 	ft_memset(data->txt, 0, sizeof(t_txt));
 	data->txt->floor = calloc(sizeof(int), 3);
 	if (!data->txt->floor)
-		return (NULL);
+		return (free(data->txt), free(data), NULL);
 	data->txt->ceiling = calloc(sizeof(int), 3);
 	if (!data->txt->ceiling)
-		return (NULL);
+		return (free(data->txt->floor), free(data->txt), free(data), NULL);
 	return (data);
 }
 
