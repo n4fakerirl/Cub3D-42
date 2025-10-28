@@ -27,13 +27,13 @@ VOID =  \033[2J
 SRC_DIR     = srcs
 OBJ_DIR     = objs
 LIBFT_DIR   = includes/libft
-MLX_DIR     = includes/mlx_linux
-
+MLX_DIR     = includes/minilibx-linux
 # **************************************************************************** #
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-SRC_FILES   = main.c read_map.c free.c parse_ext.c parse_fc.c split.c divers.c
+SRC_FILES   = main.c read_map.c free.c parse_ext.c parse_fc.c split.c divers.c \
+				utils.c
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 

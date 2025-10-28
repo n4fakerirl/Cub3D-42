@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx_linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -63,12 +63,13 @@ int		get_size_file(int fd);
 void	free_struct(t_data *data);
 
 // PARSING
-int		txt_init(t_data *data);
+int		txt_init(t_data *data, int i);
 int		read_infile(int fd, t_data *data);
 int		get_fc(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
+void 	ft_error(char *message);
 
 // PRINT (A DELETE)
 void 	print_data(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/27 19:55:38 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:02:12 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	grab_fc(t_data *data, char *file, char c)
 			i++;
 		}
 	}
+	free_tab(tmp);
 	return (1);
 }
 
