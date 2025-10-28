@@ -33,7 +33,7 @@ MLX_DIR     = includes/minilibx-linux
 # **************************************************************************** #
 
 SRC_FILES   = main.c read_map.c free.c parse_ext.c parse_fc.c split.c divers.c \
-				utils.c
+				utils.c parse_map.c
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 

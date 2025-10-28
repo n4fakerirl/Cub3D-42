@@ -15,6 +15,28 @@
 
 #include "../includes/cub3d.h"
 
+int	create_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->info.full_file[6 + i])
+		i++;
+	data->info.map = malloc(sizeof(char *) * (i + 1));
+	if (!data->info.map)
+		return (0);
+	i = 0;
+	while (data->info.full_file[6 + i])
+	{
+		data->info.map[i] = ft_strdup(data->info.full_file[6 + i]);
+		if (!data->info.map[i])
+			return (free_tab(data->info.map), 0);
+		i++;
+	}
+	data->info.map[i] = NULL;
+	return (1);
+}
+
 int	parsing_start(char *infile, t_data *data)
 {
 	int	fd;
@@ -28,6 +50,10 @@ int	parsing_start(char *infile, t_data *data)
 	if (txt_init(data, 0))
 		return (1);
 	if (!get_fc(data))
+		return (1);
+	if (!create_map(data))
+		return (1);
+	if (!parse_map(data))
 		return (1);
 	print_data(data);
 	return (0);

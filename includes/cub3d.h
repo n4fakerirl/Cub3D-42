@@ -66,6 +66,7 @@ void	free_struct(t_data *data);
 int		txt_init(t_data *data, int i);
 int		read_infile(int fd, t_data *data);
 int		get_fc(t_data *data);
+int		parse_map(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
