@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 14:44:43 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:01:13 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ int	fc_check(t_data *data)
 	return (ft_error("invalid texture"), 0);
 }
 
+int	split_size(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	if (i == 4)
+		return (1);
+	return (0);
+}
+
 int	grab_c(t_data *data, char *file)
 {
 	char	**tmp;
@@ -42,6 +54,8 @@ int	grab_c(t_data *data, char *file)
 	tmp = split(file, ", ");
 	if (!tmp)
 		return (0);
+	if (!split_size(tmp))
+		return (free_tab(tmp), ft_error("Only 3 parameters needed"), 0);
 	i = 0;
 	while (i < 3)
 	{
@@ -63,6 +77,8 @@ int	grab_f(t_data *data, char *file)
 	tmp = split(file, ", ");
 	if (!tmp)
 		return (0);
+	if (!split_size(tmp))
+		return (free_tab(tmp), ft_error("Only 3 parameters needed"), 0);
 	i = 0;
 	while (i < 3)
 	{
