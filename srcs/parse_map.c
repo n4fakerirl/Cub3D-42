@@ -6,11 +6,39 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 16:49:43 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:14:08 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	orientation(t_data *data)
+{
+	int	i;
+	int	y;
+	int	count;
+
+	y = 0;
+	count = 0;
+	while (data->info.map[y])
+	{
+		i = 0;
+		while (data->info.map[y][i])
+		{
+			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
+				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
+				count++;
+			i++;
+		}
+		y++;
+	}
+	if (count == 1)
+		return (1);
+	else if (count > 1)
+		return (ft_error("Only one start position is needed"), 0);
+	else
+		return (ft_error("Map doesnt have any start position"), 0);
+}
 
 int	rows(t_data *data)
 {
@@ -74,5 +102,7 @@ int	parse_map(t_data *data)
 		return (ft_error("map is not fully closed"), 0);
 	if (!columns(data))
 		return (ft_error("map is not fully closed"), 0);
+	if (!orientation(data))
+		return (0);
 	return (1);
 }
