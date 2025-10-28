@@ -21,7 +21,7 @@ int	parsing_start(char *infile, t_data *data)
 
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
-		return (perror("Error fd"), 1);
+		return (ft_error("can't open file"), 1);
 	data->info.file = infile;
 	if (read_infile(fd, data))
 		return (1);
@@ -45,6 +45,12 @@ t_data	*init_data(void)
 	if (!data->txt)
 		return (free(data), NULL);
 	ft_memset(data->txt, 0, sizeof(t_txt));
+	data->txt->floor = calloc(sizeof(int), 3);
+	if (!data->txt->floor)
+		return (NULL);
+	data->txt->ceiling = calloc(sizeof(int), 3);
+	if (!data->txt->ceiling)
+		return (NULL);
 	return (data);
 }
 

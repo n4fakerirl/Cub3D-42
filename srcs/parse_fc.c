@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 12:02:12 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 14:44:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,10 @@ int	fc_check(t_data *data)
 	}
 	if (c == 1 && f == 1)
 		return (1);
-	return (perror("invalid texture"), 0);
+	return (ft_error("invalid texture"), 0);
 }
 
-int	init_fc_cl(t_data *data)
-{
-	data->txt->floor = calloc(sizeof(int), 3);
-	if (!data->txt->floor)
-		return (1);
-	data->txt->ceiling = calloc(sizeof(int), 3);
-	if (!data->txt->ceiling)
-		return (1);
-	return (0);
-}
-
-int	grab_fc(t_data *data, char *file, char c)
+int	grab_c(t_data *data, char *file)
 {
 	char	**tmp;
 	int		i;
@@ -54,21 +43,34 @@ int	grab_fc(t_data *data, char *file, char c)
 	if (!tmp)
 		return (0);
 	i = 0;
-	if (c == 'F')
+	while (i < 3)
 	{
-		while (i < 3)
-		{
-			data->txt->floor[i] = ft_atoi(tmp[i + 1]);
-			i++;
-		}
+		data->txt->ceiling[i] = ft_atoi(tmp[i + 1]);
+		if (data->txt->ceiling[i] < 0 || data->txt->ceiling[i] > 255)
+			return (free_tab(tmp),
+				ft_error("RGB must be set between 0 and 255"), 0);
+		i++;
 	}
-	else if (c == 'C')
+	free_tab(tmp);
+	return (1);
+}
+
+int	grab_f(t_data *data, char *file)
+{
+	char	**tmp;
+	int		i;
+
+	tmp = split(file, ", ");
+	if (!tmp)
+		return (0);
+	i = 0;
+	while (i < 3)
 	{
-		while (i < 3)
-		{
-			data->txt->ceiling[i] = ft_atoi(tmp[i + 1]);
-			i++;
-		}
+		data->txt->floor[i] = ft_atoi(tmp[i + 1]);
+		if (data->txt->floor[i] < 0 || data->txt->floor[i] > 255)
+			return (free_tab(tmp),
+				ft_error("RGB must be set between 0 and 255"), 0);
+		i++;
 	}
 	free_tab(tmp);
 	return (1);
@@ -79,8 +81,6 @@ int	get_fc(t_data *data)
 	int		i;
 	char	**file;
 
-	if (init_fc_cl(data))
-		return (0);
 	if (!fc_check(data))
 		return (0);
 	i = 0;
@@ -89,12 +89,12 @@ int	get_fc(t_data *data)
 	{
 		if (!ft_strncmp(file[i], "F", 1))
 		{
-			if (!grab_fc(data, file[i], 'F'))
+			if (!grab_f(data, file[i]))
 				return (0);
 		}
 		else if (!ft_strncmp(file[i], "C", 1))
 		{
-			if (!grab_fc(data, file[i], 'C'))
+			if (!grab_c(data, file[i]))
 				return (0);
 		}
 		i++;

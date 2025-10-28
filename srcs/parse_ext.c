@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 12:23:52 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 14:37:13 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ int	grab_ext(t_data *data, char *file, char c)
 		return (0);
 	while (file[i] && ft_isspace(file[i]))
 		i++;
+	while (file[i] == '.' || file[i] == '/')
+		i++;
 	if (c == 'N')
-		data->txt->no = ft_strdup(file + i + 2);
+		data->txt->no = ft_strdup(file + i);
 	else if (c == 'S')
-		data->txt->so = ft_strdup(file + i + 2);
+		data->txt->so = ft_strdup(file + i);
 	else if (c == 'W')
-		data->txt->we = ft_strdup(file + i + 2);
+		data->txt->we = ft_strdup(file + i);
 	else if (c == 'E')
-		data->txt->ea = ft_strdup(file + i + 2);
+		data->txt->ea = ft_strdup(file + i);
 	return (1);
 }
 

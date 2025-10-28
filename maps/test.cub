@@ -1,4 +1,4 @@
-NO      ./txt_n.xpm
+NO      txt_n.xpm
 
 
 
@@ -7,13 +7,12 @@ WE      ./txt_w.xpm
 
 SO     ./txt_s.xpm
 
-EA     ./txt_e.xpm
+EA           ./txt_e.xpm
 
-SO     ./txt_s.xpm
 
-C    225,      30,,,    0
+C    250,      30,,,    0
 
-F    220   ,100,0
+F    220   ,100,    0
 
 	1111111111111111111111111
 	1000000000110000000000001
