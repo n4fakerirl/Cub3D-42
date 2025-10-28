@@ -6,27 +6,33 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 17:01:13 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:47:23 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	fc_check(t_data *data)
+int	fc_check(t_data *data, int i)
 {
-	int	i;
 	int	f;
 	int	c;
 
-	i = 0;
 	f = 0;
 	c = 0;
 	while (data->info.full_file[i])
 	{
 		if (!ft_strncmp(data->info.full_file[i], "F", 1))
+		{
+			if (i > 5)
+				return (ft_error("useless line in file or map isn't last"), 0);
 			f++;
+		}
 		else if (!ft_strncmp(data->info.full_file[i], "C", 1))
+		{
+			if (i > 5)
+				return (ft_error("useless line in file or map isn't last"), 0);
 			c++;
+		}
 		i++;
 	}
 	if (c == 1 && f == 1)
@@ -97,7 +103,7 @@ int	get_fc(t_data *data)
 	int		i;
 	char	**file;
 
-	if (!fc_check(data))
+	if (!fc_check(data, 0))
 		return (0);
 	i = 0;
 	file = data->info.full_file;

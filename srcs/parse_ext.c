@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 14:37:13 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:47:00 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ int	check_ext(char *file)
 	return (1);
 }
 
-int	grab_ext(t_data *data, char *file, char c)
+int	grab_ext(t_data *data, char *file, char c, int l)
 {
 	int	i;
 
 	i = 0;
 	if (!check_ext(file))
 		return (0);
+	if (l > 5)
+		return (ft_error("useless line in file or map isn't last"), 0);
 	while (file[i] && ft_isspace(file[i]))
 		i++;
 	while (file[i] == '.' || file[i] == '/')
@@ -83,16 +85,17 @@ int	txt_init(t_data *data, int i)
 	file = data->info.full_file;
 	while (file[i])
 	{
-		if (!ft_strncmp(file[i], "NO", 2) && !grab_ext(data, file[i] + 3, 'N'))
+		if (!ft_strncmp(file[i], "NO", 2) && !grab_ext(data, file[i] + 3, 'N',
+				i))
 			return (1);
 		else if (!ft_strncmp(file[i], "SO", 2) && !grab_ext(data, file[i] + 3,
-				'S'))
+				'S', i))
 			return (1);
 		else if (!ft_strncmp(file[i], "WE", 2) && !grab_ext(data, file[i] + 3,
-				'W'))
+				'W', i))
 			return (1);
 		else if (!ft_strncmp(file[i], "EA", 2) && !grab_ext(data, file[i] + 3,
-				'E'))
+				'E', i))
 			return (1);
 		i++;
 	}
