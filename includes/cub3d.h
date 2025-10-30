@@ -22,12 +22,37 @@
 # include <unistd.h>
 
 # define X_AXIS 1280
-# define Y_AXIS 960
+# define Y_AXIS 720
+
+# define BLACK       0x000000
+# define WHITE       0xFFFFFF
+# define RED         0xFF0000
+# define GREEN       0x00FF00
+# define BLUE        0x0000FF
+# define YELLOW      0xFFFF00
+# define CYAN        0x00FFFF
+# define MAGENTA     0xFF00FF
+# define GRAY        0x808080
+# define ORANGE      0xFFA500
+# define PURPLE      0x800080
+# define BROWN       0xA52A2A
+
+# define FACTOR		10	
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
 
 typedef struct s_mx
 {
 	void			*mlx;
 	void			*win;
+	t_img			*img_st;
 	struct s_data	*data;
 }	t_mx;
 
@@ -45,9 +70,15 @@ typedef struct s_cub
 {
 	char	*file;
 	char	**map;
-	char 	**full_file;
+	char	**full_file;
 	int		p_pos;
 }	t_cub;
+
+typedef struct s_vec
+{
+	int	x;
+	int	y;
+}	t_vec;
 
 typedef struct s_data
 {
@@ -70,9 +101,25 @@ int		parse_map(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
-void 	ft_error(char *message);
+void	ft_error(char *message);
+
+// MINIMAP 
+void	pxl_type(t_data *data, int x, int y, int c);
+int		scaled_pxl(t_data *data, int x, int y, char c);
+void	tab_to_pixel(t_data *data, int *x, int *y, int c);
+void	print_map(t_data *data, t_vec vec);
+void	engine(t_data *data);
+
+// MATHS
+t_vec	vec_offset(int x, int y);
+		// offset selon fenetre divise selon la taille des pxl
+
+// MLX
+int		close_window(t_data *data);
+void	init_mx(t_data *data);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 // PRINT (A DELETE)
-void 	print_data(t_data *data);
+void	print_data(t_data *data);
 
 #endif

@@ -100,14 +100,18 @@ t_data	*init_data(void)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_data	*data;	
 
 	if (argc != 2)
 		return (ft_error("./cub3d map_in_valid_format"), 1);
 	data = init_data();
 	if (!data)
 		return (1);
-	parsing_start(argv[1], data);
+	if (parsing_start(argv[1], data) == 1)
+		return (free_struct(data), 1);
+	init_mx(data);
+	engine(data);
+	mlx_loop(data->mx.mlx);
 	free_struct(data);
 	return (0);
 }
