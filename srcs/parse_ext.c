@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 18:47:44 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/10/30 01:58:39 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ext_check(t_data *data, int i)
 	}
 	if (no == 1 && so == 1 && we == 1 && ea == 1)
 		return (1);
-	return (perror("invalid texture"), 0);
+	return (ft_putstr_fd("invalid texture\n", 2), 0);
 }
 
 int	check_ext(char *file)

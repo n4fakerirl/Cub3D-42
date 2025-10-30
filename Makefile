@@ -4,7 +4,7 @@
 
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -Iincludes -Iincludes/libft -Iincludes/mlx_linux
+CFLAGS      = -Wall -Wextra -Werror -Iincludes -Iincludes/libft -Iincludes/mlx_linux -g3
 RM          = rm -f
 
 # **************************************************************************** #
@@ -24,8 +24,8 @@ VOID =  \033[2J
 #                                  DIRECTORIES                                 #
 # **************************************************************************** #
 
-SRC_DIR     = srcs
-OBJ_DIR     = objs
+SRC_DIR     = srcs/
+OBJ_DIR     = objs/
 LIBFT_DIR   = includes/libft
 MLX_DIR     = includes/minilibx-linux
 # **************************************************************************** #
@@ -33,9 +33,12 @@ MLX_DIR     = includes/minilibx-linux
 # **************************************************************************** #
 
 SRC_FILES   = main.c read_map.c free.c parse_ext.c parse_fc.c split.c divers.c \
-				utils.c parse_map.c
-SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+				utils.c parse_map.c print_map.c init.c window.c
+#SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+#OBJS        = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+SRCS = $(shell find $(SRC_DIR) -name '*.c')
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS:$(SRC_DIR)/%=%))
+
 
 # **************************************************************************** #
 #                                   LIBRARIES                                  #
