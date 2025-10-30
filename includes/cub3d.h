@@ -116,7 +116,7 @@ t_vec	vec_offset(int x, int y);
 
 // MLX
 int		close_window(t_data *data);
-void	init_mx(t_data *data);
+int		init_mx(t_data *data);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 // PRINT (A DELETE)
