@@ -77,6 +77,14 @@ int	parsing_start(char *infile, t_data *data)
 	return (0);
 }
 
+// void	create_player(t_data *data)
+// {
+// 	ft_bzero(&data->player, sizeof(t_player));
+// 	data->player.p_x = (X_AXIS / 2) / FACTOR;
+// 	data->player.p_y = (Y_AXIS / 2) / FACTOR;
+// 	data->player.	
+// }
+
 t_data	*init_data(void)
 {
 	t_data	*data;
@@ -95,6 +103,9 @@ t_data	*init_data(void)
 	data->txt->ceiling = calloc(sizeof(int), 3);
 	if (!data->txt->ceiling)
 		return (free(data->txt->floor), free(data->txt), free(data), NULL);
+	ft_bzero(&data->player, sizeof(t_player));
+	data->player.p_x = (X_AXIS / 2) / FACTOR;
+	data->player.p_y = (Y_AXIS / 2) / FACTOR;
 	return (data);
 }
 

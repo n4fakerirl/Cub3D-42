@@ -29,6 +29,9 @@ int	init_mx(t_data *data)
 			&data->mx.img_st->bpp,
 			&data->mx.img_st->line_length,
 			&data->mx.img_st->endian);
+	mlx_loop_hook(data->mx.mlx, engine, data);
+	mlx_hook(data->mx.win, 2, 1L << 0, key_move, data);
+	mlx_hook(data->mx.win, 3, 1L << 1, unkey_move, data);
 	mlx_hook(data->mx.win, 17, 0, close_window, data);
 	return (0);
 }

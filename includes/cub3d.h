@@ -19,25 +19,28 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <unistd.h>
 
-# define X_AXIS 1280
-# define Y_AXIS 720
+# define X_AXIS		1280
+# define Y_AXIS		720
 
-# define BLACK       0x000000
-# define WHITE       0xFFFFFF
-# define RED         0xFF0000
-# define GREEN       0x00FF00
-# define BLUE        0x0000FF
-# define YELLOW      0xFFFF00
-# define CYAN        0x00FFFF
-# define MAGENTA     0xFF00FF
-# define GRAY        0x808080
-# define ORANGE      0xFFA500
-# define PURPLE      0x800080
-# define BROWN       0xA52A2A
+# define PI			3.141592653
 
-# define FACTOR		10	
+# define BLACK		0x000000
+# define WHITE		0xFFFFFF
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define BLUE		0x0000FF
+# define YELLOW		0xFFFF00
+# define CYAN		0x00FFFF
+# define MAGENTA	0xFF00FF
+# define GRAY		0x808080
+# define ORANGE		0xFFA500
+# define PURPLE		0x800080
+# define BROWN		0xA52A2A
+
+# define FACTOR		10
 
 typedef struct s_img
 {
@@ -46,6 +49,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_mx
@@ -66,6 +71,19 @@ typedef struct s_txt
 	int		*ceiling;
 }	t_txt;
 
+typedef struct s_player
+{
+	float	p_x;
+	float	p_y;
+	float	fov;
+	bool	l;
+	bool	r;
+	bool	z;
+	bool	q;
+	bool	s;
+	bool	d;
+}	t_player;
+
 typedef struct s_cub
 {
 	char	*file;
@@ -74,18 +92,20 @@ typedef struct s_cub
 	int		p_pos;
 }	t_cub;
 
+typedef struct s_data
+{
+	t_cub		info;
+	t_mx		mx;
+	t_player 	player;
+	t_txt		*txt;
+}	t_data;
+
 typedef struct s_vec
 {
 	int	x;
 	int	y;
 }	t_vec;
 
-typedef struct s_data
-{
-	t_cub	info;
-	t_mx	mx;
-	t_txt	*txt;
-}	t_data;
 
 // FREE
 void	free_tab(char **str);
@@ -105,10 +125,12 @@ void	ft_error(char *message);
 
 // MINIMAP 
 void	pxl_type(t_data *data, int x, int y, int c);
-int		scaled_pxl(t_data *data, int x, int y, char c);
+int		scaled_pxl_minimap(t_data *data, int x, int y, char c);
+int		scaled_pxl(t_data *data, int x, int y, int c);
 void	tab_to_pixel(t_data *data, int *x, int *y, int c);
 void	print_map(t_data *data, t_vec vec);
-void	engine(t_data *data);
+void	print_game_map(t_data *data, t_vec vec);
+int		engine(t_data *data);
 
 // MATHS
 t_vec	vec_offset(int x, int y);
@@ -118,6 +140,9 @@ t_vec	vec_offset(int x, int y);
 int		close_window(t_data *data);
 int		init_mx(t_data *data);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int 	key_move(int key, t_data *data);
+int 	unkey_move(int key, t_data *data);
+
 
 // PRINT (A DELETE)
 void	print_data(t_data *data);
