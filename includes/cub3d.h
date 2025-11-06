@@ -118,6 +118,7 @@ void	free_int_tab(int **tab, int size);
 int		get_size_file(int fd);
 void	free_struct(t_data *data);
 void	ft_free_null(t_data *data, int i);
+int		copy_tab(t_data *data);
 
 // PARSING
 int		txt_init(t_data *data, int i);

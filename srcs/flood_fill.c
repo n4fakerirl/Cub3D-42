@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:35:55 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 12:53:36 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:28:49 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	find_player(t_data *data)
 	int	x;
 
 	y = 0;
-	while (data->info.map[y])
+	while (data->info.filled[y])
 	{
 		x = 0;
-		while (data->info.map[y][x])
+		while (data->info.filled[y][x])
 		{
-			if (data->info.map[y][x] == 'W' || data->info.map[y][x] == 'S'
-				|| data->info.map[y][x] == 'N' || data->info.map[y][x] == 'E')
+			if (data->info.filled[y][x] == 'W' || data->info.filled[y][x] == 'S'
+				|| data->info.filled[y][x] == 'N'
+				|| data->info.filled[y][x] == 'E')
 			{
 				data->info.p_posx = x;
 				data->info.p_posy = y;

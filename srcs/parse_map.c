@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 12:56:52 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:32:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,67 +47,93 @@ int	rows(t_data *data)
 
 	i = 0;
 	y = 0;
-	while (data->info.map[y])
+	while (data->info.filled[y])
 		y++;
-	while (data->info.map[y - 1][i])
+	while (data->info.filled[y - 1][i])
 	{
-		if (data->info.map[y - 1][i] != '1' && !ft_isspace(data->info.map[y
-				- 1][i]))
+		if (data->info.filled[y - 1][i] != '1'
+			&& !ft_isspace(data->info.filled[y - 1][i]))
 			return (0);
 		i++;
 	}
 	i = 0;
-	while (data->info.map[0][i])
+	while (data->info.filled[0][i])
 	{
-		if (data->info.map[0][i] != '1' && !ft_isspace(data->info.map[0][i]))
+		if (data->info.filled[0][i] != '1'
+			&& !ft_isspace(data->info.filled[0][i]))
 			return (0);
 		i++;
 	}
-	return (1);
-}
-
-int	each_col(char *str)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(str);
-	while (ft_isspace(str[i]))
-		i++;
-	while (ft_isspace(str[len - 1]))
-		len--;
-	if (!(str[i] == '1' && str[len - 1] == '1'))
-		return (0);
 	return (1);
 }
 
 int	columns(t_data *data)
 {
 	int	i;
+	int	y;
+	int	len;
 
-	i = 0;
-	while (data->info.map[i])
+	y = 0;
+	while (data->info.filled[y])
 	{
-		if (!each_col(data->info.map[i]))
+		i = 0;
+		len = ft_strlen(data->info.filled[y]);
+		while (ft_isspace(data->info.filled[y][i]))
+			i++;
+		while (ft_isspace(data->info.filled[y][len - 1]))
+			len--;
+		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
+			- 1] == '1'))
 			return (0);
-		i++;
+		y++;
+	}
+	return (1);
+}
+
+int	check_space(t_data *data)
+{
+	int	y;
+	int	i;
+
+	y = 0;
+	while (data->info.filled[y])
+	{
+		i = 0;
+		while (data->info.filled[y][i])
+		{
+			if (data->info.filled[y][i] == '0')
+			{
+				if (data->info.filled[y][i + 1] != '1')
+					return (0);
+				if (data->info.filled[y][i - 1] != '1')
+					return (0);
+				if (data->info.filled[y + 1][i] != '1')
+					return (0);
+				if (data->info.filled[y - 1][i] != '1')
+					return (0);
+			}
+			i++;
+		}
+		y++;
 	}
 	return (1);
 }
 
 int	parse_map(t_data *data)
 {
-	if (!rows(data))
-		return (ft_error("map is not fully closed"), 0);
-	if (!columns(data))
-		return (ft_error("map is not fully closed"), 0);
 	if (!orientation(data))
 		return (0);
 	if (!find_size(data))
 		return (0);
-	find_player(data);
 	add_spaces(data, 0);
-	flood_fill(data, data->info.map_x, data->info.p_posy);
+	copy_tab(data);
+	find_player(data);
+	flood_fill(data, data->info.p_posx, data->info.p_posy);
+	if (!rows(data))
+		return (ft_error("map is not fully closed"), 0);
+	if (!columns(data))
+		return (ft_error("map is not fully closed"), 0);
+	if (!check_space(data))
+		return (ft_error("map is not fully closed"), 0);
 	return (1);
 }

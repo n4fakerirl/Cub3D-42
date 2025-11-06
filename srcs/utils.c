@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 11:53:31 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:28:42 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,25 @@ int	useless_line(char *str)
 			&& str[i] != '1' && str[i] != '0' && !ft_isspace(str[i]))
 			return (0);
 		i++;
+	}
+	return (1);
+}
+
+int	copy_tab(t_data *data)
+{
+	int	y;
+
+	y = 0;
+	free_tab(data->info.map);
+	data->info.map = malloc(sizeof(char *) * (data->info.map_y + 1));
+	if (!data->info.map)
+		return (0);
+	while (data->info.filled[y])
+	{
+		data->info.map[y] = ft_strdup(data->info.filled[y]);
+		if (!data->info.map[y])
+			return (0);
+		y++;
 	}
 	return (1);
 }
