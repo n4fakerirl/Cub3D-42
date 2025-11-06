@@ -74,8 +74,8 @@ int	main(int argc, char **argv)
 		return (free_struct(data), 1);
 	if (init_mx(data))
 		return (free_struct(data), ft_putstr_fd("mlx crash\n", 2), 1);
-	// engine(data);
-	// mlx_loop(data->mx.mlx);
+	engine(data);
+	mlx_loop(data->mx.mlx);
 	free_struct(data);
 	return (0);
 }
