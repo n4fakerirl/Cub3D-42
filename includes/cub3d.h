@@ -93,7 +93,8 @@ typedef struct s_cub
 	char **filled;
 	int		map_y;
 	int		map_x;
-	int		p_pos;
+	int		p_posx;
+	int		p_posy;
 }	t_cub;
 
 typedef struct s_data
@@ -116,16 +117,25 @@ void	free_tab(char **str);
 void	free_int_tab(int **tab, int size);
 int		get_size_file(int fd);
 void	free_struct(t_data *data);
+void	ft_free_null(t_data *data, int i);
 
 // PARSING
 int		txt_init(t_data *data, int i);
 int		read_infile(int fd, t_data *data);
 int		get_fc(t_data *data);
 int		parse_map(t_data *data);
+void	add_spaces(t_data *data, int y);
+int		find_size(t_data *data);
+int		create_map(t_data *data);
+void 	flood_fill(t_data *data, int x, int y);
+void	find_player(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
 void	ft_error(char *message);
+char	*dup_n(char *str);
+int		useless_line(char *str);
+size_t	len_tab(char *str);
 
 // MINIMAP 
 void	pxl_type(t_data *data, int x, int y, int c);

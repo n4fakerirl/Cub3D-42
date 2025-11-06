@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 11:54:46 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:56:52 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	parse_map(t_data *data)
 		return (0);
 	if (!find_size(data))
 		return (0);
+	find_player(data);
 	add_spaces(data, 0);
+	flood_fill(data, data->info.map_x, data->info.p_posy);
 	return (1);
 }
