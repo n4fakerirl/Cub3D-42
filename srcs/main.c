@@ -15,46 +15,6 @@
 
 #include "../includes/cub3d.h"
 
-int	useless_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E'
-			&& str[i] != '1' && str[i] != '0' && !ft_isspace(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	create_map(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->info.full_file[6 + i])
-		i++;
-	data->info.map = malloc(sizeof(char *) * (i + 1));
-	if (!data->info.map)
-		return (0);
-	i = 0;
-	while (data->info.full_file[6 + i])
-	{
-		data->info.map[i] = ft_strdup(data->info.full_file[6 + i]);
-		if (!data->info.map[i])
-			return (free_tab(data->info.map), 0);
-		if (!useless_line(data->info.map[i]))
-			return (data->info.map[++i] = NULL,
-				ft_error("useless line in file or map isn't last"), 0);
-		i++;
-	}
-	data->info.map[i] = NULL;
-	return (1);
-}
-
 int	parsing_start(char *infile, t_data *data)
 {
 	int	fd;
@@ -76,14 +36,6 @@ int	parsing_start(char *infile, t_data *data)
 	print_data(data);
 	return (0);
 }
-
-// void	create_player(t_data *data)
-// {
-// 	ft_bzero(&data->player, sizeof(t_player));
-// 	data->player.p_x = (X_AXIS / 2) / FACTOR;
-// 	data->player.p_y = (Y_AXIS / 2) / FACTOR;
-// 	data->player.	
-// }
 
 t_data	*init_data(void)
 {
@@ -111,7 +63,7 @@ t_data	*init_data(void)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;	
+	t_data	*data;
 
 	if (argc != 2)
 		return (ft_error("./cub3d map_in_valid_format"), 1);

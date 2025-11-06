@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 12:30:45 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 11:52:53 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ void	free_tab(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	ft_free_null(t_data *data, int i)
+{
+	while (--i >= 0)
+		free(data->info.filled[i]);
+	free(data->info.filled);
+	ft_error("Memory allocation failed");
 }
 
 void	free_int_tab(int **tab, int size)

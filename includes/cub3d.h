@@ -41,6 +41,7 @@
 # define BROWN		0xA52A2A
 
 # define FACTOR		10
+# define TAB		4
 
 typedef struct s_img
 {
@@ -89,6 +90,9 @@ typedef struct s_cub
 	char	*file;
 	char	**map;
 	char	**full_file;
+	char **filled;
+	int		map_y;
+	int		map_x;
 	int		p_pos;
 }	t_cub;
 

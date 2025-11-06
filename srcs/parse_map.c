@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 17:14:08 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 11:54:46 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ int	parse_map(t_data *data)
 		return (ft_error("map is not fully closed"), 0);
 	if (!orientation(data))
 		return (0);
+	if (!find_size(data))
+		return (0);
+	add_spaces(data, 0);
 	return (1);
 }

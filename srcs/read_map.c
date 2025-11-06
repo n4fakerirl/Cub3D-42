@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 16:09:35 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:35:46 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	read_infile(int fd, t_data *data)
 	int	len;
 
 	len = ft_strlen(data->info.file) - 4;
-	if (ft_strncmp(data->info.file + len, ".cub", 4))
+	if (ft_strcmp(data->info.file + len, ".cub"))
 		return (ft_error("map isn't a .cub file"), 1);
 	i = get_size_file(fd);
 	if (i < 7)

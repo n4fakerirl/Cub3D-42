@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 16:49:37 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/06 11:55:49 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ void	print_int(t_data *data)
 	printf("\n");
 }
 
+void	print_maps(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	printf("=== GAME MAP ===\n");
+	while (data->info.map[i])
+	{
+		printf("'%s'\n", data->info.map[i]);
+		i++;
+	}
+	i = 0;
+	printf("=== NEW MAP ===\n");
+	while (data->info.filled[i])
+	{
+		printf("'%s'\n", data->info.filled[i]);
+		i++;
+	}
+}
+
 void	print_data(t_data *data)
 {
 	int	i;
@@ -55,11 +75,5 @@ void	print_data(t_data *data)
 	printf("NORTH == %s\nSOUTH == %s\nWEST == %s\nEAST == %s\n", data->txt->no,
 		data->txt->so, data->txt->we, data->txt->ea);
 	print_int(data);
-	i = 0;
-	printf("=== GAME MAP ===\n");
-	while (data->info.map[i])
-	{
-		printf("%s", data->info.map[i]);
-		i++;
-	}
+	print_maps(data);
 }
