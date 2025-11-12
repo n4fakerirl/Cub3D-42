@@ -58,6 +58,7 @@ t_data	*init_data(void)
 	ft_bzero(&data->player, sizeof(t_player));
 	data->player.p_x = (X_AXIS / 2) / FACTOR;
 	data->player.p_y = (Y_AXIS / 2) / FACTOR;
+	data->player.fov = 2 * PI;
 	return (data);
 }
 

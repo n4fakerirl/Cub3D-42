@@ -19,8 +19,8 @@ int	scaled_pxl(t_data *data, int x, int y, int c)
 	int		factor;
 
 	factor = FACTOR;
-	if (c != GREEN) // pr faire apparaitre la minimap 
-		factor *= 4;// flemme de refaire une 342321eme fonction
+	if (c != GREEN)
+		factor *= 4;
 	i = 0;
 	j = 0;
 	while (i < factor)
@@ -36,6 +36,7 @@ int	scaled_pxl(t_data *data, int x, int y, int c)
 	}
 	return (1);
 }
+// if pr faire apparaitre le joueur ms bancal imo
 
 void	tab_to_pixel(t_data *data, int *x, int *y, int c)
 {

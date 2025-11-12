@@ -42,6 +42,7 @@
 
 # define FACTOR		10
 # define TAB		4
+# define SPEED		0.3
 
 typedef struct s_img
 {
@@ -90,7 +91,7 @@ typedef struct s_cub
 	char	*file;
 	char	**map;
 	char	**full_file;
-	char **filled;
+	char	**filled;
 	int		map_y;
 	int		map_x;
 	int		p_posx;
@@ -101,16 +102,17 @@ typedef struct s_data
 {
 	t_cub		info;
 	t_mx		mx;
-	t_player 	player;
+	t_player	player;
 	t_txt		*txt;
 }	t_data;
 
 typedef struct s_vec
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	float	f_x;
+	float	f_y;
 }	t_vec;
-
 
 // FREE
 void	free_tab(char **str);
@@ -128,7 +130,7 @@ int		parse_map(t_data *data);
 void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
 int		create_map(t_data *data);
-void 	flood_fill(t_data *data, int x, int y);
+void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 
 // UTILS
@@ -147,6 +149,11 @@ void	print_map(t_data *data, t_vec vec);
 void	print_game_map(t_data *data, t_vec vec);
 int		engine(t_data *data);
 
+// JOUEUR
+void	player_coord_fov(t_data *data, float v_fov);
+void	coord_calculator(t_data *data, float csv, float snv);
+void	player_coord(t_data *data);
+bool	contact(t_data *data, float f_x, float f_y, int c);
 // MATHS
 t_vec	vec_offset(int x, int y);
 		// offset selon fenetre divise selon la taille des pxl
@@ -155,9 +162,8 @@ t_vec	vec_offset(int x, int y);
 int		close_window(t_data *data);
 int		init_mx(t_data *data);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int 	key_move(int key, t_data *data);
-int 	unkey_move(int key, t_data *data);
-
+int		key_move(int key, t_data *data);
+int		unkey_move(int key, t_data *data);
 
 // PRINT (A DELETE)
 void	print_data(t_data *data);

@@ -12,29 +12,36 @@
 
 #include "../../includes/cub3d.h"
 
+bool	contact(t_data *data, float f_x, float f_y, int c)
+{
+	int	x;
+	int	y;
+
+	x = (int)f_x / 4;
+	y = (int)f_y / 4;
+	if (c == 1 && data->info.map[y][x] == '1')
+		return (1);
+	if (c == 3 && data->info.map[y][x] == '1')
+		return (1);
+	if (c == 0 && data->info.map[y][x] == '1')
+		return (1);
+	if (c == 2 && data->info.map[y][x] == '1')
+		return (1);
+	return (0);
+}
+
 void	player_coord(t_data *data)
 {
-	int		v;
-	t_vec	pos;
-	// float	cos;
-	// float	sin;
-	// cos = 0;
-	// sin = 0;
+	float	v_fov;
+	float	csv;
+	float	snv;
 
-	pos.x = data->player.p_x;
-	pos.y = data->player.p_y;
-	v = 1;
-	if (data->player.z && pos.y - v >= 0)
-		data->player.p_y -= v;
-	if (data->player.s && pos.y + v <= 71)
-		data->player.p_y += v;
-	if (data->player.q && pos.x - v >= 0)
-		data->player.p_x -= v;
-	if (data->player.d && pos.x + v <= 127)
-		data->player.p_x += v;
-	printf("x = %f, y = %f\n", data->player.p_x, data->player.p_y);
+	v_fov = 0.07;
+	csv = cos(data->player.fov) * SPEED;
+	snv = sin(data->player.fov) * SPEED;
+	player_coord_fov(data, v_fov);
+	coord_calculator(data, csv, snv);
 }
-// limites dans if pr les limites de l'ecran donc temp
 
 void	clear_pic(t_data *data)
 {
@@ -53,9 +60,27 @@ void	clear_pic(t_data *data)
 	}
 }
 
+void	ray_cast(t_data *data, t_vec vec, t_vec player_i)
+{
+	vec.f_x = cos(data->player.fov);
+	vec.f_y = sin(data->player.fov);
+	player_i.f_x = data->player.p_x + ((0.3 * vec.f_x));
+	player_i.f_y = data->player.p_y + ((0.3 * vec.f_y));
+	while (1)
+	{
+		if (contact(data, player_i.f_x + ((0.3 * vec.f_x)),
+				player_i.f_y + ((0.3 * vec.f_y)), 0))
+			break ;
+		scaled_pxl(data, player_i.f_x, player_i.f_y, GREEN);
+		player_i.f_x += ((0.3 * vec.f_x));
+		player_i.f_y += ((0.3 * vec.f_y));
+	}
+}
+
 int	engine(t_data *data)
 {
 	t_vec	vec;
+	t_vec	player_i;
 
 	vec.x = X_AXIS / 2;
 	vec.y = Y_AXIS / 2;
@@ -63,13 +88,12 @@ int	engine(t_data *data)
 	clear_pic(data);
 	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
 		data->mx.img_st->img, 0, 0);
-	scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);
 	print_game_map(data, vec);
 	print_map(data, vec);
+	scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);
+	ray_cast(data, vec, player_i);
 	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
 		data->mx.img_st->img, 0, 0);
+	usleep(6000);
 	return (1);
 }
-
-// ft_memset(data->mx.img_st->addr, 0x000000,
-//(data->mx.img_st->height * data->mx.img_st->width));

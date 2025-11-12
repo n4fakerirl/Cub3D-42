@@ -22,6 +22,10 @@ int	key_move(int key, t_data *data)
 		data->player.s = 1;
 	if (key == 100)
 		data->player.d = 1;
+	if (key == 65363)
+		data->player.r = 1;
+	if (key == 65361)
+		data->player.l = 1;
 	return (1);
 }
 // 65363
@@ -38,5 +42,9 @@ int	unkey_move(int key, t_data *data)
 		data->player.s = 0;
 	if (key == 100)
 		data->player.d = 0;
+	if (key == 65363)
+		data->player.r = 0;
+	if (key == 65361)
+		data->player.l = 0;
 	return (1);
 }

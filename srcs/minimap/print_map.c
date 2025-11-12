@@ -21,10 +21,10 @@ void	pxl_type(t_data *data, int x, int y, int c)
 		my_mlx_pixel_put(im, x, y, GREEN);
 	else if (c == '1')
 		my_mlx_pixel_put(im, x, y, WHITE);
-	// else if ((c == '0'))
-		// my_mlx_pixel_put(im, x, y, BLACK);
 	return ;
 }
+	// else if ((c == '0'))
+		// my_mlx_pixel_put(im, x, y, BLACK);
 
 int	scaled_pxl_minimap(t_data *data, int x, int y, char c)
 {
@@ -73,6 +73,8 @@ void	print_game_map(t_data *data, t_vec vec)
 	color = 0;
 	map = data->info.map;
 	xy.y = 0;
+	if (!map)
+		return ;
 	while (map[xy.y])
 	{
 		xy.x = 0;
@@ -81,7 +83,6 @@ void	print_game_map(t_data *data, t_vec vec)
 		{
 			if (xy.x == 0 && map[xy.y][xy.x] == '\t')
 			{
-				// tab_to_pixel_unscaled(data, &xy.x, &xy.y, 'x');
 				xy.x++;
 				x2 += 8;
 			}
@@ -101,9 +102,6 @@ void	print_game_map(t_data *data, t_vec vec)
 		}
 		xy.y++;
 	}
-	// vec = vec_offset(x2, xy.y);
-	// mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img,
-		// vec.x / (FACTOR / 2), vec.y / (FACTOR / 2));
 }
 
 void	print_map(t_data *data, t_vec vec)
@@ -135,7 +133,6 @@ void	print_map(t_data *data, t_vec vec)
 		}
 		xy.y++;
 	}
-	// vec = vec_offset(x2, xy.y);
-	// mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img,
-		// vec.x / (FACTOR / 2), vec.y / (FACTOR / 2));
+	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img,
+		500, 500);
 }

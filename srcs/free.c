@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 11:52:53 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:39:14 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	free_struct(t_data *data)
 {
 	if (data->info.full_file)
 		free_tab(data->info.full_file);
+	if (data->info.filled)
+		free_tab(data->info.filled);
 	if (data->info.map)
 		free_tab(data->info.map);
 	if (data->txt->ceiling)

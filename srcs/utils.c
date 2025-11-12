@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 17:28:42 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:02:22 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	copy_tab(t_data *data)
 
 	y = 0;
 	free_tab(data->info.map);
+	data->info.map = NULL;
 	data->info.map = malloc(sizeof(char *) * (data->info.map_y + 1));
 	if (!data->info.map)
 		return (0);
@@ -92,5 +93,6 @@ int	copy_tab(t_data *data)
 			return (0);
 		y++;
 	}
+	data->info.map[y] = NULL;
 	return (1);
 }
