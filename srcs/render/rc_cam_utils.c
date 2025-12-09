@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map2.c                                             :+:      :+:    :+:   */
+/*   rc_cam_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 01:11:23 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/11/06 01:11:23 by gule-bat         ###   ########.fr       */
+/*   Created: 2025/12/09 19:26:51 by gule-bat          #+#    #+#             */
+/*   Updated: 2025/12/09 19:26:51 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	scaled_pxl(t_data *data, int x, int y, int c)
+int	scaled_pxl_line(t_data *data, int x, int y, int c)
 {
 	int		i;
 	int		j;
 	int		factor;
 
-	factor = FACTOR / 4;
-	if (c != GREEN)
-		factor *= 4;
+	factor = FACTOR / 10;
 	i = 0;
 	j = 0;
-	if (x < 0 || y < 0)
-		return (0);
 	while (i < factor)
 	{
 		j = 0;
@@ -38,27 +34,29 @@ int	scaled_pxl(t_data *data, int x, int y, int c)
 	}
 	return (1);
 }
-// factor *= 2;
-// if pr faire apparaitre le joueur ms bancal imo
 
-void	tab_to_pixel(t_data *data, int *x, int *y, int c)
+void	line_print_y(t_data *data, int xpos, float wall, int color)
 {
-	int	z;
+	float	i;
+	float	o;
 
-	z = 0;
-	while (z < 8)
+	i = ((Y_AXIS - wall) / 2);
+	o = i + wall;
+	if (i < 0)
+		i = 1;
+	if (o >= Y_AXIS)
+		o = (Y_AXIS - 1);
+	while (i <= o)
 	{
-		scaled_pxl_minimap(data, (*x) + z, *y, c);
-		z++;
+		scaled_pxl_line(data, xpos, i, color);
+		i += 1;
 	}
-	*x += 1;
 }
 
-t_vec	vec_offset(int x, int y)
+void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov)
 {
-	t_vec	v;
-
-	v.x = (((X_AXIS - x) / FACTOR) / 2);
-	v.y = (((Y_AXIS - y) / FACTOR) / 2);
-	return (v);
+	vec->f_x = cos(fov);
+	vec->f_y = sin(fov);
+	plr_i->f_x = data->player.p_x + ((SPEED * vec->f_x));
+	plr_i->f_y = data->player.p_y + ((SPEED * vec->f_y));
 }

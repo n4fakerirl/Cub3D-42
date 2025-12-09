@@ -62,6 +62,25 @@ void	tab_to_pixel_unscaled(t_data *data, int *x, int *y, int c)
 	*x += 1;
 }
 
+int	minimap_tree(t_data *data, t_vec xy, int x2, int *color)
+{
+	if (xy.x == 0 && data->info.map[xy.y][xy.x] == '\t')
+	{
+		xy.x++;
+		return (0);
+	}
+	else if (data->info.map[xy.y][xy.x] == '1')
+	{
+		*color = BLUE;
+		scaled_pxl(data, x2, xy.y, *color);
+		*color = 0;
+		xy.x++;
+	}
+	else
+		xy.x++;
+	return (1);
+}
+
 void	print_game_map(t_data *data, t_vec vec)
 {
 	t_vec	xy;
@@ -81,58 +100,12 @@ void	print_game_map(t_data *data, t_vec vec)
 		x2 = xy.x;
 		while (map[xy.y][xy.x] != '\0')
 		{
-			if (xy.x == 0 && map[xy.y][xy.x] == '\t')
-			{
-				xy.x++;
-				x2 += 8;
-			}
-			else if (map[xy.y][xy.x] == '1')
-			{
-				color = BLUE;
-				scaled_pxl(data, x2, xy.y, color);
-				color = 0;
-				xy.x++;
+			if (minimap_tree(data, xy, x2, &color) == 1)
 				x2++;
-			}
 			else
-			{
-				xy.x++;
-				x2++;
-			}
+				x2 += 8;
+			xy.x++;
 		}
 		xy.y++;
 	}
-}
-
-void	print_map(t_data *data, t_vec vec)
-{
-	t_vec	xy;
-	int		x2;
-	char	**map;
-
-	(void)vec;
-	map = data->info.map;
-	xy.y = 0;
-	while (map[xy.y])
-	{
-		xy.x = 0;
-		x2 = xy.x;
-		while (map[xy.y][xy.x] != '\0')
-		{
-			if (xy.x == 0 && map[xy.y][xy.x] == '\t')
-			{
-				tab_to_pixel(data, &xy.x, &xy.y, 'x');
-				x2 += 8;
-			}
-			else
-			{
-				scaled_pxl_minimap(data, x2, xy.y, map[xy.y][xy.x]);
-				xy.x++;
-				x2++;
-			}
-		}
-		xy.y++;
-	}
-	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img,
-		500, 500);
 }
