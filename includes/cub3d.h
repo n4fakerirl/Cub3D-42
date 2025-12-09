@@ -42,7 +42,7 @@
 
 # define FACTOR		10
 # define TAB		4
-# define SPEED		0.3
+# define SPEED		0.1
 
 typedef struct s_img
 {
@@ -140,30 +140,44 @@ char	*dup_n(char *str);
 int		useless_line(char *str);
 size_t	len_tab(char *str);
 
-// MINIMAP 
-void	pxl_type(t_data *data, int x, int y, int c);
-int		scaled_pxl_minimap(t_data *data, int x, int y, char c);
-int		scaled_pxl(t_data *data, int x, int y, int c);
-void	tab_to_pixel(t_data *data, int *x, int *y, int c);
-void	print_map(t_data *data, t_vec vec);
-void	print_game_map(t_data *data, t_vec vec);
+
+//  - RENDER
 int		engine(t_data *data);
+int		scaled_pxl(t_data *data, int x, int y, int c);
+void	ray_cast_cam(t_data *data);
+// minimap 
+int		scaled_pxl_minimap(t_data *data, int x, int y, char c);
+void	print_game_map(t_data *data, t_vec vec);
+void	pxl_type(t_data *data, int x, int y, int c);
+void	tab_to_pixel(t_data *data, int *x, int *y, int c);
+/*void	print_map(t_data *data, t_vec vec);	//useless atm*/
+// render utils
+int		scaled_pxl_line(t_data *data, int x, int y, int c);
+void	line_print_y(t_data *data, int xpos, float wall, int color);
+void	line_calc(t_data *data, t_vec *fov, t_vec *mv, t_vec fov_p);
+
 
 // JOUEUR
 void	player_coord_fov(t_data *data, float v_fov);
 void	coord_calculator(t_data *data, float csv, float snv);
 void	player_coord(t_data *data);
 bool	contact(t_data *data, float f_x, float f_y, int c);
+
+
 // MATHS
 t_vec	vec_offset(int x, int y);
 		// offset selon fenetre divise selon la taille des pxl
+void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov);
+float	lenght(float x, float y);
+int	get_color(int r, int g, int b);
+
 
 // MLX
 int		close_window(t_data *data);
 int		init_mx(t_data *data);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int		key_move(int key, t_data *data);
 int		unkey_move(int key, t_data *data);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 // PRINT (A DELETE)
 void	print_data(t_data *data);
