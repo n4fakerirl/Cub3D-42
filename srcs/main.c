@@ -37,6 +37,18 @@ int	parsing_start(char *infile, t_data *data)
 	return (0);
 }
 
+void	get_fov(t_data *data)
+{
+	if (data->info.map[data->info.p_posy][data->info.p_posx] == 'S')
+		data->player.fov = PI / 2;
+	else if (data->info.map[data->info.p_posy][data->info.p_posx] == 'N')
+		data->player.fov = (3 * PI) / 2;
+	else if (data->info.map[data->info.p_posy][data->info.p_posx] == 'W')
+		data->player.fov = 2 * PI;
+	else if (data->info.map[data->info.p_posy][data->info.p_posx] == 'E')
+		data->player.fov = PI;
+}
+
 t_data	*init_data(void)
 {
 	t_data	*data;
@@ -58,7 +70,6 @@ t_data	*init_data(void)
 	ft_bzero(&data->player, sizeof(t_player));
 	data->player.p_x = (X_AXIS / 2) / FACTOR;
 	data->player.p_y = (Y_AXIS / 2) / FACTOR;
-	data->player.fov = 2 * PI;
 	return (data);
 }
 
@@ -74,8 +85,7 @@ int	main(int argc, char **argv)
 	if (parsing_start(argv[1], data) == 1)
 		return (free_struct(data), 1);
 	if (init_mx(data))
-		return (free_struct(data), ft_putstr_fd("mlx crash\n", 2), 1);
-	engine(data);
+		return (ft_putstr_fd("mlx crash\n", 2), close_window(data), 1);
 	mlx_loop(data->mx.mlx);
 	free_struct(data);
 	return (0);

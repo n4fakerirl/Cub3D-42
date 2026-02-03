@@ -57,6 +57,6 @@ void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov)
 {
 	vec->f_x = cos(fov);
 	vec->f_y = sin(fov);
-	plr_i->f_x = data->player.p_x + ((SPEED * vec->f_x));
-	plr_i->f_y = data->player.p_y + ((SPEED * vec->f_y));
+	plr_i->f_x = data->player.p_x + ((0.1 * vec->f_x));
+	plr_i->f_y = data->player.p_y + ((0.1 * vec->f_y));
 }

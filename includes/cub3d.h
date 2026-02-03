@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 # define X_AXIS		1280
 # define Y_AXIS		720
@@ -42,7 +43,7 @@
 
 # define FACTOR		10
 # define TAB		4
-# define SPEED		0.1
+# define SPEED		0.5  // DANGER POTENTIEL 
 
 typedef struct s_img
 {
@@ -66,11 +67,16 @@ typedef struct s_mx
 typedef struct s_txt
 {
 	char	*no;
+	t_img	*n;
 	char	*so;
+	t_img	*s;
 	char	*we;
+	t_img	*w;
 	char	*ea;
+	t_img	*e;
 	int		*floor;
 	int		*ceiling;
+	t_img	*hud;
 }	t_txt;
 
 typedef struct s_player
@@ -121,6 +127,7 @@ int		get_size_file(int fd);
 void	free_struct(t_data *data);
 void	ft_free_null(t_data *data, int i);
 int		copy_tab(t_data *data);
+void	free_txt(t_data *data);
 
 // PARSING
 int		txt_init(t_data *data, int i);
@@ -140,37 +147,26 @@ char	*dup_n(char *str);
 int		useless_line(char *str);
 size_t	len_tab(char *str);
 
-
 //  - RENDER
 int		engine(t_data *data);
+int		sup_max_color(int color);
+int		color_range(int color, float f);
 int		scaled_pxl(t_data *data, int x, int y, int c);
 void	ray_cast_cam(t_data *data);
-// minimap 
-int		scaled_pxl_minimap(t_data *data, int x, int y, char c);
-void	print_game_map(t_data *data, t_vec vec);
-void	pxl_type(t_data *data, int x, int y, int c);
-void	tab_to_pixel(t_data *data, int *x, int *y, int c);
-/*void	print_map(t_data *data, t_vec vec);	//useless atm*/
+void	ray_cast_cam_txt(t_data *data);
+void	print_img_manual(t_data *data, t_img *img);
+void	clear_pic(t_data *data);
+void	calc_textures(t_data *data, t_vec dist, t_vec fov, t_vec mv);
+//	-	/dda
+void	rc_dda_dir_selector(t_data *data, t_vec *sd, t_vec dlt, t_vec *dir);
+void	dda_loop_content(t_vec *sd, t_vec dlt, t_vec *dir, t_vec *mv);
+void	line_calc_dda(t_data *data, t_vec *dir, t_vec *mv, float *txt);
+
 // render utils
 int		scaled_pxl_line(t_data *data, int x, int y, int c);
 void	line_print_y(t_data *data, int xpos, float wall, int color);
 void	line_calc(t_data *data, t_vec *fov, t_vec *mv, t_vec fov_p);
-
-
-// JOUEUR
-void	player_coord_fov(t_data *data, float v_fov);
-void	coord_calculator(t_data *data, float csv, float snv);
-void	player_coord(t_data *data);
-bool	contact(t_data *data, float f_x, float f_y, int c);
-
-
-// MATHS
-t_vec	vec_offset(int x, int y);
-		// offset selon fenetre divise selon la taille des pxl
-void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov);
-float	lenght(float x, float y);
-int	get_color(int r, int g, int b);
-
+float	fish_eye_eater(t_data *data, t_vec mv, t_vec fov, t_vec fov_p);
 
 // MLX
 int		close_window(t_data *data);
@@ -178,6 +174,29 @@ int		init_mx(t_data *data);
 int		key_move(int key, t_data *data);
 int		unkey_move(int key, t_data *data);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		get_txt_full(t_data **data);
+
+// minimap 
+int		scaled_pxl_minimap(t_data *data, int x, int y, char c);
+void	print_game_map(t_data *data, t_vec vec);
+void	pxl_type(t_data *data, int x, int y, int c);
+void	tab_to_pixel(t_data *data, int *x, int *y, int c);
+void	ray_cast(t_data *data, t_vec vec, t_vec player_i); //minimap
+/*void	print_map(t_data *data, t_vec vec);	//useless atm*/
+
+// JOUEUR
+void	player_coord_fov(t_data *data, float v_fov);
+void	coord_calculator(t_data *data, float csv, float snv);
+void	player_coord(t_data *data);
+bool	contact(t_data *data, float f_x, float f_y, int c);
+void	get_fov(t_data *data);
+
+// MATHS
+t_vec	vec_offset(int x, int y);
+		// offset selon fenetre divise selon la taille des pxl
+void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov);
+float	lenght(float x, float y);
+int		get_color(int r, int g, int b);
 
 // PRINT (A DELETE)
 void	print_data(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/12 17:39:14 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:27:45 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ void	free_int_tab(int **tab, int size)
 	free(tab);
 }
 
+void	free_txt(t_data *data)
+{
+	if (data->txt->n->img)
+		mlx_destroy_image(data->mx.mlx, data->txt->n->img);
+	if (data->txt->s->img)
+		mlx_destroy_image(data->mx.mlx, data->txt->s->img);
+	if (data->txt->e->img)
+		mlx_destroy_image(data->mx.mlx, data->txt->e->img);
+	if (data->txt->w->img)
+		mlx_destroy_image(data->mx.mlx, data->txt->w->img);
+	if (data->txt->hud->img)
+		mlx_destroy_image(data->mx.mlx, data->txt->hud->img);
+	free(data->txt->hud);
+	return ;
+}
+
 void	free_struct(t_data *data)
 {
 	if (data->info.full_file)
@@ -62,6 +78,10 @@ void	free_struct(t_data *data)
 		free(data->txt->ceiling);
 	if (data->txt->floor)
 		free(data->txt->floor);
+	free(data->txt->n);
+	free(data->txt->s);
+	free(data->txt->e);
+	free(data->txt->w);
 	if (data->txt->no)
 		free(data->txt->no);
 	if (data->txt->so)
@@ -73,5 +93,4 @@ void	free_struct(t_data *data)
 	if (data->txt)
 		free(data->txt);
 	free(data);
-	return ;
 }

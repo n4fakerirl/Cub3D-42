@@ -15,6 +15,7 @@
 int	close_window(t_data *data)
 {
 	mlx_destroy_image(data->mx.mlx, data->mx.img_st->img);
+	free_txt(data);
 	mlx_destroy_window(data->mx.mlx, data->mx.win);
 	mlx_destroy_display(data->mx.mlx);
 	free(data->mx.mlx);

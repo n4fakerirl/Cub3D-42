@@ -34,51 +34,6 @@ bool	contact(t_data *data, float f_x, float f_y, int c)
 	return (0);
 }
 
-void	clear_pic(t_data *data)
-{
-	t_vec	v;
-
-	v.y = 0;
-	while (v.y < Y_AXIS)
-	{
-		v.x = 0;
-		while (v.x < X_AXIS)
-		{
-			my_mlx_pixel_put(data->mx.img_st, v.x, v.y, BLACK);
-			v.x++;
-		}
-		v.y++;
-	}
-}
-
-void	ray_cast(t_data *data, t_vec vec, t_vec player_i)
-{
-	float	fov;
-	float	fovm;
-
-	fov = (data->player.fov - ((PI)) / 8);
-	fovm = (data->player.fov + ((PI)) / 8);
-	vec.f_x = cos(data->player.fov);
-	vec.f_y = sin(data->player.fov);
-	player_i.f_x = data->player.p_x + ((SPEED * vec.f_x));
-	player_i.f_y = data->player.p_y + ((SPEED * vec.f_y));
-	while ((fov - fovm) <= 0)
-	{
-		vector_sin_cos_plus(&vec, data, &player_i, fov);
-		while (!contact(data, player_i.f_x + ((SPEED * vec.f_x)),
-				player_i.f_y + ((SPEED * vec.f_y)), 0))
-		{
-			scaled_pxl(data, player_i.f_x, player_i.f_y, GREEN);
-			player_i.f_x += ((SPEED * vec.f_x));
-			player_i.f_y += ((SPEED * vec.f_y));
-			if ((player_i.f_x / 8 >= data->info.map_x - 1
-					|| player_i.f_y / 8 >= data->info.map_y - 1))
-				break ;
-		}
-		fov += 0.01;
-	}
-}
-
 void	skybox(t_data *data)
 {
 	t_vec	i;
@@ -93,7 +48,8 @@ void	skybox(t_data *data)
 		while (i.y < Y_AXIS)
 		{
 			if (i.y >= Y_AXIS / 2)
-				i.f_x = BLACK * data->player.fov;
+				i.f_x = get_color(data->txt->floor[0],
+						data->txt->floor[1], data->txt->floor[2]);
 			my_mlx_pixel_put(data->mx.img_st, i.x, i.y, i.f_x);
 			i.y++;
 		}
@@ -104,12 +60,40 @@ void	skybox(t_data *data)
 	return ;
 }
 
+// my_mlx_pixel_put(data->mx.img_st, i.x,
+//i.y, i.f_x - (i.f_x/8) - (i.x<<i.y)+(i.y>>i.x));
+
+void	print_img_manual(t_data *data, t_img *img)
+{
+	t_vec	y;
+	int		px;
+
+	y.y = 0;
+	px = 0;
+	if (!(img->addr))
+		return ;
+	while (y.y < Y_AXIS)
+	{
+		y.x = 0;
+		while (y.x < X_AXIS)
+		{
+			px = *(int *)(img->addr + y.y * img->line_length
+					+ y.x * (img->bpp / 8));
+			if ((px & 0xFF000000) != 0xFF000000)
+				my_mlx_pixel_put(data->mx.img_st, y.x, y.y, px);
+			y.x++;
+		}
+		y.y++;
+	}
+}
+
 int	engine(t_data *data)
 {
 	t_vec	vec;
 	t_vec	player_i;
 
-	(void)vec;
+	player_i.f_x = 0;
+	player_i.f_y = 0;
 	vec.x = X_AXIS / 2;
 	vec.y = Y_AXIS / 2;
 	player_coord(data);
@@ -119,10 +103,7 @@ int	engine(t_data *data)
 	skybox(data);
 	ray_cast_cam(data);
 	print_game_map(data, vec);
-	scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);
 	ray_cast(data, vec, player_i);
-	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
-		data->mx.img_st->img, 0, 0);
-	usleep(600);
+	scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);
 	return (1);
 }
