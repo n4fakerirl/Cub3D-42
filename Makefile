@@ -4,7 +4,7 @@
 
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -Iincludes -Iincludes/libft -Iincludes/mlx_linux -g3 -Ofast -fsanitize=address 
+CFLAGS      = -Wall -Wextra -Werror -Iincludes -Iincludes/libft -Iincludes/mlx_linux -g3
 RM          = rm -f
 
 # **************************************************************************** #

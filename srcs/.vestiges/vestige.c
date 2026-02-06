@@ -21,7 +21,7 @@
 // 	char	**map;
 // 
 // 	(void)vec;
-// 	map = data->info.map;
+// 	map = ;
 // 	xy.y = 0;
 // 	while (map[xy.y])
 // 	{

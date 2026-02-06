@@ -26,6 +26,8 @@ void	player_coord_fov(t_data *data, float v_fov)
 
 void	coord_calculator(t_data *data, float csv, float snv)
 {
+	float sides_x = cos(data->player.fov - PI/2) * SPEED;
+	float sides_y = sin(data->player.fov - PI/2) * SPEED;
 	if (!contact(data, data->player.p_x + (csv * 3), data->player.p_y
 			+ (snv * 3), 0) && (data->player.z && data->player.p_y
 			- SPEED >= 2))
@@ -40,22 +42,21 @@ void	coord_calculator(t_data *data, float csv, float snv)
 		data->player.p_x -= csv;
 		data->player.p_y -= snv;
 	}
+	if (!contact(data, data->player.p_x + (sides_x * 3), data->player.p_y
+			- (snv * 3), 2) && data->player.q 
+			&& data->player.p_x - SPEED >= 0)
+	{
+		data->player.p_x += sides_x;
+		data->player.p_y += sides_y;
+	}
+	if (!contact(data, data->player.p_x - (sides_x * 3), data->player.p_y
+			+ (snv * 3), 3) && data->player.d 
+			&& data->player.p_x + SPEED <= (X_AXIS / 10) - 1)
+	{
+		data->player.p_x -= sides_x;
+		data->player.p_y -= sides_y;
+	}
 }
-
-	// if (!contact(data, data->player.p_x + (csv * 3), data->player.p_y
-			// - (snv * 3), 2) && data->player.q 
-			//&& data->player.p_x - SPEED >= 0)
-	// {
-		// data->player.p_x += csv;
-		// data->player.p_y -= snv;
-	// }
-	// if (!contact(data, data->player.p_x - (csv * 3), data->player.p_y
-			// + (snv * 3), 3) && data->player.d 
-			//&& data->player.p_x + SPEED <= (X_AXIS / 10) - 1)
-	// {
-		// data->player.p_x -= csv;
-		// data->player.p_y += snv;
-	// }
 
 void	player_coord(t_data *data)
 {

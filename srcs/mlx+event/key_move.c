@@ -14,9 +14,9 @@
 
 int	key_move(int key, t_data *data)
 {
-	if (key == 122)
+	if (key == 119)
 		data->player.z = 1;
-	if (key == 113)
+	if (key == 97)
 		data->player.q = 1;
 	if (key == 115)
 		data->player.s = 1;
@@ -26,6 +26,8 @@ int	key_move(int key, t_data *data)
 		data->player.r = 1;
 	if (key == 65361)
 		data->player.l = 1;
+	if (key == 65307)
+		close_window(data);
 	return (1);
 }
 // 65363
@@ -34,9 +36,9 @@ int	key_move(int key, t_data *data)
 
 int	unkey_move(int key, t_data *data)
 {
-	if (key == 122)
+	if (key == 119)
 		data->player.z = 0;
-	if (key == 113)
+	if (key == 97)
 		data->player.q = 0;
 	if (key == 115)
 		data->player.s = 0;
@@ -46,5 +48,7 @@ int	unkey_move(int key, t_data *data)
 		data->player.r = 0;
 	if (key == 65361)
 		data->player.l = 0;
+	if (key == 65307)
+		close_window(data);
 	return (1);
 }

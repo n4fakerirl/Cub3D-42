@@ -35,7 +35,7 @@ int	timer(t_data *data)
 	if (fps >= 60)
 		fps = 0;
 	str = ft_itoa(fps);
-	printf("%s\n", str);
+	//printf("%s\n", str);
 	if (!engine(data))
 		return (free(str), 0);
 	print_img_manual(data, data->txt->hud);
