@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/06 16:59:31 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:20:36 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,5 @@ int	read_infile(int fd, t_data *data)
 		return (1);
 	if (get_file(data, i + 1, 0, 0))
 		return (1);
-	//for (int i = 0; data->info.full_file[i]; i++)
-		//printf("%s", data->info.full_file[i]);
 	return (0);
 }

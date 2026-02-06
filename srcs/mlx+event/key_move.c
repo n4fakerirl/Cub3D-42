@@ -30,9 +30,6 @@ int	key_move(int key, t_data *data)
 		close_window(data);
 	return (1);
 }
-// 65363
-// 65361
-// printf("%d\n", key);
 
 int	unkey_move(int key, t_data *data)
 {
