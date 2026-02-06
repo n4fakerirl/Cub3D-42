@@ -21,8 +21,8 @@ int	get_txt(t_data **data, char *path, t_img **img)
 	if (!path)
 		return (1);
 	tmp = ft_strdup(path);
-	tmp[ft_strlen(path)-1] = '\0';
 	tmpath = ft_strjoin("txt/", tmp);
+	printf("tmpath : [%s]\n", tmpath);
 	printf("%s\n\n", tmpath);
 	free(tmp);
 	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmpath,
@@ -70,7 +70,7 @@ int	get_txt_full(t_data **data)
 		return (1);
 	if (get_txt(data, (*data)->txt->we, &(*data)->txt->w) && (*data)->txt->we)
 		return (1);
-	if (get_txt(data, "hudcub.xpm\n", &(*data)->txt->hud))
+	if (get_txt(data, "hudcub.xpm", &(*data)->txt->hud))
 		return (1);
 	if ((*data)->txt->hud->width != 1280 && (*data)->txt->hud->height != 720)
 		return (1);

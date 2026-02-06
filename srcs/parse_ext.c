@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/30 01:58:39 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:00:53 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	check_ext(char *file)
 	int	len;
 
 	len = ft_strlen(file);
-	if (ft_strncmp(file + len - 5, ".xpm", 4))
+	printf("[%s]\n", file + len - 4);
+	if (ft_strncmp(file + len - 4, ".xpm", 4))
 		return (ft_error("file extension isn't .xpm."), 0);
 	if (len <= 5)
 		return (ft_error("a file name is needed."), 0);

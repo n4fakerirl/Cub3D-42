@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 10:35:46 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:59:31 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,48 @@ int	get_size_file(int fd)
 	return (i);
 }
 
+int nbr_endl(const char *s)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+char	*dup_noend(const char *s)
+{
+	int		i;
+	int		j;
+	int		srclen;
+	char	*dest;
+
+	i = 0;
+	j = 0;
+	srclen = ft_strlen(s);
+	dest = malloc(sizeof(char) * ((srclen + 1) - nbr_endl(s)));
+	if (!dest)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] != '\n' && s[i] != '\r')
+		{
+			dest[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	dest[j] = '\0';
+	return (dest);
+}
+
 int	get_file(t_data *data, int size, int i, int j)
 {
 	int		fd2;
@@ -44,9 +86,9 @@ int	get_file(t_data *data, int size, int i, int j)
 		line = get_next_line(fd2);
 		if (!line)
 			break ;
-		if (line[0] != '\n' && line[0] != '\0')
+		if (line[0] != '\n' && line[0] != '\0' && line[0] != '\r')
 		{
-			data->info.full_file[j] = ft_strdup(line);
+			data->info.full_file[j] = dup_noend(line);
 			j++;
 		}
 		free(line);
@@ -73,5 +115,7 @@ int	read_infile(int fd, t_data *data)
 		return (1);
 	if (get_file(data, i + 1, 0, 0))
 		return (1);
+	//for (int i = 0; data->info.full_file[i]; i++)
+		//printf("%s", data->info.full_file[i]);
 	return (0);
 }
