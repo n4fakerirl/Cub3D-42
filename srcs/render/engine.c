@@ -104,6 +104,7 @@ int	engine(t_data *data)
 	ray_cast_cam(data);
 	print_game_map(data, vec);
 	ray_cast(data, vec, player_i);
-	scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);
 	return (1);
 }
+
+// scaled_pxl(data, data->player.p_x, data->player.p_y, GREEN);

@@ -71,7 +71,7 @@ int	minimap_tree(t_data *data, t_vec xy, int x2, int *color)
 	}
 	else if (data->info.map[xy.y][xy.x] == '1')
 	{
-		*color = BLUE;
+		*color = ORANGE;
 		scaled_pxl(data, x2, xy.y, *color);
 		*color = 0;
 		xy.x++;
