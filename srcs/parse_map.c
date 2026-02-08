@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 17:32:43 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 12:50:25 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,20 @@ int	check_space(t_data *data)
 	return (1);
 }
 
+int nl_inmap(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (data->info.full_file[i])
+	{
+		if (!ft_strcmp(data->info.full_file[i], "\0"))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	parse_map(t_data *data)
 {
 	if (!orientation(data))
@@ -129,6 +143,8 @@ int	parse_map(t_data *data)
 	copy_tab(data);
 	find_player(data);
 	flood_fill(data, data->info.p_posx, data->info.p_posy);
+	if (!nl_inmap(data))
+		return (ft_error("empty line in map"), 0);
 	if (!rows(data))
 		return (ft_error("map is not fully closed"), 0);
 	if (!columns(data))

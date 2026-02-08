@@ -98,6 +98,7 @@ typedef struct s_cub
 	char	**map;
 	char	**full_file;
 	char	**filled;
+	int		size;
 	int		map_y;
 	int		map_x;
 	int		p_posx;

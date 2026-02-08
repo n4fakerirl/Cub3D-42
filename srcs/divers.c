@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 11:55:49 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 09:30:36 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_data(t_data *data)
 	printf("=== WHOLE FILE ===\n");
 	while (data->info.full_file[i])
 	{
-		printf("%s", data->info.full_file[i]);
+		printf("%s\n", data->info.full_file[i]);
 		i++;
 	}
 	printf("\n=== ORIENTATION ===\n");

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/28 17:47:23 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 12:10:04 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	grab_c(t_data *data, char *file)
 	i = 0;
 	while (i < 3)
 	{
+		if (tmp[0][1] != '\0')
+			return (free_tab(tmp), ft_error("Only identifier C needed."), 0);
 		data->txt->ceiling[i] = ft_atoi(tmp[i + 1]);
 		if (data->txt->ceiling[i] < 0 || data->txt->ceiling[i] > 255)
 			return (free_tab(tmp),
@@ -88,6 +90,8 @@ int	grab_f(t_data *data, char *file)
 	i = 0;
 	while (i < 3)
 	{
+		if (tmp[0][1] != '\0')
+			return (free_tab(tmp), ft_error("Only identifier F needed."), 0);
 		data->txt->floor[i] = ft_atoi(tmp[i + 1]);
 		if (data->txt->floor[i] < 0 || data->txt->floor[i] > 255)
 			return (free_tab(tmp),
