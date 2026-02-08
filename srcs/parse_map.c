@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 12:57:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 13:43:13 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@ int	columns(t_data *data)
 	return (1);
 }
 
+int zero_one(t_data *data, int y, int i)
+{
+	if (data->info.filled[y][i] != '1' && data->info.filled[y][i] != '0')
+		return (0);
+	return (1);
+}
+
 int	check_space(t_data *data)
 {
 	int	y;
@@ -103,13 +110,13 @@ int	check_space(t_data *data)
 		{
 			if (data->info.filled[y][i] == '0')
 			{
-				if (data->info.filled[y][i + 1] != '1')
+				if (!zero_one(data, y + 1, i))
 					return (0);
-				if (data->info.filled[y][i - 1] != '1')
+				if (!zero_one(data, y - 1, i))
 					return (0);
-				if (data->info.filled[y + 1][i] != '1')
+				if (!zero_one(data, y, i + 1))
 					return (0);
-				if (data->info.filled[y - 1][i] != '1')
+				if (!zero_one(data, y, i - 1))
 					return (0);
 			}
 			i++;
