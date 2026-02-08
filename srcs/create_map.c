@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:51:47 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/06 12:34:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 12:58:58 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	create_map(t_data *data)
 				ft_error("useless line in file or map isn't last"), 0);
 		i++;
 	}
+	for (int i = 0; data->info.map[i]; i++)
+		printf("MAP[%s]\n", data->info.map[i]);
 	data->info.map[i] = NULL;
 	return (1);
 }
