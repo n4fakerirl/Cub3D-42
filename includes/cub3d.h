@@ -140,11 +140,13 @@ int		find_size(t_data *data);
 int		create_map(t_data *data);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
+int		zero_one(t_data *data, int y, int i);
+int		nl_inmap(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
 void	ft_error(char *message);
-char	*dup_n(char *str);
+char	*dup_n(const char *str);
 int		useless_line(char *str);
 size_t	len_tab(char *str);
 
