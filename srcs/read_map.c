@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:39:53 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:15:31 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,43 @@ int	try_line(char *line, int flag)
 	return (0);
 }
 
+char	*trimming(char *line)
+{
+	size_t	i;
+	size_t	start;
+	size_t	end;
+	char	*dest;
+
+	start = 0;
+	end = ft_strlen(line);
+	i = 0;
+	while (line[start] && ft_isspace(line[start]))
+		start++;
+	while (end > start && ft_isspace(line[end - 1]))
+		end--;
+	dest = malloc(sizeof(char) * (end - start + 1));
+	if (!dest)
+		return (NULL);
+	while (start < end)
+	{
+		dest[i] = line[start];
+		i++;
+		start++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char *dup_cut(char *line)
+{
+	char *dest;
+
+	dest = trimming(line);
+	char *tmp;
+	tmp = dup_n(dest);
+	return (tmp);
+}
+
 int	get_file(t_data *data, int flag, int i, int j)
 {
 	int		fd2;
@@ -73,7 +110,10 @@ int	get_file(t_data *data, int flag, int i, int j)
 			break ;
 		if (try_line(line, flag))
 		{
-			data->info.full_file[j] = dup_n(line);
+			if (j < 6)
+				data->info.full_file[j] = dup_cut(line);
+			else
+				data->info.full_file[j] = dup_n(line);
 			if (!data->info.full_file[j])
 				return (m_error(line, data, j, fd2), 1);
 			j++;
