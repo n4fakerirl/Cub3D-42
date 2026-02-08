@@ -6,11 +6,18 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 09:30:36 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 14:15:53 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	ft_error(char *message)
+{
+	ft_putstr_fd("cub3d: error: ", 2);
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+}
 
 void	print_int(t_data *data)
 {

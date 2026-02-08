@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2025/11/10 18:02:22 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/08 14:15:49 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	ft_error(char *message)
-{
-	ft_putstr_fd("cub3d: error: ", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-}
 
 size_t	len_tab(char *str)
 {
@@ -37,22 +30,40 @@ size_t	len_tab(char *str)
 	return (len);
 }
 
-char	*dup_n(char *str)
+int	nbr_endl(const char *s)
 {
-	char	*dest;
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n' || s[i] == '\r')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+char	*dup_n(const char *s)
+{
 	int		i;
 	int		j;
+	int		srclen;
+	char	*dest;
 
 	i = 0;
 	j = 0;
-	dest = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	srclen = ft_strlen(s);
+	dest = malloc(sizeof(char) * ((srclen + 1) - nbr_endl(s)));
 	if (!dest)
 		return (NULL);
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] != '\n')
+		if (s[i] != '\n' && s[i] != '\r')
 		{
-			dest[j] = str[i];
+			dest[j] = s[i];
 			j++;
 		}
 		i++;

@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
+/*   Updated: 2026/02/08 14:14:18 by ocviller         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	zero_one(t_data *data, int y, int i)
+{
+	if (data->info.filled[y][i] != '1' && data->info.filled[y][i] != '0')
+		return (0);
+	return (1);
+}
+
+int	nl_inmap(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->info.full_file[i])
+	{
+		if (!ft_strcmp(data->info.full_file[i], "\0"))
+			return (0);
+		i++;
+	}
+	return (1);
+}
