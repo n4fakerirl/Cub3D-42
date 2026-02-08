@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 12:57:15 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 13:44:01 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ char	*dup_noend(const char *s)
 	return (dest);
 }
 
-void test(t_data *data, int *i, int *flag, int fd2)
+void	test(t_data *data, int *i, int *flag, int fd2)
 {
-	char *line = "\n";
+	char	*line;
+
+	line = "\n";
 	(*flag) = 1;
-	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0' || line[0] == '\r'))
+	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
+			|| line[0] == '\r'))
 	{
 		line = get_next_line(fd2);
 		if (!line)
@@ -100,7 +103,8 @@ int	get_file(t_data *data, int flag, int i, int j)
 		line = get_next_line(fd2);
 		if (!line)
 			break ;
-		if ((line[0] != '\n' && line[0] != '\0' && line[0] != '\r') || (flag == 1))
+		if ((line[0] != '\n' && line[0] != '\0' && line[0] != '\r')
+			|| (flag == 1))
 		{
 			data->info.full_file[j] = dup_noend(line);
 			if (!data->info.full_file[j])
@@ -112,8 +116,6 @@ int	get_file(t_data *data, int flag, int i, int j)
 		free(line);
 		i++;
 	}
-	// for (int i = 0; data->info.full_file[i]; i++)
-	// 	printf("%s\n", data->info.full_file[i]);
 	data->info.full_file[j] = NULL;
 	close(fd2);
 	return (0);
