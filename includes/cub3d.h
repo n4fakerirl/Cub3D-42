@@ -142,6 +142,7 @@ void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);
 int		nl_inmap(t_data *data);
+void	m_error(char *line, t_data *data, int j, int fd2);
 
 // UTILS
 char	**split(char *str, char *charset);

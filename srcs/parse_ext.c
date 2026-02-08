@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 14:30:21 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:37:31 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	ext_check(t_data *data, int i)
 int	check_ext(char *file)
 {
 	int	len;
-	int len_nosp;
-	int i;
+	int	len_nosp;
+	int	i;
 
 	i = 0;
 	len_nosp = 0;

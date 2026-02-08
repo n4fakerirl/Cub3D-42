@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 16:51:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:37:23 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,12 @@ int	check_space(t_data *data)
 	int	i;
 
 	y = 0;
-	for (int i = 0; data->info.filled[i]; i++)
-		printf("[TEST]:%s\n", data->info.filled[i]);
 	while (data->info.filled[y])
 	{
 		i = 0;
 		while (data->info.filled[y][i])
 		{
-			if (data->info.filled[y][i] == '0' || data->info.filled[y][i] == 'X')
+			if (data->info.filled[y][i] == '0')
 			{
 				if (!zero_one(data, y + 1, i))
 					return (0);

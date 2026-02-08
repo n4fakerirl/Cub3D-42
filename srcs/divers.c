@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 14:15:53 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:39:42 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ void	ft_error(char *message)
 	ft_putstr_fd("cub3d: error: ", 2);
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd("\n", 2);
+}
+
+void	m_error(char *line, t_data *data, int j, int fd2)
+{
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd2);
+	}
+	free(line);
+	close(fd2);
+	data->info.full_file[j] = NULL;
+	ft_error("failed malloc");
 }
 
 void	print_int(t_data *data)

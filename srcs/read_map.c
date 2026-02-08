@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:02:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:39:53 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	get_size_file(int fd)
 	return (i);
 }
 
-void	skip_nl(t_data *data, int *i, int *flag, int fd2)
+char	*skip_nl(t_data *data, int *i, int *flag, int fd2)
 {
 	char	*line;
+	char	*res;
 
 	line = "\n";
 	(*flag) = 1;
@@ -45,7 +46,9 @@ void	skip_nl(t_data *data, int *i, int *flag, int fd2)
 			break ;
 		(*i)++;
 	}
+	res = dup_n(line);
 	free(line);
+	return (res);
 }
 
 int	try_line(char *line, int flag)
@@ -53,19 +56,6 @@ int	try_line(char *line, int flag)
 	if ((line[0] != '\n' && line[0] != '\0' && line[0] != '\r') || (flag == 1))
 		return (1);
 	return (0);
-}
-
-void m_error(char *line, t_data *data, int j, int fd2)
-{
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd2);
-	}
-	free(line);
-	close(fd2);
-	data->info.full_file[j] = NULL;
-	ft_error("failed malloc");
 }
 
 int	get_file(t_data *data, int flag, int i, int j)
@@ -80,16 +70,16 @@ int	get_file(t_data *data, int flag, int i, int j)
 	{
 		line = get_next_line(fd2);
 		if (!line)
-			break;
+			break ;
 		if (try_line(line, flag))
 		{
-			data->info.full_file[j] = NULL;//dup_n(line);
+			data->info.full_file[j] = dup_n(line);
 			if (!data->info.full_file[j])
 				return (m_error(line, data, j, fd2), 1);
 			j++;
 		}
 		if (flag == 0 && j > 6)
-			skip_nl(data, &i, &flag, fd2);
+			data->info.full_file[j++] = skip_nl(data, &i, &flag, fd2);
 		free(line);
 		i++;
 	}
