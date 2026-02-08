@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 14:14:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:52:32 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	zero_one(t_data *data, int y, int i)
 {
-	if (data->info.filled[y][i] != '1' && data->info.filled[y][i] != '0')
+	if (data->info.filled[y][i] != '1' && data->info.filled[y][i] != '0' && data->info.filled[y][i] != 'X')
 		return (0);
 	return (1);
 }

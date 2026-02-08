@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 11:32:34 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 14:30:21 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,21 @@ int	ext_check(t_data *data, int i)
 int	check_ext(char *file)
 {
 	int	len;
+	int len_nosp;
+	int i;
 
+	i = 0;
+	len_nosp = 0;
 	len = ft_strlen(file);
+	while (file[i])
+	{
+		if (file[i] != ' ' && file[i] != '\t')
+			len_nosp++;
+		i++;
+	}
 	if (ft_strncmp(file + len - 4, ".xpm", 4))
 		return (ft_error("file extension isn't .xpm."), 0);
-	if (len <= 5)
+	if (len_nosp < 5)
 		return (ft_error("a file name is needed."), 0);
 	return (1);
 }

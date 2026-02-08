@@ -6,19 +6,17 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 14:16:08 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:51:19 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	orientation(t_data *data)
+int	orientation(t_data *data, int y)
 {
 	int	i;
-	int	y;
 	int	count;
 
-	y = 0;
 	count = 0;
 	while (data->info.map[y])
 	{
@@ -28,6 +26,8 @@ int	orientation(t_data *data)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
+			else if (ft_isalpha(data->info.map[y][i]))
+				return (ft_error("Start position allowed : N, S, W or E"), 0);
 			i++;
 		}
 		y++;
@@ -96,12 +96,14 @@ int	check_space(t_data *data)
 	int	i;
 
 	y = 0;
+	for (int i = 0; data->info.filled[i]; i++)
+		printf("[TEST]:%s\n", data->info.filled[i]);
 	while (data->info.filled[y])
 	{
 		i = 0;
 		while (data->info.filled[y][i])
 		{
-			if (data->info.filled[y][i] == '0')
+			if (data->info.filled[y][i] == '0' || data->info.filled[y][i] == 'X')
 			{
 				if (!zero_one(data, y + 1, i))
 					return (0);
@@ -121,7 +123,7 @@ int	check_space(t_data *data)
 
 int	parse_map(t_data *data)
 {
-	if (!orientation(data))
+	if (!orientation(data, 0))
 		return (0);
 	if (!find_size(data))
 		return (0);

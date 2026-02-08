@@ -6,7 +6,7 @@
 #    By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:30:15 by ocviller          #+#    #+#              #
-#    Updated: 2025/08/09 21:02:20 by ocviller         ###   ########.fr        #
+#    Updated: 2026/02/08 17:55:37 by ocviller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ OBJ_GNL = $(SRC_GNL:.c=.o)
 ALL_OBJ = $(OBJ) $(OBJ_PRINTF) $(OBJ_GNL)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -Ift_printf -Iget_next_line -fPIE
+CFLAGS = -Wall -Wextra -Werror -g3 -I. -Ift_printf -Iget_next_line -fPIE
 
 RM = rm -f
 

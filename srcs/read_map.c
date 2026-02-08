@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 14:16:45 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:02:18 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ int	try_line(char *line, int flag)
 	return (0);
 }
 
+void m_error(char *line, t_data *data, int j, int fd2)
+{
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd2);
+	}
+	free(line);
+	close(fd2);
+	data->info.full_file[j] = NULL;
+	ft_error("failed malloc");
+}
+
 int	get_file(t_data *data, int flag, int i, int j)
 {
 	int		fd2;
@@ -67,13 +80,12 @@ int	get_file(t_data *data, int flag, int i, int j)
 	{
 		line = get_next_line(fd2);
 		if (!line)
-			break ;
+			break;
 		if (try_line(line, flag))
 		{
-			data->info.full_file[j] = dup_n(line);
+			data->info.full_file[j] = NULL;//dup_n(line);
 			if (!data->info.full_file[j])
-				return (data->info.full_file[j] = NULL,
-					ft_error("failed malloc"), 1);
+				return (m_error(line, data, j, fd2), 1);
 			j++;
 		}
 		if (flag == 0 && j > 6)
