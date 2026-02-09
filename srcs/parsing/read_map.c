@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 20:25:17 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 20:38:28 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,33 @@ int	get_size_file(int fd)
 
 char	*skip_nl(t_data *data, int *i, int *flag, int fd2)
 {
-	char	*line;
 	char	*res;
 
-	line = "\n";
+	data->info.line = "\n";
 	(*flag) = 1;
-	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
-			|| line[0] == '\r'))
+	while ((*i) < data->info.size && (data->info.line[0] == '\n' || data->info.line[0] == '\0'
+			|| data->info.line[0] == '\r'))
 	{
-		line = get_next_line(fd2);
-		if (!line)
+		data->info.line = get_next_line(fd2);
+		if (!data->info.line)
 			break ;
 		(*i)++;
 	}
-	res = dup_n(line);
+	res = dup_n(data->info.line);
 	if (!res)
-		return (free(line), NULL);
-	free(line);
+		return (free(data->info.line), NULL);
+	free(data->info.line);
 	return (res);
 }
 
-int	test(int *j, t_data *data, int fd2)
+int	dup_in_map(int *j, t_data *data, int fd2)
 {
 	if ((*j) < 6)
 		data->info.full_file[(*j)] = dup_cut(data->info.line);
 	else
 		data->info.full_file[(*j)] = dup_n(data->info.line);
-	printf("test : j[%d]\n", (*j));
 	if (!data->info.full_file[(*j)])
-		return (m_error(data->info.line, data, &j, fd2), 0);
+		return (m_error(data, *j, fd2), 0);
 	(*j)++;
 	return (1);
 }
@@ -80,15 +78,14 @@ int	get_file(t_data *data, int flag, int i, int j)
 			break ;
 		if (try_line(data->info.line, flag))
 		{
-			if (test(j, data, fd2) == 0)
+			if (dup_in_map(&j, data, fd2) == 0)
 				return (1);
-			printf("en sortant : j[%d]\n", j);
 		}
 		if (flag == 0 && j > 6)
 		{
 			data->info.full_file[j] = skip_nl(data, &i, &flag, fd2);
 			if (!data->info.full_file[j])
-				return (m_error(data->info.line, data, j, fd2), 1);
+				return (m_error(data, j, fd2), 1);
 			j++;
 		}
 		i++;

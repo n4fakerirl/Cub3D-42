@@ -141,14 +141,17 @@ void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);
 int		nl_inmap(t_data *data);
-void	m_error(char *line, t_data *data, int j, int fd2);
+void	m_error(t_data *data, int j, int fd2);
+int		check_space(t_data *data);
 
 // UTILS
 char	**split(char *str, char *charset);
+char	*dup_cut(char *line);
 void	ft_error(char *message);
 char	*dup_n(const char *str);
 int		useless_line(char *str);
 size_t	len_tab(char *str);
+int		try_line(char *line, int flag);
 
 //  - RENDER
 int		engine(t_data *data);
