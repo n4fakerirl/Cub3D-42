@@ -95,6 +95,9 @@ La carte doit être fermée, valide et contenir une seule position de départ.
 ```bash
 ./cub3D maps/map.cub
 ```
+<p align="center">
+  <img width="1285" height="748" alt="image" src="https://github.com/user-attachments/assets/372cfc01-e838-4555-bfc9-b5e4ab7468d5" />
+</p>
 
 ---
 
