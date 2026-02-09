@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 20:14:01 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 20:57:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void	free_struct(t_data *data)
 {
 	if (!data)
 		return ;
-	if (data->info.line)
-		free(data->info.line);
 	if (data->info.full_file)
 		free_tab(data->info.full_file);
 	if (data->info.filled)

@@ -95,7 +95,8 @@ typedef struct s_player
 typedef struct s_cub
 {
 	char	*file;
-	char	*line;
+	int		flag;
+	int		j;
 	char	**map;
 	char	**full_file;
 	char	**filled;
@@ -141,7 +142,7 @@ void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);
 int		nl_inmap(t_data *data);
-void	m_error(t_data *data, int j, int fd2);
+void	m_error(char *line, t_data *data, int fd2);
 int		check_space(t_data *data);
 
 // UTILS
