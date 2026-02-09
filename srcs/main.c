@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	if (parsing_start(argv[1], data) == 1)
 		return (free_struct(data), 1);
 	if (init_mx(data))
-		return (free_struct(data), ft_putstr_fd("mlx crash\n", 2), close_window(data), 1);
+		return (ft_putstr_fd("mlx crash\n", 2), close_window(data), 1);
 	mlx_loop(data->mx.mlx);
 	free_struct(data);
 	return (0);
