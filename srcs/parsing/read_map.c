@@ -54,7 +54,7 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	return (res);
 }
 
-int dup_infile(t_data *data, char *line, int fd2)
+int	dup_infile(t_data *data, char *line, int fd2)
 {
 	if (data->info.j < 6)
 		data->info.full_file[data->info.j] = dup_cut(line);
@@ -96,6 +96,7 @@ int	get_file(t_data *data, int i, int fd2)
 int	read_infile(int fd, t_data *data)
 {
 	int	len;
+	int	fd2;
 
 	len = ft_strlen(data->info.file) - 4;
 	if (ft_strcmp(data->info.file + len, ".cub"))
@@ -107,7 +108,6 @@ int	read_infile(int fd, t_data *data)
 	if (!data->info.full_file)
 		return (ft_error("malloc error"), 1);
 	data->info.size++;
-	int		fd2;
 	fd2 = open(data->info.file, O_RDONLY);
 	if (fd2 < 0)
 		return (ft_error("can't open file"), 1);
