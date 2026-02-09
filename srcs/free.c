@@ -6,7 +6,7 @@
 /*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:05:21 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 18:30:20 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	free_int_tab(int **tab, int size)
 
 void	free_txt(t_data *data)
 {
-	if (data->txt->n->img)
+	if (data->mx.mlx && data->txt->n->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->n->img);
-	if (data->txt->s->img)
+	if (data->mx.mlx && data->txt->s->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->s->img);
-	if (data->txt->e->img)
+	if (data->mx.mlx && data->txt->e->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->e->img);
-	if (data->txt->w->img)
+	if (data->mx.mlx && data->txt->w->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->w->img);
-	if (data->txt->hud->img)
+	if (data->mx.mlx && data->txt->hud->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->hud->img);
 	if (data->txt->hud)
 		free(data->txt->hud);
@@ -61,6 +61,8 @@ void	free_txt(t_data *data)
 
 void	free_struct(t_data *data)
 {
+	if (!data)
+		return ;
 	if (data->info.full_file)
 		free_tab(data->info.full_file);
 	if (data->info.filled)

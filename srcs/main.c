@@ -33,7 +33,7 @@ int	parsing_start(char *infile, t_data *data)
 		return (1);
 	if (!parse_map(data))
 		return (1);
-	print_data(data);
+	//print_data(data);
 	return (0);
 }
 
