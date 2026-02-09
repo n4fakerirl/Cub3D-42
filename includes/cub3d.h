@@ -123,10 +123,8 @@ typedef struct s_vec
 
 // FREE
 void	free_tab(char **str);
-void	free_int_tab(int **tab, int size);
 int		get_size_file(int fd);
 void	free_struct(t_data *data);
-void	ft_free_null(t_data *data, int i);
 int		copy_tab(t_data *data);
 void	free_txt(t_data *data);
 
@@ -157,7 +155,6 @@ int		sup_max_color(int color);
 int		color_range(int color, float f);
 int		scaled_pxl(t_data *data, int x, int y, int c);
 void	ray_cast_cam(t_data *data);
-void	ray_cast_cam_txt(t_data *data);
 void	print_img_manual(t_data *data, t_img *img);
 void	clear_pic(t_data *data);
 void	calc_textures(t_data *data, t_vec dist, t_vec fov, t_vec mv);

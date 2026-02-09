@@ -6,7 +6,7 @@
 /*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:59:14 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 19:33:19 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ void	free_tab(char **str)
 		i++;
 	}
 	free(str);
-}
-
-void	free_int_tab(int **tab, int size)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (i < size)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
 }
 
 void	free_txt(t_data *data)
