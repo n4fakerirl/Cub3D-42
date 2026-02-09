@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:37:31 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:12:06 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,35 @@ int	check_ext(char *file)
 	return (1);
 }
 
+int store_ext(t_data *data, char c, int i, char *file)
+{
+	if (c == 'N')
+	{
+		data->txt->no = ft_strdup(file + i);
+		if (!data->txt->no)
+			return (0);
+	}
+	else if (c == 'S')
+	{
+		data->txt->so = ft_strdup(file + i);
+		if (!data->txt->so)
+			return (0);
+	}
+	else if (c == 'W')
+	{
+		data->txt->we = ft_strdup(file + i);
+		if (!data->txt->we)
+			return (0);
+	}
+	else if (c == 'E')
+	{
+		data->txt->ea = ft_strdup(file + i);
+		if (!data->txt->ea)
+			return (0);
+	}
+	return (1);
+}
+
 int	grab_ext(t_data *data, char *file, char c, int l)
 {
 	int	i;
@@ -75,14 +104,8 @@ int	grab_ext(t_data *data, char *file, char c, int l)
 		i++;
 	while (file[i] && (file[i] == '.' || file[i] == '/'))
 		i++;
-	if (c == 'N')
-		data->txt->no = ft_strdup(file + i);
-	else if (c == 'S')
-		data->txt->so = ft_strdup(file + i);
-	else if (c == 'W')
-		data->txt->we = ft_strdup(file + i);
-	else if (c == 'E')
-		data->txt->ea = ft_strdup(file + i);
+	if (!store_ext(data, c, i, file))
+		return (ft_error("malloc error"), 0);
 	return (1);
 }
 

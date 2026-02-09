@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:37:23 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:07:32 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	wrong_pos(t_data *data, int y)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	while (data->info.map[y])
+	{
+		i = 0;
+		while (data->info.map[y][i])
+		{
+			if (data->info.map[y][i] != 'N' && data->info.map[y][i] != 'S'
+				&& data->info.map[y][i] != 'W' && data->info.map[y][i] != 'E')
+			if (ft_isalpha(data->info.map[y][i]) && data->info.map[y][i] != 'N' && data->info.map[y][i] != 'S'
+				&& data->info.map[y][i] != 'W' && data->info.map[y][i] != 'E')
+				count++;
+			i++;
+		}
+		y++;
+	}
+	if (count == 1)
+		return (ft_error("start position allowed : N, S, W or E"), 0);
+	else if (count > 1)
+		return (ft_error("useless line in file or forbidden character"), 0);
+	return (1);
+}
 
 int	orientation(t_data *data, int y)
 {
@@ -26,8 +53,8 @@ int	orientation(t_data *data, int y)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
-			else if (ft_isalpha(data->info.map[y][i]))
-				return (ft_error("Start position allowed : N, S, W or E"), 0);
+			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0))
+				return (0);
 			i++;
 		}
 		y++;
@@ -35,9 +62,9 @@ int	orientation(t_data *data, int y)
 	if (count == 1)
 		return (1);
 	else if (count > 1)
-		return (ft_error("Only one start position is needed"), 0);
+		return (ft_error("only one start position is needed"), 0);
 	else
-		return (ft_error("Map doesnt have any start position"), 0);
+		return (ft_error("map doesnt have any start position"), 0);
 }
 
 int	rows(t_data *data)
@@ -126,7 +153,8 @@ int	parse_map(t_data *data)
 	if (!find_size(data))
 		return (0);
 	add_spaces(data, 0);
-	copy_tab(data);
+	if (!copy_tab(data))
+		return (ft_error("malloc error"), 0);
 	find_player(data);
 	flood_fill(data, data->info.p_posx, data->info.p_posy);
 	if (!nl_inmap(data))

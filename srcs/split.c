@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:34:40 by ocviller          #+#    #+#             */
-/*   Updated: 2025/10/27 19:47:15 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:13:32 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**split(char *str, char *charset)
 		{
 			result[i] = ft_strdup_sep(str, charset);
 			if (!result[i])
-				return (NULL);
+				return (result[i] = NULL, ft_free(result), NULL);
 			i++;
 		}
 		while (*str && !separator(*str, charset))

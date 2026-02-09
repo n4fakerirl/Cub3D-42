@@ -25,7 +25,6 @@ int	timer(t_data *data)
 	long		curr;
 	static long	last = 0;
 	static long	fps = 0;
-	char		*str;
 
 	curr = clock_ms();
 	if (curr - last < 20)
@@ -34,13 +33,11 @@ int	timer(t_data *data)
 	fps += 1;
 	if (fps >= 60)
 		fps = 0;
-	str = ft_itoa(fps);
 	if (!engine(data))
-		return (free(str), 0);
+		return (0);
 	print_img_manual(data, data->txt->hud);
 	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
 		data->mx.img_st->img, 0, 0);
-	free(str);
 	return (1);
 }
 
@@ -49,7 +46,7 @@ int	init_mx(t_data *data)
 	data->mx.mlx = mlx_init();
 	if (!data->mx.mlx)
 		return (1);
-	data->mx.win = mlx_new_window(data->mx.mlx, X_AXIS, Y_AXIS, "cube");
+	data->mx.win = mlx_new_window(data->mx.mlx, X_AXIS, Y_AXIS, "cub3d");
 	if (!data->mx.win)
 		return (1);
 	data->mx.img_st = malloc(sizeof(t_img));

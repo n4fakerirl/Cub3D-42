@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   divers.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:39:42 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:05:45 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	m_error(char *line, t_data *data, int j, int fd2)
 	free(line);
 	close(fd2);
 	data->info.full_file[j] = NULL;
-	ft_error("failed malloc");
+	ft_error("malloc error");
 }
 
 void	print_int(t_data *data)

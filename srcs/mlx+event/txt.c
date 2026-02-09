@@ -21,8 +21,11 @@ int	get_txt(t_data **data, char *path, t_img **img)
 	if (!path)
 		return (1);
 	tmp = ft_strdup(path);
+	if (!tmp)
+		return (1);
 	tmpath = ft_strjoin("txt/", tmp);
-	printf("%s\n\n", tmpath);
+	if (!tmpath)
+		return (free(tmp), 1);
 	free(tmp);
 	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmpath,
 			&(*img)->width, &(*img)->height);

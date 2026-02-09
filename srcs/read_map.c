@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 19:15:31 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:14:36 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*skip_nl(t_data *data, int *i, int *flag, int fd2)
 		(*i)++;
 	}
 	res = dup_n(line);
+	if (!res)
+		return (free(line), NULL);
 	free(line);
 	return (res);
 }
@@ -90,8 +92,13 @@ char *dup_cut(char *line)
 	char *dest;
 
 	dest = trimming(line);
+	if (!dest)
+		return (NULL);
 	char *tmp;
 	tmp = dup_n(dest);
+	if (!tmp)
+		return (free(dest), NULL);
+	free(dest);
 	return (tmp);
 }
 
@@ -102,7 +109,7 @@ int	get_file(t_data *data, int flag, int i, int j)
 
 	fd2 = open(data->info.file, O_RDONLY);
 	if (fd2 < 0)
-		return (ft_error("cannot open file"), 1);
+		return (ft_error("can't open file"), 1);
 	while (i < data->info.size)
 	{
 		line = get_next_line(fd2);
@@ -119,7 +126,12 @@ int	get_file(t_data *data, int flag, int i, int j)
 			j++;
 		}
 		if (flag == 0 && j > 6)
-			data->info.full_file[j++] = skip_nl(data, &i, &flag, fd2);
+		{
+			data->info.full_file[j] = skip_nl(data, &i, &flag, fd2);
+			if (!data->info.full_file[j])
+				return (m_error(line, data, j, fd2), 1);
+			j++;
+		}
 		free(line);
 		i++;
 	}
@@ -135,10 +147,10 @@ int	read_infile(int fd, t_data *data)
 		return (ft_error("map isn't a .cub file"), 1);
 	data->info.size = get_size_file(fd);
 	if (data->info.size < 7)
-		return (1);
+		return (ft_error("map or textures missing"), 1);
 	data->info.full_file = ft_calloc(data->info.size + 1, sizeof(char *));
 	if (!data->info.full_file)
-		return (1);
+		return (ft_error("malloc error"), 1);
 	data->info.size++;
 	if (get_file(data, 0, 0, 0))
 		return (1);

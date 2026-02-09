@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_fc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:39:05 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:56:51 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:13:38 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int	grab_c(t_data *data, char *file)
 
 	tmp = split(file, ", ");
 	if (!tmp)
-		return (0);
+		return (ft_error("malloc error"), 0);
 	if (!split_size(tmp))
-		return (free_tab(tmp), ft_error("Only 3 parameters needed"), 0);
+		return (free_tab(tmp), ft_error("only 3 parameters needed"), 0);
 	i = 0;
 	while (i < 3)
 	{
 		if (tmp[0][1] != '\0')
-			return (free_tab(tmp), ft_error("Only identifier C needed."), 0);
+			return (free_tab(tmp), ft_error("only identifier C needed."), 0);
 		data->txt->ceiling[i] = ft_atoi(tmp[i + 1]);
 		if (data->txt->ceiling[i] < 0 || data->txt->ceiling[i] > 255)
 			return (free_tab(tmp),
@@ -84,14 +84,14 @@ int	grab_f(t_data *data, char *file)
 
 	tmp = split(file, ", ");
 	if (!tmp)
-		return (0);
+		return (ft_error("malloc error"), 0);
 	if (!split_size(tmp))
-		return (free_tab(tmp), ft_error("Only 3 parameters needed"), 0);
+		return (free_tab(tmp), ft_error("only 3 parameters needed"), 0);
 	i = 0;
 	while (i < 3)
 	{
 		if (tmp[0][1] != '\0')
-			return (free_tab(tmp), ft_error("Only identifier F needed."), 0);
+			return (free_tab(tmp), ft_error("only identifier F needed."), 0);
 		data->txt->floor[i] = ft_atoi(tmp[i + 1]);
 		if (data->txt->floor[i] < 0 || data->txt->floor[i] > 255)
 			return (free_tab(tmp),

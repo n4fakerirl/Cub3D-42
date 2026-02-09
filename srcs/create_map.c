@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:51:47 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 13:44:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:09:45 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	find_size(t_data *data)
 	data->info.map_y = y;
 	data->info.filled = malloc(sizeof(char *) * (data->info.map_y + 1));
 	if (!data->info.filled)
-		return (0);
+		return (ft_error("malloc error"), 0);
 	while (i < data->info.map_y)
 	{
 		data->info.filled[i] = malloc(sizeof(char) * (data->info.map_x + 1));
 		if (!data->info.filled[i])
-			return (ft_free_null(data, i), 0);
+			return (ft_error("malloc error"), 0);
 		i++;
 	}
 	data->info.filled[i] = NULL;
@@ -49,13 +49,13 @@ int	create_map(t_data *data)
 		i++;
 	data->info.map = malloc(sizeof(char *) * (i + 1));
 	if (!data->info.map)
-		return (0);
+		return (ft_error("malloc error"), 0);
 	i = 0;
 	while (data->info.full_file[6 + i])
 	{
 		data->info.map[i] = dup_n(data->info.full_file[6 + i]);
 		if (!data->info.map[i])
-			return (free_tab(data->info.map), 0);
+			return (ft_error("malloc error"), 0);
 		if (!useless_line(data->info.map[i]))
 			return (data->info.map[++i] = NULL,
 				ft_error("useless line in file or map isn't last"), 0);

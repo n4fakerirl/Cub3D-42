@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/03 18:27:45 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:05:21 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ void	free_tab(char **str)
 		i++;
 	}
 	free(str);
-}
-
-void	ft_free_null(t_data *data, int i)
-{
-	while (--i >= 0)
-		free(data->info.filled[i]);
-	free(data->info.filled);
-	ft_error("Memory allocation failed");
 }
 
 void	free_int_tab(int **tab, int size)
@@ -62,7 +54,8 @@ void	free_txt(t_data *data)
 		mlx_destroy_image(data->mx.mlx, data->txt->w->img);
 	if (data->txt->hud->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->hud->img);
-	free(data->txt->hud);
+	if (data->txt->hud)
+		free(data->txt->hud);
 	return ;
 }
 
@@ -78,10 +71,14 @@ void	free_struct(t_data *data)
 		free(data->txt->ceiling);
 	if (data->txt->floor)
 		free(data->txt->floor);
-	free(data->txt->n);
-	free(data->txt->s);
-	free(data->txt->e);
-	free(data->txt->w);
+	if (data->txt->n)
+		free(data->txt->n);
+	if (data->txt->n)
+		free(data->txt->s);
+	if (data->txt->n)
+		free(data->txt->w);
+	if (data->txt->n)
+		free(data->txt->e);
 	if (data->txt->no)
 		free(data->txt->no);
 	if (data->txt->so)

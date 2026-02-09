@@ -55,18 +55,18 @@ t_data	*init_data(void)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return (NULL);
+		return (ft_error("malloc error"), NULL);
 	ft_memset(data, 0, sizeof(t_data));
 	data->txt = malloc(sizeof(t_txt));
 	if (!data->txt)
-		return (free(data), NULL);
+		return (ft_error("malloc error"), free(data), NULL);
 	ft_memset(data->txt, 0, sizeof(t_txt));
 	data->txt->floor = calloc(sizeof(int), 3);
 	if (!data->txt->floor)
-		return (free(data->txt), free(data), NULL);
+		return (ft_error("malloc error"), free(data->txt), free(data), NULL);
 	data->txt->ceiling = calloc(sizeof(int), 3);
 	if (!data->txt->ceiling)
-		return (free(data->txt->floor), free(data->txt), free(data), NULL);
+		return (ft_error("malloc error"), free(data->txt->floor), free(data->txt), free(data), NULL);
 	ft_bzero(&data->player, sizeof(t_player));
 	data->player.p_x = (X_AXIS / 2) / FACTOR;
 	data->player.p_y = (Y_AXIS / 2) / FACTOR;
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	if (parsing_start(argv[1], data) == 1)
 		return (free_struct(data), 1);
 	if (init_mx(data))
-		return (ft_putstr_fd("mlx crash\n", 2), close_window(data), 1);
+		return (free_struct(data), ft_putstr_fd("mlx crash\n", 2), close_window(data), 1);
 	mlx_loop(data->mx.mlx);
 	free_struct(data);
 	return (0);
