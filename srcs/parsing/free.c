@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 20:57:43 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 21:17:16 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	close_window(t_data *data)
 
 void	free_txt(t_data *data)
 {
+	if (data->txt->n == NULL || data->txt->s == NULL)
+		return ;
 	if (data->mx.mlx && data->txt->n && data->txt->n->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->n->img);
 	if (data->mx.mlx && data->txt->s && data->txt->s->img)
