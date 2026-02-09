@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_n_coord.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:15:58 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/09 19:57:12 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 21:45:56 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ void	player_coord_fov(t_data *data, float v_fov)
 
 void	coord_add_or_sub_x(t_data *data, float x, float y, int side)
 {
+	float	hb;
+
+	hb = 0.8;
+	if (((contact(data, data->player.p_x + x + (hb), data->player.p_y + y, 0)
+				&& side == 0) || (contact(data, data->player.p_x + x - (hb),
+					data->player.p_y + y, 0) && side == 0))
+		|| (contact(data, data->player.p_x - x,
+				data->player.p_y - y - (hb), 0) && side == 1) || (contact(data,
+				data->player.p_x - x, data->player.p_y - y + hb, 0)
+			&& side == 1))
+		return ;
 	if (side == 0 && ((data->player.p_x + x || data->player.p_y + y) < 1))
 		return ;
 	if (side == 1 && ((data->player.p_x - x || data->player.p_y - y) < 1))

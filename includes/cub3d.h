@@ -43,7 +43,7 @@
 
 # define FACTOR		10
 # define TAB		4
-# define SPEED		0.5  // DANGER POTENTIEL 
+# define SPEED		0.3  // DANGER POTENTIEL 
 
 typedef struct s_img
 {
