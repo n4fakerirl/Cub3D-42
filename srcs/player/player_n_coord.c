@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_n_coord.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:15:58 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/11/12 18:15:58 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:12 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,18 @@ void	coord_calculator(t_data *data, float csv, float snv)
 
 	sides_y = sin(data->player.fov - PI / 2) * SPEED / 2;
 	sides_x = cos(data->player.fov - PI / 2) * SPEED / 2;
-	if (!contact(data, data->player.p_x + (csv), data->player.p_y
-			+ (snv), 0) && (data->player.z && data->player.p_y
-			- SPEED >= 0))
+	if (!contact(data, data->player.p_x + (csv), data->player.p_y + (snv), 0)
+		&& (data->player.z && data->player.p_y - SPEED >= 0))
 		coord_add_or_sub_x(data, csv, snv, 0);
-	if (!contact(data, data->player.p_x - (csv), data->player.p_y
-			- (snv), 1) && (data->player.s
-			&& data->player.p_y + SPEED <= (Y_AXIS - 1)))
+	if (!contact(data, data->player.p_x - (csv), data->player.p_y - (snv), 1)
+		&& (data->player.s && data->player.p_y + SPEED <= (Y_AXIS - 1)))
 		coord_add_or_sub_x(data, csv, snv, 1);
 	if (!contact(data, data->player.p_x + (sides_x), data->player.p_y
-			+ (sides_y), 2) && data->player.q
-		&& data->player.p_x - SPEED >= 0)
+			+ (sides_y), 2) && data->player.q && data->player.p_x - SPEED >= 0)
 		coord_add_or_sub_x(data, sides_x, sides_y, 0);
 	if (!contact(data, data->player.p_x - (sides_x), data->player.p_y
-			- (sides_y), 3) && data->player.d
-		&& data->player.p_x + SPEED <= (X_AXIS) - 1)
+			- (sides_y), 3) && data->player.d && data->player.p_x
+		+ SPEED <= (X_AXIS)-1)
 		coord_add_or_sub_x(data, sides_x, sides_y, 1);
 }
 

@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:07:32 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 20:28:27 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	wrong_pos(t_data *data, int y)
+int	wrong_pos(t_data *data, int i, int y)
 {
-	int	i;
 	int	count;
 
 	count = 0;
@@ -25,9 +24,12 @@ int	wrong_pos(t_data *data, int y)
 		{
 			if (data->info.map[y][i] != 'N' && data->info.map[y][i] != 'S'
 				&& data->info.map[y][i] != 'W' && data->info.map[y][i] != 'E')
-			if (ft_isalpha(data->info.map[y][i]) && data->info.map[y][i] != 'N' && data->info.map[y][i] != 'S'
-				&& data->info.map[y][i] != 'W' && data->info.map[y][i] != 'E')
-				count++;
+				if (ft_isalpha(data->info.map[y][i])
+					&& data->info.map[y][i] != 'N'
+					&& data->info.map[y][i] != 'S'
+					&& data->info.map[y][i] != 'W'
+					&& data->info.map[y][i] != 'E')
+					count++;
 			i++;
 		}
 		y++;
@@ -53,7 +55,7 @@ int	orientation(t_data *data, int y)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
-			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0))
+			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0))
 				return (0);
 			i++;
 		}
@@ -112,35 +114,6 @@ int	columns(t_data *data)
 		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
 			- 1] == '1'))
 			return (0);
-		y++;
-	}
-	return (1);
-}
-
-int	check_space(t_data *data)
-{
-	int	y;
-	int	i;
-
-	y = 0;
-	while (data->info.filled[y])
-	{
-		i = 0;
-		while (data->info.filled[y][i])
-		{
-			if (data->info.filled[y][i] == '0')
-			{
-				if (!zero_one(data, y + 1, i))
-					return (0);
-				if (!zero_one(data, y - 1, i))
-					return (0);
-				if (!zero_one(data, y, i + 1))
-					return (0);
-				if (!zero_one(data, y, i - 1))
-					return (0);
-			}
-			i++;
-		}
 		y++;
 	}
 	return (1);

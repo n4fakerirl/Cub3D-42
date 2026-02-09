@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   txt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:19:14 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/03 18:19:14 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:56:02 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	get_txt(t_data **data, char *path, t_img **img)
 	if (!tmpath)
 		return (free(tmp), 1);
 	free(tmp);
-	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmpath,
-			&(*img)->width, &(*img)->height);
+	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmpath, &(*img)->width,
+			&(*img)->height);
 	if (!(*img)->img)
 		return (free(tmpath), 1);
 	free(tmpath);
@@ -59,8 +59,8 @@ int	init_txt(t_data **data)
 
 int	get_txt_full(t_data **data)
 {
-	if (!((*data)->txt->no && (*data)->txt->so
-			&& (*data)->txt->ea && (*data)->txt->we))
+	if (!((*data)->txt->no && (*data)->txt->so && (*data)->txt->ea
+			&& (*data)->txt->we))
 		return (1);
 	if (init_txt(data))
 		return (1);

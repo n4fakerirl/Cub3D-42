@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:36:44 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/12/09 19:36:44 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:38 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ void	ray_cast(t_data *data, t_vec vec, t_vec player_i)
 	while ((fov - fovm) <= 0)
 	{
 		vector_sin_cos_plus(&vec, data, &player_i, fov);
-		while (!contact(data, player_i.f_x + ((SPEED * vec.f_x)),
-				player_i.f_y + ((SPEED * vec.f_y)), 0))
+		while (!contact(data, player_i.f_x + ((SPEED * vec.f_x)), player_i.f_y
+				+ ((SPEED * vec.f_y)), 0))
 		{
 			scaled_pxl(data, player_i.f_x, player_i.f_y, GREEN);
 			player_i.f_x += ((SPEED * vec.f_x));
 			player_i.f_y += ((SPEED * vec.f_y));
-			if ((player_i.f_x / 8 >= data->info.map_x - 1
-					|| player_i.f_y / 8 >= data->info.map_y - 1))
+			if ((player_i.f_x / 8 >= data->info.map_x - 1 || player_i.f_y
+					/ 8 >= data->info.map_y - 1))
 				break ;
 		}
 		fov += 0.01;

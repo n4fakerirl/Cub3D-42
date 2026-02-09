@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 20:08:43 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/03 20:08:43 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:21 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	rc_dda_dir_selector(t_data *data, t_vec *sd, t_vec dlt, t_vec *dir)
 	else
 	{
 		sd->x = 1;
-		sd->f_x = ((dlt.x + 1.0) * FACTOR - data->player.p_x)
-			* dlt.f_x / FACTOR;
+		sd->f_x = ((dlt.x + 1.0) * FACTOR - data->player.p_x) * dlt.f_x
+			/ FACTOR;
 	}
 	if (dir->f_y < 0)
 	{
@@ -33,8 +33,8 @@ void	rc_dda_dir_selector(t_data *data, t_vec *sd, t_vec dlt, t_vec *dir)
 	else
 	{
 		sd->y = 1;
-		sd->f_y = ((dlt.y + 1.0) * FACTOR - data->player.p_y)
-			* dlt.f_y / FACTOR;
+		sd->f_y = ((dlt.y + 1.0) * FACTOR - data->player.p_y) * dlt.f_y
+			/ FACTOR;
 	}
 }
 

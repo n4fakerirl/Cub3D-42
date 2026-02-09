@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:32:57 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/10/30 01:32:57 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 20:28:04 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,17 @@ int	timer(t_data *data)
 	if (!engine(data))
 		return (0);
 	print_img_manual(data, data->txt->hud);
-	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
-		data->mx.img_st->img, 0, 0);
+	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img, 0,
+		0);
 	return (1);
+}
+
+void	mlx_looping(t_data *data)
+{
+	mlx_loop_hook(data->mx.mlx, timer, data);
+	mlx_hook(data->mx.win, 2, 1L << 0, key_move, data);
+	mlx_hook(data->mx.win, 3, 1L << 1, unkey_move, data);
+	mlx_hook(data->mx.win, 17, 0, close_window, data);
 }
 
 int	init_mx(t_data *data)
@@ -57,8 +65,7 @@ int	init_mx(t_data *data)
 	if (!data->mx.img_st->img)
 		return (1);
 	data->mx.img_st->addr = mlx_get_data_addr(data->mx.img_st->img,
-			&data->mx.img_st->bpp,
-			&data->mx.img_st->line_length,
+			&data->mx.img_st->bpp, &data->mx.img_st->line_length,
 			&data->mx.img_st->endian);
 	if (!data->mx.img_st->addr)
 		return (1);
@@ -67,10 +74,7 @@ int	init_mx(t_data *data)
 	get_fov(data);
 	if (get_txt_full(&data))
 		return (1);
-	mlx_loop_hook(data->mx.mlx, timer, data);
-	mlx_hook(data->mx.win, 2, 1L << 0, key_move, data);
-	mlx_hook(data->mx.win, 3, 1L << 1, unkey_move, data);
-	mlx_hook(data->mx.win, 17, 0, close_window, data);
+	mlx_looping(data);
 	return (0);
 }
 

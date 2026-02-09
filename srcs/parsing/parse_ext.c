@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ext.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:12:06 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 19:55:29 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_ext(char *file)
 	return (1);
 }
 
-int store_ext(t_data *data, char c, int i, char *file)
+int	store_ext(t_data *data, char c, int i, char *file)
 {
 	if (c == 'N')
 	{

@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2025/10/17 15:10:06 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/10/17 15:10:06 by gule-bat         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
+/*   Updated: 2026/02/09 20:03:36 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +30,7 @@ int	parsing_start(char *infile, t_data *data)
 		return (1);
 	if (!parse_map(data))
 		return (1);
-	//print_data(data);
+	print_data(data);
 	return (0);
 }
 
@@ -66,7 +63,10 @@ t_data	*init_data(void)
 		return (ft_error("malloc error"), free(data->txt), free(data), NULL);
 	data->txt->ceiling = calloc(sizeof(int), 3);
 	if (!data->txt->ceiling)
-		return (ft_error("malloc error"), free(data->txt->floor), free(data->txt), free(data), NULL);
+	{
+		ft_error("malloc error");
+		return (free(data->txt->floor), free(data->txt), free(data), NULL);
+	}
 	ft_bzero(&data->player, sizeof(t_player));
 	data->player.p_x = (X_AXIS / 2) / FACTOR;
 	data->player.p_y = (Y_AXIS / 2) / FACTOR;

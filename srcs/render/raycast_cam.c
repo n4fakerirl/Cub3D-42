@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_cam.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:26:39 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/12/09 19:26:39 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:30 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	line_calc(t_data *data, t_vec *fov, t_vec *mv, t_vec fov_p)
 {
 	(void)fov_p;
-	while (!contact(data, mv->f_x + ((0.1 * fov->f_x)),
-			mv->f_y + ((0.1 * fov->f_y)), 0))
+	while (!contact(data, mv->f_x + ((0.1 * fov->f_x)), mv->f_y + ((0.1
+					* fov->f_y)), 0))
 	{
-		if ((mv->f_x / 4 >= data->info.map_x - 1
-				|| mv->f_y / 4 >= data->info.map_y - 1))
+		if ((mv->f_x / 4 >= data->info.map_x - 1 || mv->f_y
+				/ 4 >= data->info.map_y - 1))
 			break ;
 		mv->f_x += ((0.1 * fov->f_x));
 		mv->f_y += ((0.1 * fov->f_y));
@@ -75,5 +75,5 @@ void	ray_cast_cam(t_data *data)
 	}
 }
 
-		// dist.f_x = lenslesslenght(data, mv);
-		// dist.y = Y_AXIS / dist.f_x;
+// dist.f_x = lenslesslenght(data, mv);
+// dist.y = Y_AXIS / dist.f_x;

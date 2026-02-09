@@ -95,6 +95,7 @@ typedef struct s_player
 typedef struct s_cub
 {
 	char	*file;
+	char	*line;
 	char	**map;
 	char	**full_file;
 	char	**filled;

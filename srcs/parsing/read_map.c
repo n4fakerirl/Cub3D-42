@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:14:36 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 20:25:17 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,86 +53,44 @@ char	*skip_nl(t_data *data, int *i, int *flag, int fd2)
 	return (res);
 }
 
-int	try_line(char *line, int flag)
+int	test(int *j, t_data *data, int fd2)
 {
-	if ((line[0] != '\n' && line[0] != '\0' && line[0] != '\r') || (flag == 1))
-		return (1);
-	return (0);
-}
-
-char	*trimming(char *line)
-{
-	size_t	i;
-	size_t	start;
-	size_t	end;
-	char	*dest;
-
-	start = 0;
-	end = ft_strlen(line);
-	i = 0;
-	while (line[start] && ft_isspace(line[start]))
-		start++;
-	while (end > start && ft_isspace(line[end - 1]))
-		end--;
-	dest = malloc(sizeof(char) * (end - start + 1));
-	if (!dest)
-		return (NULL);
-	while (start < end)
-	{
-		dest[i] = line[start];
-		i++;
-		start++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char *dup_cut(char *line)
-{
-	char *dest;
-
-	dest = trimming(line);
-	if (!dest)
-		return (NULL);
-	char *tmp;
-	tmp = dup_n(dest);
-	if (!tmp)
-		return (free(dest), NULL);
-	free(dest);
-	return (tmp);
+	if ((*j) < 6)
+		data->info.full_file[(*j)] = dup_cut(data->info.line);
+	else
+		data->info.full_file[(*j)] = dup_n(data->info.line);
+	printf("test : j[%d]\n", (*j));
+	if (!data->info.full_file[(*j)])
+		return (m_error(data->info.line, data, &j, fd2), 0);
+	(*j)++;
+	return (1);
 }
 
 int	get_file(t_data *data, int flag, int i, int j)
 {
-	int		fd2;
-	char	*line;
+	int	fd2;
 
 	fd2 = open(data->info.file, O_RDONLY);
 	if (fd2 < 0)
 		return (ft_error("can't open file"), 1);
 	while (i < data->info.size)
 	{
-		line = get_next_line(fd2);
-		if (!line)
+		data->info.line = get_next_line(fd2);
+		if (!data->info.line)
 			break ;
-		if (try_line(line, flag))
+		if (try_line(data->info.line, flag))
 		{
-			if (j < 6)
-				data->info.full_file[j] = dup_cut(line);
-			else
-				data->info.full_file[j] = dup_n(line);
-			if (!data->info.full_file[j])
-				return (m_error(line, data, j, fd2), 1);
-			j++;
+			if (test(j, data, fd2) == 0)
+				return (1);
+			printf("en sortant : j[%d]\n", j);
 		}
 		if (flag == 0 && j > 6)
 		{
 			data->info.full_file[j] = skip_nl(data, &i, &flag, fd2);
 			if (!data->info.full_file[j])
-				return (m_error(line, data, j, fd2), 1);
+				return (m_error(data->info.line, data, j, fd2), 1);
 			j++;
 		}
-		free(line);
 		i++;
 	}
 	return (data->info.full_file[j] = NULL, close(fd2), 0);

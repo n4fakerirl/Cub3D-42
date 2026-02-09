@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 17:49:34 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:07 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ char	*dup_n(const char *s)
 int	useless_line(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isalpha(str[i]) && str[i] != '1' && str[i] != '0' && !ft_isspace(str[i]))
+		if (!ft_isalpha(str[i]) && str[i] != '1' && str[i] != '0'
+			&& !ft_isspace(str[i]))
 			return (0);
 		i++;
 	}

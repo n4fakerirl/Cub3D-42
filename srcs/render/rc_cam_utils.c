@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_cam_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:26:51 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/12/09 19:26:51 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	scaled_pxl_line(t_data *data, int x, int y, int c)
 {
-	int		i;
-	int		j;
-	int		factor;
+	int	i;
+	int	j;
+	int	factor;
 
 	factor = FACTOR / 10;
 	i = 0;
@@ -26,8 +26,8 @@ int	scaled_pxl_line(t_data *data, int x, int y, int c)
 		j = 0;
 		while (j < factor)
 		{
-			my_mlx_pixel_put(data->mx.img_st, x * factor + j,
-				y * factor + i, c);
+			my_mlx_pixel_put(data->mx.img_st, x * factor + j, y * factor + i,
+				c);
 			j++;
 		}
 		i++;

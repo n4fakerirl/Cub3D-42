@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:47:02 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/10/30 01:47:02 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:26 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void	skybox(t_data *data)
 	while (i.x < X_AXIS)
 	{
 		i.y = 0;
-		i.f_x = get_color(data->txt->ceiling[0],
-				data->txt->ceiling[1], data->txt->ceiling[2]);
+		i.f_x = get_color(data->txt->ceiling[0], data->txt->ceiling[1],
+				data->txt->ceiling[2]);
 		while (i.y < Y_AXIS)
 		{
 			if (i.y >= Y_AXIS / 2)
-				i.f_x = get_color(data->txt->floor[0],
-						data->txt->floor[1], data->txt->floor[2]);
+				i.f_x = get_color(data->txt->floor[0], data->txt->floor[1],
+						data->txt->floor[2]);
 			my_mlx_pixel_put(data->mx.img_st, i.x, i.y, i.f_x);
 			i.y++;
 		}
 		i.x++;
 	}
-	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
-		data->mx.img_st->img, 0, 0);
+	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img, 0,
+		0);
 	return ;
 }
 
 // my_mlx_pixel_put(data->mx.img_st, i.x,
-//i.y, i.f_x - (i.f_x/8) - (i.x<<i.y)+(i.y>>i.x));
+// i.y, i.f_x - (i.f_x/8) - (i.x<<i.y)+(i.y>>i.x));
 
 void	print_img_manual(t_data *data, t_img *img)
 {
@@ -77,8 +77,8 @@ void	print_img_manual(t_data *data, t_img *img)
 		y.x = 0;
 		while (y.x < X_AXIS)
 		{
-			px = *(int *)(img->addr + y.y * img->line_length
-					+ y.x * (img->bpp / 8));
+			px = *(int *)(img->addr + y.y * img->line_length + y.x * (img->bpp
+						/ 8));
 			if ((px & 0xFF000000) != 0xFF000000)
 				my_mlx_pixel_put(data->mx.img_st, y.x, y.y, px);
 			y.x++;
@@ -98,8 +98,8 @@ int	engine(t_data *data)
 	vec.y = Y_AXIS / 2;
 	player_coord(data);
 	clear_pic(data);
-	mlx_put_image_to_window(data->mx.mlx, data->mx.win,
-		data->mx.img_st->img, 0, 0);
+	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img, 0,
+		0);
 	skybox(data);
 	ray_cast_cam(data);
 	print_game_map(data, vec);

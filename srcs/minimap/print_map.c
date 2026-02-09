@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:35:32 by gule-bat          #+#    #+#             */
-/*   Updated: 2025/10/30 01:35:32 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:55:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	pxl_type(t_data *data, int x, int y, int c)
 		my_mlx_pixel_put(im, x, y, WHITE);
 	return ;
 }
-	// else if ((c == '0'))
-		// my_mlx_pixel_put(im, x, y, BLACK);
+// else if ((c == '0'))
+// my_mlx_pixel_put(im, x, y, BLACK);
 
 int	scaled_pxl_minimap(t_data *data, int x, int y, char c)
 {
-	int		i;
-	int		j;
-	int		factor;
+	int	i;
+	int	j;
+	int	factor;
 
 	factor = FACTOR * 1.2;
 	i = 0;

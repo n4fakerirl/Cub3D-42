@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 19:48:59 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 20:14:01 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,8 @@ void	free_txt(t_data *data)
 		free(data->txt->hud);
 }
 
-void	free_struct(t_data *data)
+void	free_struct2(t_data *data)
 {
-	if (!data)
-		return ;
-	if (data->info.full_file)
-		free_tab(data->info.full_file);
-	if (data->info.filled)
-		free_tab(data->info.filled);
-	if (data->info.map)
-		free_tab(data->info.map);
-	if (data->txt->ceiling)
-		free(data->txt->ceiling);
 	if (data->txt->floor)
 		free(data->txt->floor);
 	if (data->txt->n)
@@ -94,5 +84,22 @@ void	free_struct(t_data *data)
 		free(data->txt->ea);
 	if (data->txt)
 		free(data->txt);
+}
+
+void	free_struct(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->info.line)
+		free(data->info.line);
+	if (data->info.full_file)
+		free_tab(data->info.full_file);
+	if (data->info.filled)
+		free_tab(data->info.filled);
+	if (data->info.map)
+		free_tab(data->info.map);
+	if (data->txt->ceiling)
+		free(data->txt->ceiling);
+	free_struct2(data);
 	free(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   txt_render.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 20:18:31 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/03 20:18:31 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:44 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,9 @@ void	line_print_y_tx(t_data *data, t_vec tx_info, t_vec dist, t_img *txt)
 	{
 		s.y = (int)s.f_y & (txt->height - 1);
 		s.f_y += s.f_x;
-		s.x = *(int *)(txt->addr + s.y * txt->line_length
-				+ tx_info.x * (txt->bpp / 8));
-		scaled_pxl_line(data, tx_info.y, i, flash_txt(dist,
-				s.x, tx_info));
+		s.x = *(int *)(txt->addr + s.y * txt->line_length + tx_info.x
+				* (txt->bpp / 8));
+		scaled_pxl_line(data, tx_info.y, i, flash_txt(dist, s.x, tx_info));
 		i += 1;
 	}
 }
