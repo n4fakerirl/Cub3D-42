@@ -90,15 +90,3 @@ float	fish_eye_eater(t_data *data, t_vec mv, t_vec fov, t_vec fov_p)
 	angle = fov_p.f_x - data->player.fov;
 	return (raw * cosf(angle));
 }
-
-// float	lenslesslenght(t_data *data, t_vec mv)
-// {
-// 	t_vec	dlt;
-// 	t_vec	angle;
-
-// 	dlt.f_x = mv.f_x - data->player.p_x;
-// 	dlt.f_y = mv.f_y - data->player.p_y;
-// 	angle.f_x = atan2(dlt.f_y, dlt.f_x) - data->player.fov;
-// 	angle.f_y = lenght(dlt.f_x, dlt.f_y) * cos(angle.f_x);
-// 	return (angle.f_y);
-// }

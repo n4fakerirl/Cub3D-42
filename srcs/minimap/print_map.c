@@ -48,20 +48,6 @@ int	scaled_pxl_minimap(t_data *data, int x, int y, char c)
 	return (1);
 }
 
-void	tab_to_pixel_unscaled(t_data *data, int *x, int *y, int c)
-{
-	int	z;
-
-	z = 0;
-	(void)c;
-	while (z < 8)
-	{
-		scaled_pxl(data, (*x) + z, *y, BLACK);
-		z++;
-	}
-	*x += 1;
-}
-
 int	minimap_tree(t_data *data, t_vec xy, int x2, int *color)
 {
 	if (xy.x == 0 && data->info.map[xy.y][xy.x] == '\t')

@@ -193,7 +193,6 @@ bool	contact(t_data *data, float f_x, float f_y, int c);
 void	get_fov(t_data *data);
 
 // MATHS
-t_vec	vec_offset(int x, int y);
 		// offset selon fenetre divise selon la taille des pxl
 void	vector_sin_cos_plus(t_vec *vec, t_data *data, t_vec *plr_i, float fov);
 float	lenght(float x, float y);

@@ -53,12 +53,3 @@ void	tab_to_pixel(t_data *data, int *x, int *y, int c)
 	}
 	*x += 1;
 }
-
-t_vec	vec_offset(int x, int y)
-{
-	t_vec	v;
-
-	v.x = (((X_AXIS - x) / FACTOR) / 2);
-	v.y = (((Y_AXIS - y) / FACTOR) / 2);
-	return (v);
-}

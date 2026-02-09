@@ -50,23 +50,6 @@ void	flash(t_data *data, t_vec dist)
 	}
 }
 
-int	contact2(t_data *data, float x, float y)
-{
-	int	xa;
-	int	ya;
-
-	xa = x / FACTOR;
-	ya = y / FACTOR;
-	xa = (int)(floor(x * 2.0) / 2.0) / 4;
-	ya = (int)(floor(y * 2.0) / 2.0) / 4;
-	if ((xa < 0 || ya < 0) || (xa >= data->info.map_x
-			|| ya >= data->info.map_y))
-		return (1);
-	else if (data->info.map[ya][xa] != '1')
-		return (0);
-	return (1);
-}
-
 void	ray_cast_cam(t_data *data)
 {
 	t_vec	fov;
