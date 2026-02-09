@@ -54,10 +54,14 @@ int	init_mx(t_data *data)
 		return (1);
 	ft_memset(data->mx.img_st, 0, sizeof(t_img));
 	data->mx.img_st->img = mlx_new_image(data->mx.mlx, X_AXIS, Y_AXIS);
+	if (!data->mx.img_st->img)
+		return (1);
 	data->mx.img_st->addr = mlx_get_data_addr(data->mx.img_st->img,
 			&data->mx.img_st->bpp,
 			&data->mx.img_st->line_length,
 			&data->mx.img_st->endian);
+	if (!data->mx.img_st->addr)
+		return (1);
 	data->player.p_x = data->info.p_posx * 4 + 0.5;
 	data->player.p_y = data->info.p_posy * 4 - 0.5;
 	get_fov(data);

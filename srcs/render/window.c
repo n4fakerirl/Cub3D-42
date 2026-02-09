@@ -14,15 +14,16 @@
 
 int	close_window(t_data *data)
 {
-	if (data->mx.mlx && data->mx.img_st->img)
+	if (data->mx.mlx && data->mx.img_st && data->mx.img_st->img)
 		mlx_destroy_image(data->mx.mlx, data->mx.img_st->img);
 	free_txt(data);
 	if (data->mx.mlx && data->mx.win)
 		mlx_destroy_window(data->mx.mlx, data->mx.win);
 	if (data->mx.mlx)
+	{
 		mlx_destroy_display(data->mx.mlx);
-	if (data->mx.mlx)
 		free(data->mx.mlx);
+	}
 	if (data->mx.img_st)
 		free(data->mx.img_st);
 	free_struct(data);

@@ -6,7 +6,7 @@
 /*   By: nova <nova@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 18:30:20 by nova             ###   ########.fr       */
+/*   Updated: 2026/02/09 18:59:14 by nova             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,18 @@ void	free_int_tab(int **tab, int size)
 
 void	free_txt(t_data *data)
 {
-	if (data->mx.mlx && data->txt->n->img)
+	if (data->mx.mlx && data->txt->n && data->txt->n->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->n->img);
-	if (data->mx.mlx && data->txt->s->img)
+	if (data->mx.mlx && data->txt->s && data->txt->s->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->s->img);
-	if (data->mx.mlx && data->txt->e->img)
+	if (data->mx.mlx && data->txt->e && data->txt->e->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->e->img);
-	if (data->mx.mlx && data->txt->w->img)
+	if (data->mx.mlx && data->txt->w && data->txt->w->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->w->img);
-	if (data->mx.mlx && data->txt->hud->img)
+	if (data->mx.mlx && data->txt->hud && data->txt->hud->img)
 		mlx_destroy_image(data->mx.mlx, data->txt->hud->img);
 	if (data->txt->hud)
 		free(data->txt->hud);
-	return ;
 }
 
 void	free_struct(t_data *data)
