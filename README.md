@@ -1,4 +1,4 @@
-# Cub3D (with @gamabuntoo)
+# Cub3D - 42 (with @gamabuntoo)
 
 ## 📚 Description
 
@@ -108,4 +108,5 @@ La carte doit être fermée, valide et contenir une seule position de départ.
 ## 🫐 Auteurs
 
 - Guillaume (gule-bat) && Océane (ocviller)
+- Piscine de Septembre 2024 (gule-bat) et Mars 2025 (ocviller)
 - Projet réalisé à 42 Paris, 2026
