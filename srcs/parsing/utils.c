@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 11:46:12 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:53:12 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ size_t	len_tab(char *str)
 	}
 	return (len);
 }
-
 
 int	nbr_endl(const char *s)
 {

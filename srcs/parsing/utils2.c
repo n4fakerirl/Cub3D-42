@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 20:25:18 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 11:21:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:04:52 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	try_line(char *line, int flag)
 	return (0);
 }
 
-int alphastr(char *str)
+int	alphastr(char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 	{
 		if (ft_isalpha(str[i]))

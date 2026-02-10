@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 10:49:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:02:32 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ int	store_ext(t_data *data, char c, int i, char *file)
 int	grab_ext(t_data *data, char *file, char c, int l)
 {
 	int	i;
-	int count_dot = 0;
-	int count_slash = 0;
 
 	i = 0;
 	if (!check_ext(file))
@@ -104,16 +102,9 @@ int	grab_ext(t_data *data, char *file, char c, int l)
 		return (ft_error("useless line in file or map isn't last"), 0);
 	while (file[i] && ft_isspace(file[i]))
 		i++;
-	while (file[i] && (file[i] == '.' || file[i] == '/'))
-	{
-		if (file[i] == '.')
-			count_dot++;
-		else if (file[i] == '/')
-			count_slash++;
-		i++;
-	}
-	if (count_dot != 1 || count_slash != 1)
-		return (ft_error("usage: ./txt.xpm"), 0);
+	i = good_format(i, file);
+	if (i == -1)
+		return (0);
 	if (!store_ext(data, c, i, file))
 		return (ft_error("malloc error"), 0);
 	return (1);

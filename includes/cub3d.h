@@ -144,6 +144,7 @@ int		zero_one(t_data *data, int y, int i);
 int		nl_inmap(t_data *data);
 void	m_error(char *line, t_data *data, int fd2);
 int		check_space(t_data *data);
+void	rgb_error(char **tmp);
 
 // UTILS
 char	**split(char *str, char *charset);
@@ -154,6 +155,7 @@ int		useless_line(char *str);
 size_t	len_tab(char *str);
 int		alphastr(char *str);
 int		try_line(char *line, int flag);
+int		good_format(int i, char *file);
 
 //  - RENDER
 int		engine(t_data *data);

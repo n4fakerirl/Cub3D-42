@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/08 18:36:59 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:08:52 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,20 @@ int	nl_inmap(t_data *data)
 		i++;
 	}
 	return (1);
+}
+
+int	count_sp(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			count++;
+		i++;
+	}
+	return (count);
 }
