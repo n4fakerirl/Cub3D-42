@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:43:06 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:38:24 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,81 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	return (res);
 }
 
+void	run_read(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		if (!line)
+			break ;
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+}
+
+int	open_nl(int fd2)
+{
+	char	*line;
+	int		fd;
+	int		i;
+
+	fd = fd2;
+	i = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		while (line != NULL && line[i])
+		{
+			if (line[i] && !ft_isspace(line[i]))
+				return (free(line), run_read(fd), close(fd), 0);
+			i++;
+		}
+		free(line);
+		line = get_next_line(fd);
+		if (!line)
+			break;
+	}
+	free(line);
+	close(fd);
+	return (1);
+}
+
+int	last_line(t_data *data, int fd2, char *line, int flag)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != '\n' && line[i] != ' '
+			&& line[i] != '\t')
+			flag = 0;
+		i++;
+	}
+	if (data->info.flag == 1 && flag == 1)
+	{
+		data->info.full_file[data->info.j] = dup_n(line);
+		data->info.full_file[data->info.j + 1] = NULL;
+		if (!open_nl(fd2))
+			return (2);
+		run_read(fd2);
+		free(line);
+		return (1);
+	}
+	return (0);
+}
+
 int	dup_infile(t_data *data, char *line, int fd2)
 {
+	int	res;
+
+	res = 0;
+	res = last_line(data, fd2, line, 1);
+	if (res == 1)
+		return (2);
 	if (data->info.j < 6)
 		data->info.full_file[data->info.j] = dup_cut(line);
 	else
@@ -66,7 +139,7 @@ int	dup_infile(t_data *data, char *line, int fd2)
 	return (0);
 }
 
-int	get_file(t_data *data, int i, int fd2)
+int	get_file(t_data *data, int i, int fd2, int res)
 {
 	char	*line;
 
@@ -77,8 +150,11 @@ int	get_file(t_data *data, int i, int fd2)
 			break ;
 		if (try_line(line, data->info.flag))
 		{
-			if (dup_infile(data, line, fd2) == 1)
+			res = dup_infile(data, line, fd2);
+			if (res == 1)
 				return (1);
+			else if (res == 2)
+				return (run_read(fd2), close(fd2), 0);
 		}
 		if (data->info.flag == 0 && data->info.j > 6)
 		{
@@ -111,7 +187,7 @@ int	read_infile(int fd, t_data *data)
 	fd2 = open(data->info.file, O_RDONLY);
 	if (fd2 < 0)
 		return (ft_error("can't open file"), 1);
-	if (get_file(data, 0, fd2))
+	if (get_file(data, 0, fd2, 0))
 		return (1);
 	return (0);
 }
