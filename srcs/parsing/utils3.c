@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:04:33 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:08:42 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:15:27 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**make_tab(char *file)
 	line = ft_union(file);
 	if (!line)
 		return (ft_error("malloc error"), NULL);
-	tmp = split(line, ",");
+	tmp = split(line, ",", 0, 0);
 	if (!tmp)
 		return (free(line), ft_error("malloc error"), NULL);
 	free(line);
@@ -75,7 +75,7 @@ char	**make_tab(char *file)
 
 int	atoi_rgb(const char *nptr, int i, int sign)
 {
-	long	result;
+	int	result;
 
 	result = 0;
 	while (nptr[i])
@@ -85,6 +85,7 @@ int	atoi_rgb(const char *nptr, int i, int sign)
 			return (-1);
 		i++;
 	}
+	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')

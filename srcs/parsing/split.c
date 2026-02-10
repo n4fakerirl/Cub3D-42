@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:34:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:10:13 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:13:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	len_words(char *str, char *charset)
 char	*ft_strdup_sep(char *str, char *charset, int i)
 {
 	int		len;
-	int		i;
 	char	*word;
 
 	len = 0;

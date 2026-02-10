@@ -145,9 +145,10 @@ int		nl_inmap(t_data *data);
 void	m_error(char *line, t_data *data, int fd2);
 int		check_space(t_data *data);
 void	rgb_error(char **tmp);
+char	**make_tab(char *file);
 
 // UTILS
-char	**split(char *str, char *charset);
+char	**split(char *str, char *charset, int i, int y);
 char	*dup_cut(char *line);
 void	ft_error(char *message);
 char	*dup_n(const char *str);
@@ -156,6 +157,8 @@ size_t	len_tab(char *str);
 int		alphastr(char *str);
 int		try_line(char *line, int flag);
 int		good_format(int i, char *file);
+int		count_sp(char *str);
+int		atoi_rgb(const char *nptr, int i, int sign);
 
 //  - RENDER
 int		engine(t_data *data);
