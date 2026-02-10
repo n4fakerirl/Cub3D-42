@@ -152,6 +152,7 @@ void	ft_error(char *message);
 char	*dup_n(const char *str);
 int		useless_line(char *str);
 size_t	len_tab(char *str);
+int		alphastr(char *str);
 int		try_line(char *line, int flag);
 
 //  - RENDER
