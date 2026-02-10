@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:45:33 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 13:15:35 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	parsing_start(char *infile, t_data *data)
 		return (1);
 	if (!parse_map(data))
 		return (1);
-	print_data(data);
 	return (0);
 }
+
+//print_data(data);
 
 void	get_fov(t_data *data)
 {
