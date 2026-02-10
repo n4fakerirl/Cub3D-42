@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 20:25:18 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 20:26:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 09:06:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*dup_cut(char *line)
 	char	*dest;
 	char	*tmp;
 
+	(void)line;
 	dest = trimming(line);
 	if (!dest)
 		return (NULL);
