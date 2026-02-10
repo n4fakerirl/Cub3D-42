@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 16:32:29 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 22:51:08 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	nl_inmap(t_data *data)
 	int	i;
 
 	i = 0;
-	for (int i = 0; data->info.full_file[i]; i++)
-		printf("line[%d] == [%s]\n", i, data->info.full_file[i]);
 	while (data->info.full_file[i])
 	{
 		if (!ft_strcmp(data->info.full_file[i], "\0"))

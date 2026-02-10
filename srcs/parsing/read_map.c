@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 17:38:24 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 22:50:22 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,11 @@ void	run_read(int fd)
 	free(line);
 }
 
-int	open_nl(int fd2)
+int	open_nl(int fd)
 {
 	char	*line;
-	int		fd;
 	int		i;
 
-	fd = fd2;
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -110,10 +108,10 @@ int	last_line(t_data *data, int fd2, char *line, int flag)
 	}
 	if (data->info.flag == 1 && flag == 1)
 	{
-		data->info.full_file[data->info.j] = dup_n(line);
-		data->info.full_file[data->info.j + 1] = NULL;
 		if (!open_nl(fd2))
 			return (2);
+		data->info.full_file[data->info.j] = dup_n(line);
+		data->info.full_file[data->info.j + 1] = NULL;
 		run_read(fd2);
 		free(line);
 		return (1);
@@ -143,7 +141,7 @@ int	get_file(t_data *data, int i, int fd2, int res)
 {
 	char	*line;
 
-	while (i < data->info.size)
+	while (++i < data->info.size)
 	{
 		line = get_next_line(fd2);
 		if (!line)
@@ -164,7 +162,6 @@ int	get_file(t_data *data, int i, int fd2, int res)
 			data->info.j++;
 		}
 		free(line);
-		i++;
 	}
 	return (data->info.full_file[data->info.j] = NULL, close(fd2), 0);
 }
@@ -187,7 +184,7 @@ int	read_infile(int fd, t_data *data)
 	fd2 = open(data->info.file, O_RDONLY);
 	if (fd2 < 0)
 		return (ft_error("can't open file"), 1);
-	if (get_file(data, 0, fd2, 0))
+	if (get_file(data, -1, fd2, 0))
 		return (1);
 	return (0);
 }
