@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:19:14 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/10 08:54:59 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:47:11 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	init_txt(t_data **data)
 	if (!(*data)->txt->w)
 		return (1);
 	(*data)->txt->hud = ft_calloc(1, sizeof(t_img));
+	if (!(*data)->txt->hud)
+		return (1);
 	return (0);
 }
 

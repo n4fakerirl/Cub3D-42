@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:02:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:45:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ext_check(t_data *data, int i)
 	}
 	if (no == 1 && so == 1 && we == 1 && ea == 1)
 		return (1);
-	return (ft_putstr_fd("invalid texture\n", 2), 0);
+	return (ft_error("invalid texture"), 0);
 }
 
 int	check_ext(char *file)
