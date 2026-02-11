@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:49:30 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:44:01 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:48:35 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,6 @@ char	*dup_n(const char *s)
 	}
 	dest[j] = '\0';
 	return (dest);
-}
-
-int	useless_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalpha(str[i]) && str[i] != '1' && str[i] != '0'
-			&& !ft_isspace(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 int	copy_tab(t_data *data)

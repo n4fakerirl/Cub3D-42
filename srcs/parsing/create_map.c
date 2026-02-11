@@ -55,11 +55,6 @@ int	space_str(char *str)
 	return (1);
 }
 
-// int calc(int y, int i, t_data *data)
-// {
-
-// }
-
 int	create_map(t_data *data, int y, int i)
 {
 	while (data->info.full_file[y + i])

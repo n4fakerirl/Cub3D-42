@@ -6,26 +6,11 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 12:43:12 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:48:51 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	run_read(int fd)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		if (!line)
-			break ;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-}
 
 void	last_line(t_data *data, char *line, int j)
 {
