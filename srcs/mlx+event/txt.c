@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:19:14 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/10 12:47:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:27:55 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 
 int	get_txt(t_data **data, char *path, t_img **img)
 {
-	char	*tmpath;
 	char	*tmp;
 
-	tmpath = NULL;
 	if (!path)
 		return (1);
 	tmp = ft_strdup(path);
 	if (!tmp)
 		return (1);
-	tmpath = ft_strjoin("txt/", tmp);
-	if (!tmpath)
-		return (free(tmp), 1);
-	free(tmp);
-	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmpath, &(*img)->width,
+	(*img)->img = mlx_xpm_file_to_image((*data)->mx.mlx, tmp, &(*img)->width,
 			&(*img)->height);
 	if (!(*img)->img)
-		return (free(tmpath), 1);
-	free(tmpath);
+		return (free(tmp), 1);
+	free(tmp);
 	(*img)->addr = mlx_get_data_addr((*img)->img, &(*img)->bpp,
 			&(*img)->line_length, &(*img)->endian);
 	if (!(*img)->addr)
@@ -74,7 +68,7 @@ int	get_txt_full(t_data **data)
 		return (1);
 	if (get_txt(data, (*data)->txt->we, &(*data)->txt->w) && (*data)->txt->we)
 		return (1);
-	if (get_txt(data, "hudcub.xpm", &(*data)->txt->hud))
+	if (get_txt(data, "textures/test/hudcub.xpm", &(*data)->txt->hud))
 		return (1);
 	if ((*data)->txt->hud->width != 1280 && (*data)->txt->hud->height != 720)
 		return (1);

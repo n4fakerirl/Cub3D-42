@@ -6,36 +6,25 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 12:41:49 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:39:50 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	wrong_pos(t_data *data, int i, int y, int count)
+int	wrong_pos(t_data *data, int i, int y)
 {
-	int	count_out;
-
-	count_out = 0;
 	while (data->info.map[y])
 	{
 		i = 0;
 		while (data->info.map[y][i])
 		{
-			if (ft_isalpha(data->info.map[y][i]) && data->info.map[y][i] != 'N'
-				&& data->info.map[y][i] != 'S' && data->info.map[y][i] != 'W'
-				&& data->info.map[y][i] != 'E')
-			{
-				if (y <= data->info.lstline_pos)
-					count++;
-				else
-					count_out++;
-			}
+			countalnum(data, data->info.map[y][i], y);
 			i++;
 		}
 		y++;
 	}
-	if (!msg_pos(count, count_out))
+	if (!msg_pos(data))
 		return (0);
 	return (1);
 }
@@ -54,8 +43,7 @@ int	orientation(t_data *data, int y)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
-			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0,
-					0))
+			else if (!wrong_pos(data, 0, 0))
 				return (0);
 			i++;
 		}

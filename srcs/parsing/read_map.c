@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 15:59:56 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:55:33 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 			break ;
 		(*i)++;
 	}
+	if (!line)
+		return (NULL);
 	res = dup_n(line);
 	if (!res)
 		return (free(line), NULL);
@@ -76,11 +78,13 @@ int	get_file(t_data *data, int i, int fd2)
 		line = get_next_line(fd2);
 		if (!line)
 			break ;
+		printf("ICI SEGFAULT ? 1\n");
 		if (try_line(line, data->info.flag))
 		{
 			if (!match_line(data, line, fd2))
 				return (1);
 		}
+		printf("ICI SEGFAULT ? 2\n");
 		if (data->info.flag == 0 && data->info.j == 6)
 		{
 			data->info.full_file[data->info.j] = skip_nl(data, &i, fd2);

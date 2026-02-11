@@ -92,6 +92,13 @@ typedef struct s_player
 	bool	d;
 }	t_player;
 
+typedef struct s_count
+{
+	int		count_in;
+	int		count_nbrin;
+	int		other;
+}	t_count;
+
 typedef struct s_cub
 {
 	char	*file;
@@ -106,6 +113,7 @@ typedef struct s_cub
 	int		map_x;
 	int		p_posx;
 	int		p_posy;
+	t_count	cnt;
 }	t_cub;
 
 typedef struct s_data
@@ -140,7 +148,7 @@ void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
 int		create_map(t_data *data, int y, int i);
 void	last_line(t_data *data, char *line, int j);
-int		msg_pos(int count, int count_out);
+int		msg_pos(t_data *data);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);
@@ -149,13 +157,14 @@ void	m_error(char *line, t_data *data, int fd2);
 int		check_space(t_data *data);
 void	rgb_error(char **tmp);
 char	**make_tab(char *file);
+void	countalnum(t_data *data, char c, int line);
+int		enough_fc(int c, int f);
 
 // UTILS
 char	**split(char *str, char *charset, int i, int y);
 char	*dup_cut(char *line);
 void	ft_error(char *message);
 char	*dup_n(const char *str);
-int		useless_line(char *str);
 size_t	len_tab(char *str);
 int		alphastr(char *str);
 int		try_line(char *line, int flag);

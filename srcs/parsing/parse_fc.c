@@ -6,26 +6,11 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:55:02 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 16:03:37 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:40:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int enough_fc(int c, int f)
-{
-	if (c == 1 && f == 1)
-		return (1);
-	if (c < 1)
-		ft_error("ceiling configuration not found, 1 nedeed");
-	if (c > 1)
-		ft_error("found multiple ceiling configurations, 1 nedeed");
-	if (f < 1)
-		ft_error("floor configuration not found, 1 nedeed");
-	if (f > 1)
-		ft_error("found multiple floor configurations, 1 nedeed");
-	return (0);
-}
 
 int	fc_check(t_data *data, int i)
 {
@@ -64,6 +49,10 @@ int	split_size(char **split)
 		i++;
 	if (i == 4)
 		return (1);
+	if (i < 4)
+		ft_error("not enough parameters, 3 needed");
+	else if (i > 4)
+		ft_error("too many parameters, 3 needed");
 	return (0);
 }
 
@@ -76,7 +65,7 @@ int	grab_c(t_data *data, char *file)
 	if (!tmp)
 		return (0);
 	if (!split_size(tmp))
-		return (free_tab(tmp), ft_error("only 3 parameters needed"), 0);
+		return (free_tab(tmp), 0);
 	i = 0;
 	while (i < 3)
 	{
@@ -100,7 +89,7 @@ int	grab_f(t_data *data, char *file)
 	if (!tmp)
 		return (0);
 	if (!split_size(tmp))
-		return (free_tab(tmp), ft_error("only 3 parameters needed"), 0);
+		return (free_tab(tmp), 0);
 	i = 0;
 	while (i < 3)
 	{
