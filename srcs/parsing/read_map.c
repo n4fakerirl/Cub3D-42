@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 10:48:52 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:43:01 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,19 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	char	*line;
 
 	line = get_next_line(fd2);
+	printf("LINE ICI: %s\n", line);
 	data->info.flag = 1;
 	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
 			|| line[0] == '\r'))
 	{
 		free(line);
 		line = get_next_line(fd2);
+		printf("LINE WHILE: %s\n", line);
 		if (!line)
 			break ;
 		(*i)++;
 	}
+	printf("LINE ET LA: %s\n", line);
 	res = dup_n(line);
 	if (!res)
 		return (free(line), NULL);
@@ -54,42 +57,17 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	return (res);
 }
 
-void	run_read(int fd)
+int	match_line(t_data *data, char *line, int fd2)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		if (!line)
-			break ;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-}
-
-void	last_line(t_data *data, char *line, int j)
-{
-	int	i;
-	int flag;
-	char *search = NULL;
-
-	i = 0;
-	flag = 1;
-	search = ft_strchr(line, '1');
-	while (line[i])
-	{
-		
-		if (line[i] != '1' && line[i] != '\n' && line[i] != ' '
-			&& line[i] != '\t')
-			flag = 0;
-		else if (!search)
-			flag = 0;
-		i++;
-	}
-	if (data->info.flag == 1 && flag == 1)
-		data->info.lstline_pos = j;
+	if (data->info.j < 6)
+		data->info.full_file[data->info.j] = dup_cut(line);
+	else if (data->info.j > 6)
+		data->info.full_file[data->info.j] = dup_n(line);
+	if (!data->info.full_file[data->info.j])
+		return (m_error(line, data, fd2), 1);
+	last_line(data, line, data->info.j);
+	data->info.j++;
+	return (0);
 }
 
 int	get_file(t_data *data, int i, int fd2)
@@ -103,16 +81,10 @@ int	get_file(t_data *data, int i, int fd2)
 			break ;
 		if (try_line(line, data->info.flag))
 		{
-			if (data->info.j < 6)
-				data->info.full_file[data->info.j] = dup_cut(line);
-			else
-				data->info.full_file[data->info.j] = dup_n(line);
-			if (!data->info.full_file[data->info.j])
-				return (m_error(line, data, fd2), 1);
-			last_line(data, line, data->info.j);
-			data->info.j++;
+			if (!match_line(data, line, fd2))
+				return (1);
 		}
-		if (data->info.flag == 0 && data->info.j > 6)
+		if (data->info.flag == 0 && data->info.j == 6)
 		{
 			data->info.full_file[data->info.j] = skip_nl(data, &i, fd2);
 			if (!data->info.full_file[data->info.j])

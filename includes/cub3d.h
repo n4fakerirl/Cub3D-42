@@ -140,6 +140,7 @@ void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
 int		create_map(t_data *data, int y, int i);
 void	last_line(t_data *data, char *line, int j);
+int		msg_pos(int count, int count_out);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);

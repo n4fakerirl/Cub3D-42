@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>                    +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 11:21:46 by ocviller         ###   ########.fr       */
+/*   Created: 2026/02/11 12:39:22 by ocviller          #+#    #+#             */
+/*   Updated: 2026/02/11 12:39:24 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +55,11 @@ int	space_str(char *str)
 	return (1);
 }
 
+// int calc(int y, int i, t_data *data)
+// {
+
+// }
+
 int	create_map(t_data *data, int y, int i)
 {
 	while (data->info.full_file[y + i])
@@ -65,7 +71,7 @@ int	create_map(t_data *data, int y, int i)
 	while (data->info.full_file[y + i])
 	{
 		if (y + i > data->info.lstline_pos && space_str(data->info.full_file[y
-				+ i]))
+					+ i]))
 		{
 			y++;
 			continue ;

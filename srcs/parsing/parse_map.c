@@ -6,26 +6,11 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 12:10:05 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:41:49 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	msg_pos(int count, int count_out)
-{
-	if (count != 0 || count_out != 0)
-	{
-		if (count == 1)
-			ft_error("start position allowed : N, S, W or E");
-		else if (count > 1)
-			ft_error("multiple unknown characters in map");
-		if (count_out > 0)
-			ft_error("useless line in file or map isn't last");
-		return (0);
-	}
-	return (1);
-}
 
 int	wrong_pos(t_data *data, int i, int y, int count)
 {
@@ -69,7 +54,8 @@ int	orientation(t_data *data, int y)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
-			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0, 0))
+			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0,
+					0))
 				return (0);
 			i++;
 		}
@@ -125,7 +111,7 @@ int	columns(t_data *data)
 		while (ft_isspace(data->info.filled[y][len - 1]))
 			len--;
 		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
-				- 1] == '1'))
+			- 1] == '1'))
 			return (0);
 		y++;
 	}
@@ -139,7 +125,7 @@ int	parse_map(t_data *data)
 	if (!find_size(data))
 		return (0);
 	if (!nl_inmap(data))
-		return (ft_error("1 empty line in map"), 0);
+		return (ft_error("empty line in map"), 0);
 	add_spaces(data, 0);
 	if (!copy_tab(data))
 		return (ft_error("malloc error"), 0);
