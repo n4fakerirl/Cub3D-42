@@ -97,6 +97,7 @@ typedef struct s_cub
 	char	*file;
 	int		flag;
 	int		j;
+	int		lstline_pos;
 	char	**map;
 	char	**full_file;
 	char	**filled;
@@ -137,7 +138,8 @@ int		get_fc(t_data *data);
 int		parse_map(t_data *data);
 void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
-int		create_map(t_data *data);
+int		create_map(t_data *data, int y, int i);
+void	last_line(t_data *data, char *line, int j);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);

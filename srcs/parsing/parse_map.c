@@ -6,38 +6,52 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 16:57:03 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:10:05 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	wrong_pos(t_data *data, int i, int y)
+int	msg_pos(int count, int count_out)
 {
-	int	count;
+	if (count != 0 || count_out != 0)
+	{
+		if (count == 1)
+			ft_error("start position allowed : N, S, W or E");
+		else if (count > 1)
+			ft_error("multiple unknown characters in map");
+		if (count_out > 0)
+			ft_error("useless line in file or map isn't last");
+		return (0);
+	}
+	return (1);
+}
 
-	count = 0;
+int	wrong_pos(t_data *data, int i, int y, int count)
+{
+	int	count_out;
+
+	count_out = 0;
 	while (data->info.map[y])
 	{
 		i = 0;
 		while (data->info.map[y][i])
 		{
-			if (data->info.map[y][i] != 'N' && data->info.map[y][i] != 'S'
-				&& data->info.map[y][i] != 'W' && data->info.map[y][i] != 'E')
-				if (ft_isalpha(data->info.map[y][i])
-					&& data->info.map[y][i] != 'N'
-					&& data->info.map[y][i] != 'S'
-					&& data->info.map[y][i] != 'W'
-					&& data->info.map[y][i] != 'E')
+			if (ft_isalpha(data->info.map[y][i]) && data->info.map[y][i] != 'N'
+				&& data->info.map[y][i] != 'S' && data->info.map[y][i] != 'W'
+				&& data->info.map[y][i] != 'E')
+			{
+				if (y <= data->info.lstline_pos)
 					count++;
+				else
+					count_out++;
+			}
 			i++;
 		}
 		y++;
 	}
-	if (count == 1)
-		return (ft_error("start position allowed : N, S, W or E"), 0);
-	else if (count > 1)
-		return (ft_error("useless line in file or forbidden character"), 0);
+	if (!msg_pos(count, count_out))
+		return (0);
 	return (1);
 }
 
@@ -55,18 +69,17 @@ int	orientation(t_data *data, int y)
 			if (data->info.map[y][i] == 'N' || data->info.map[y][i] == 'S'
 				|| data->info.map[y][i] == 'W' || data->info.map[y][i] == 'E')
 				count++;
-			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0))
+			else if (ft_isalpha(data->info.map[y][i]) && !wrong_pos(data, 0, 0, 0))
 				return (0);
 			i++;
 		}
 		y++;
 	}
-	if (count == 1)
-		return (1);
-	else if (count > 1)
+	if (count > 1)
 		return (ft_error("only one start position is needed"), 0);
-	else
+	else if (count < 1)
 		return (ft_error("map doesnt have any start position"), 0);
+	return (1);
 }
 
 int	rows(t_data *data)
@@ -112,7 +125,7 @@ int	columns(t_data *data)
 		while (ft_isspace(data->info.filled[y][len - 1]))
 			len--;
 		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
-			- 1] == '1'))
+				- 1] == '1'))
 			return (0);
 		y++;
 	}
@@ -125,13 +138,13 @@ int	parse_map(t_data *data)
 		return (0);
 	if (!find_size(data))
 		return (0);
+	if (!nl_inmap(data))
+		return (ft_error("1 empty line in map"), 0);
 	add_spaces(data, 0);
 	if (!copy_tab(data))
 		return (ft_error("malloc error"), 0);
 	find_player(data);
 	flood_fill(data, data->info.p_posx, data->info.p_posy);
-	if (!nl_inmap(data))
-		return (ft_error("empty line in map"), 0);
 	if (!rows(data))
 		return (ft_error("map is not fully closed"), 0);
 	if (!columns(data))

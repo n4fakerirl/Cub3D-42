@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 11:51:47 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:36:51 by ocviller         ###   ########.fr       */
+/*   Created: Invalid date        by ocviller          #+#    #+#             */
+/*   Updated: 2026/02/11 11:21:46 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,41 @@ int	find_size(t_data *data)
 	return (1);
 }
 
-int	create_map(t_data *data)
+int	space_str(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (data->info.full_file[6 + i])
+	while (str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	create_map(t_data *data, int y, int i)
+{
+	while (data->info.full_file[y + i])
 		i++;
 	data->info.map = malloc(sizeof(char *) * (i + 1));
 	if (!data->info.map)
 		return (ft_error("malloc error"), 0);
 	i = 0;
-	while (data->info.full_file[6 + i])
+	while (data->info.full_file[y + i])
 	{
-		data->info.map[i] = dup_n(data->info.full_file[6 + i]);
+		if (y + i > data->info.lstline_pos && space_str(data->info.full_file[y
+				+ i]))
+		{
+			y++;
+			continue ;
+		}
+		else if (y + i <= data->info.lstline_pos
+			|| !space_str(data->info.full_file[y + i]))
+			data->info.map[i] = ft_strdup(data->info.full_file[y + i]);
 		if (!data->info.map[i])
 			return (ft_error("malloc error"), 0);
-		if (!useless_line(data->info.map[i]))
-			return (data->info.map[++i] = NULL,
-				ft_error("useless line in file or map isn't last"), 0);
 		i++;
 	}
 	data->info.map[i] = NULL;

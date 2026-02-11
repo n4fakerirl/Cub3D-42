@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 13:15:35 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:22:08 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	parsing_start(char *infile, t_data *data)
 {
 	int	fd;
+	int	i;
 
+	i = 0;
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
 		return (ft_error("can't open file"), 1);
@@ -26,14 +28,20 @@ int	parsing_start(char *infile, t_data *data)
 		return (1);
 	if (!get_fc(data))
 		return (1);
-	if (!create_map(data))
+	if (!create_map(data, 6, 0))
 		return (1);
+	while (data->info.map[i])
+	{
+		last_line(data, data->info.map[i], i);
+		i++;
+	}
 	if (!parse_map(data))
 		return (1);
+	print_data(data);
 	return (0);
 }
 
-//print_data(data);
+// print_data(data);
 
 void	get_fov(t_data *data)
 {
