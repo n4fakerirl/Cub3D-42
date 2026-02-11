@@ -6,11 +6,26 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:55:02 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 11:04:46 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 16:03:37 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int enough_fc(int c, int f)
+{
+	if (c == 1 && f == 1)
+		return (1);
+	if (c < 1)
+		ft_error("ceiling configuration not found, 1 nedeed");
+	if (c > 1)
+		ft_error("found multiple ceiling configurations, 1 nedeed");
+	if (f < 1)
+		ft_error("floor configuration not found, 1 nedeed");
+	if (f > 1)
+		ft_error("found multiple floor configurations, 1 nedeed");
+	return (0);
+}
 
 int	fc_check(t_data *data, int i)
 {
@@ -35,9 +50,9 @@ int	fc_check(t_data *data, int i)
 		}
 		i++;
 	}
-	if (c == 1 && f == 1)
-		return (1);
-	return (ft_error("invalid texture"), 0);
+	if (!enough_fc(c, f))
+		return (0);
+	return (1);
 }
 
 int	split_size(char **split)
