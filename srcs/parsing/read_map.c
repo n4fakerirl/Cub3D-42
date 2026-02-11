@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 12:43:01 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:16:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,16 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	char	*line;
 
 	line = get_next_line(fd2);
-	printf("LINE ICI: %s\n", line);
 	data->info.flag = 1;
 	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
 			|| line[0] == '\r'))
 	{
 		free(line);
 		line = get_next_line(fd2);
-		printf("LINE WHILE: %s\n", line);
 		if (!line)
 			break ;
 		(*i)++;
 	}
-	printf("LINE ET LA: %s\n", line);
 	res = dup_n(line);
 	if (!res)
 		return (free(line), NULL);
@@ -64,10 +61,10 @@ int	match_line(t_data *data, char *line, int fd2)
 	else if (data->info.j > 6)
 		data->info.full_file[data->info.j] = dup_n(line);
 	if (!data->info.full_file[data->info.j])
-		return (m_error(line, data, fd2), 1);
+		return (m_error(line, data, fd2), 0);
 	last_line(data, line, data->info.j);
 	data->info.j++;
-	return (0);
+	return (1);
 }
 
 int	get_file(t_data *data, int i, int fd2)
