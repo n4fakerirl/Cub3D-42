@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:19:14 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/11 16:27:55 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:51:49 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	get_txt(t_data **data, char *path, t_img **img)
 
 	if (!path)
 		return (1);
+	printf("path == %s\n", path);
 	tmp = ft_strdup(path);
 	if (!tmp)
 		return (1);

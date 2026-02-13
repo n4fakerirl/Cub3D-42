@@ -1,7 +1,7 @@
-NO ./E.xpm
-SO ./N.xpm
-EA ./S.xpm
-WE ./W.xpm
+NO ./textures/N.xpm
+SO ./textures/S.xpm
+EA ./textures/E.xpm
+WE ./textures/W.xpm
 
 F 164,169,20
 C 153,204,255

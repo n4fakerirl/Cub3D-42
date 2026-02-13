@@ -2,11 +2,11 @@
 
 
 
-   WE                            ./W.xpm
-NO      ./N.xpm
+   WE                            ./textures/W.xpm
+NO      ./textures/N.xpm
 F      17,38,64
-SO ./S.xpm
-EA ./E.xpm
+SO ./textures/S.xpm
+EA ./textures/E.xpm
 
 
 
