@@ -1,0 +1,8 @@
+maps/good/dungeon.cub
+maps/good/test_map.cub
+maps/good/test_pos_left.cub
+maps/good/test_pos_right.cub
+maps/good/test_pos_top.cub
+maps/good/works.cub
+
+tout ca, ca fait des conditional jump, dans ray_cast_cam jai mis t_vec fov a 0, ca enleve le conditional jump, mais avec ou sans, tu peux pas te deplacer ds la map !!! aussi jpense des fois la colision est un peu trop chaud genre pr des maps petites tu peux rester bloque voila
