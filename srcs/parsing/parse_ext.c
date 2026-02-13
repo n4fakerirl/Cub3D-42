@@ -6,11 +6,34 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 11:05:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:55:23 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int parse_ext(int n, int s, int w, int e)
+{
+	if (n == 1 && s == 1 && w == 1 && e == 1)
+		return (1);
+	if (n < 1)
+		ft_error("north texture not found");
+	else if (n > 1)
+		ft_error("more than one north texture found, 1 needed");
+	if (s < 1)
+		ft_error("south texture not found");
+	else if (s > 1)
+		ft_error("more than one south texture found, 1 needed");
+	if (e < 1)
+		ft_error("east texture not found");
+	else if (e > 1)
+		ft_error("more than one east texture found, 1 needed");
+	if (w < 1)
+		ft_error("west texture not found");
+	else if (w > 1)
+		ft_error("more than one west texture found, 1 needed");
+	return (0);
+}
 
 int	ext_check(t_data *data, int i)
 {
@@ -35,9 +58,9 @@ int	ext_check(t_data *data, int i)
 			ea++;
 		i++;
 	}
-	if (no == 1 && so == 1 && we == 1 && ea == 1)
-		return (1);
-	return (ft_error("invalid texture"), 0);
+	if (!parse_ext(no, so, we, ea))
+		return (0);
+	return (1);
 }
 
 int	check_ext(char *file)

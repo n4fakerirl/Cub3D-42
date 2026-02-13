@@ -159,7 +159,7 @@ int		nl_inmap(t_data *data);
 void	m_error(char *line, t_data *data, int fd2);
 int		space_str(char *str);
 int		check_space(t_data *data);
-void	rgb_error(char **tmp);
+void	rgb_error(char **tmp, int i);
 char	**make_tab(char *file);
 void	countalnum(t_data *data, char c, int line);
 int		enough_fc(int c, int f);

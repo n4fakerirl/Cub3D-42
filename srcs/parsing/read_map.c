@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 13:13:23 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:31:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ char	*skip_nl(t_data *data, int *i, int fd2)
 	char	*line;
 
 	line = get_next_line(fd2);
+	if (!line)
+		return (NULL);
 	data->info.flag = 1;
-	while ((*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
+	while (line != NULL && (*i) < data->info.size && (line[0] == '\n' || line[0] == '\0'
 			|| line[0] == '\r'))
 	{
 		free(line);

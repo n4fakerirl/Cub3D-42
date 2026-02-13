@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:04:33 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/10 12:44:46 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:55:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,11 @@ int	atoi_rgb(const char *nptr, int i, int sign)
 	return (result * sign);
 }
 
-void	rgb_error(char **tmp)
+void	rgb_error(char **tmp, int i)
 {
 	free_tab(tmp);
-	ft_error("RGB must be set between 0 and 255, digits only");
+	if (i == 0)
+		ft_error("ceiling RGB must be set between 0 and 255, digits only");
+	if (i == 1)
+		ft_error("floor RGB must be set between 0 and 255, digits only");
 }
