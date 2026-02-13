@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 13:05:57 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:10:50 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	blank_line(int mpfull, char *line, t_data *data)
 		if (space_str(line))
 			data->info.nl_map = 1;
 	}
-	printf("data\nnl map: %d\nfull : %d\n\n", data->info.nl_map,
-		data->info.nl_full);
 }
 
 void	last_line(t_data *data, char *line, int j, int mpfull)

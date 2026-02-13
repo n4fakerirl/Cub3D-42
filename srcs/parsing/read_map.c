@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 12:59:59 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:13:23 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ int	read_infile(int fd, t_data *data)
 	if (ft_strcmp(data->info.file + len, ".cub"))
 		return (close(fd), ft_error("map isn't a .cub file"), 1);
 	data->info.size = get_size_file(fd);
-	if (data->info.size < 7)
+	if (data->info.size == 0)
+		return (ft_error("empty file"), 1);
+	else if (data->info.size < 7)
 		return (ft_error("map or textures missing"), 1);
 	data->info.full_file = ft_calloc(data->info.size + 1, sizeof(char *));
 	if (!data->info.full_file)

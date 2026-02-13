@@ -103,7 +103,7 @@ typedef struct s_cub
 {
 	char	*file;
 	int		nl_full;
-	int 	nl_map;
+	int		nl_map;
 	int		flag;
 	int		j;
 	int		lstline_pos;
@@ -143,6 +143,7 @@ void	free_txt(t_data *data);
 
 // PARSING
 int		txt_init(t_data *data, int i);
+int		in_between(t_data *data, int line);
 int		read_infile(int fd, t_data *data);
 int		get_fc(t_data *data);
 int		parse_map(t_data *data);
