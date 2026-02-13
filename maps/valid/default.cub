@@ -1,13 +1,13 @@
-NO     				./textures/no.xpm
-SO ./textures/so.xpm
+NO     				./textures/N.xpm
+SO ./textures/S.xpm
 
 
 
 
-WE ./textures/we.xpm
+WE ./textures/W.xpm
 
 
-EA ./textures/ea.xpm
+EA ./textures/E.xpm
 
 F 221,100,23
 C 225,60,12
