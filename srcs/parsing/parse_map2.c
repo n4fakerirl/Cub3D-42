@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:27:50 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:38:31 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	nl_inmap(t_data *data)
 	i = 0;
 	while (data->info.map[i])
 	{
-		if (!ft_strcmp(data->info.map[i], "\0"))
+		if (!ft_strcmp(data->info.map[i], "\0") && i <= data->info.lstline_pos)
 			return (0);
 		i++;
 	}

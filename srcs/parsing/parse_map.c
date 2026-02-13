@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:28:07 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:48:39 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ int	columns(t_data *data)
 	{
 		i = 0;
 		len = ft_strlen(data->info.filled[y]);
-		while (ft_isspace(data->info.filled[y][i]))
+		while (data->info.filled[y][i] && ft_isspace(data->info.filled[y][i]))
 			i++;
-		while (ft_isspace(data->info.filled[y][len - 1]))
+		while (len - 1 > i && ft_isspace(data->info.filled[y][len - 1]))
 			len--;
 		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
-			- 1] == '1'))
+			- 1] == '1') && y <= data->info.lstline_pos)
 			return (0);
 		y++;
 	}
@@ -109,8 +109,6 @@ int	columns(t_data *data)
 int	parse_map(t_data *data)
 {
 	if (!is_map(data))
-		return (0);
-	if (!orientation(data, 0))
 		return (0);
 	if (!find_size(data))
 		return (0);
@@ -127,5 +125,7 @@ int	parse_map(t_data *data)
 		return (ft_error("map is not fully closed"), 0);
 	if (!check_space(data))
 		return (ft_error("map is not fully closed"), 0);
+	if (!orientation(data, 0))
+		return (0);
 	return (1);
 }
