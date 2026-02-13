@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:24:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:27:50 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,24 @@ int	count_sp(char *str)
 		i++;
 	}
 	return (count);
+}
+
+int	is_map(t_data *data)
+{
+	int	y;
+	int	flag;
+
+	y = 0;
+	flag = 0;
+	while (data->info.map[y])
+	{
+		if (correct_line(data->info.map[y]))
+			flag = 1;
+		y++;
+	}
+	if (y < 3)
+		return (ft_error("no map in file or map too small"), 0);
+	if (flag == 0)
+		return (ft_error("no correct map in file"), 0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:24:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:28:07 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,48 +99,10 @@ int	columns(t_data *data)
 		while (ft_isspace(data->info.filled[y][len - 1]))
 			len--;
 		if (!(data->info.filled[y][i] == '1' && data->info.filled[y][len
-				- 1] == '1'))
+			- 1] == '1'))
 			return (0);
 		y++;
 	}
-	return (1);
-}
-
-int	correct_line(char *line)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	c = 0;
-	while (line[i])
-	{
-		c = line[i];
-		if (c != '1' && c != '0' && !ft_isspace(c) && c != 'W' && c != 'N'
-			&& c != 'S' && c != 'E')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_map(t_data *data)
-{
-	int	y;
-	int	flag;
-
-	y = 0;
-	flag = 0;
-	while (data->info.map[y])
-	{
-		if (correct_line(data->info.map[y]))
-			flag = 1;
-		y++;
-	}
-	if (y < 3)
-		return (ft_error("no map in file or map too small"), 0);
-	if (flag == 0)
-		return (ft_error("no correct map in file"), 0);
 	return (1);
 }
 

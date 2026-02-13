@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 13:10:50 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:26:56 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,23 @@ int	in_between(t_data *data, int line)
 	}
 	if (flag == 1)
 		return (0);
+	return (1);
+}
+
+int	correct_line(char *line)
+{
+	int		i;
+	char	c;
+
+	i = 0;
+	c = 0;
+	while (line[i])
+	{
+		c = line[i];
+		if (c != '1' && c != '0' && !ft_isspace(c) && c != 'W' && c != 'N'
+			&& c != 'S' && c != 'E')
+			return (0);
+		i++;
+	}
 	return (1);
 }
