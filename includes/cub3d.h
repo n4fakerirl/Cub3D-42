@@ -102,6 +102,8 @@ typedef struct s_count
 typedef struct s_cub
 {
 	char	*file;
+	int		nl_full;
+	int 	nl_map;
 	int		flag;
 	int		j;
 	int		lstline_pos;
@@ -147,13 +149,14 @@ int		parse_map(t_data *data);
 void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
 int		create_map(t_data *data, int y, int i);
-void	last_line(t_data *data, char *line, int j);
+void	last_line(t_data *data, char *line, int j, int mpfull);
 int		msg_pos(t_data *data);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);
 int		zero_one(t_data *data, int y, int i);
 int		nl_inmap(t_data *data);
 void	m_error(char *line, t_data *data, int fd2);
+int		space_str(char *str);
 int		check_space(t_data *data);
 void	rgb_error(char **tmp);
 char	**make_tab(char *file);

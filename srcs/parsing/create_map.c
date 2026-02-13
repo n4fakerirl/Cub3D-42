@@ -65,14 +65,12 @@ int	create_map(t_data *data, int y, int i)
 	i = 0;
 	while (data->info.full_file[y + i])
 	{
-		if (y + i > data->info.lstline_pos && space_str(data->info.full_file[y
-					+ i]))
+		if (y + i > data->info.lstline_pos && in_between(data, y + i))
 		{
 			y++;
 			continue ;
 		}
-		else if (y + i <= data->info.lstline_pos
-			|| !space_str(data->info.full_file[y + i]))
+		else if (y + i <= data->info.lstline_pos || !in_between(data, y + i))
 			data->info.map[i] = ft_strdup(data->info.full_file[y + i]);
 		if (!data->info.map[i])
 			return (ft_error("malloc error"), 0);

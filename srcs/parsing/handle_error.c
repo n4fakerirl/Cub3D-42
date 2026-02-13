@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:39:27 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 17:40:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:34:37 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	countalnum(t_data *data, char c, int line)
 		if (c != 'N' && c != 'W' && c != 'S' && c != 'E'
 			&& line <= data->info.lstline_pos)
 			data->info.cnt.count_in++;
-		else
+		else if (line > data->info.lstline_pos)
 			data->info.cnt.other++;
 	}
 	else if (ft_isdigit(c))
 	{
 		if (c != '1' && c != '0' && line <= data->info.lstline_pos)
 			data->info.cnt.count_nbrin++;
-		else
+		else if (line > data->info.lstline_pos)
 			data->info.cnt.other++;
 	}
 	else if (!ft_isspace(c))

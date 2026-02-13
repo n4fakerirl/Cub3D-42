@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/11 09:06:23 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:17:24 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_error(char *message)
 
 void	m_error(char *line, t_data *data, int fd2)
 {
+	printf("line == [%s]\n", line);
 	while (line != NULL)
 	{
 		free(line);
