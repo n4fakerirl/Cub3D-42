@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:32:57 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/17 10:18:57 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/17 12:21:11 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	timer(t_data *data)
 
 void	mlx_looping(t_data *data)
 {
-	printf("PLAYER X : %f\nPLAYER Y: %f\n", data->player.p_x, data->player.p_y);
 	mlx_loop_hook(data->mx.mlx, timer, data);
 	mlx_hook(data->mx.win, 2, 1L << 0, key_move, data);
 	mlx_hook(data->mx.win, 3, 1L << 1, unkey_move, data);

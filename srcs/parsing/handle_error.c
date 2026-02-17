@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:39:27 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:28:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:13:01 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,24 @@ int	parse_ext(int n, int s, int w, int e)
 	else if (w > 1)
 		ft_error("more than one west texture found, 1 needed");
 	return (0);
+}
+
+int	allowed_map(char c, int line, t_data *data)
+{
+	if (c == 'W' || c == 'S' || c == 'N' || c == 'E')
+		return (1);
+	else if (c == '\t' || c == ' ' || c == '\n' || c == '\r' || c == '\0')
+		return (1);
+	else if (c == '1' || c == '0')
+		return (1);
+	else
+	{
+		if (line < data->info.fstline_pos)
+			ft_error("useless line above map");
+		else if (line > data->info.lstline_pos)
+			ft_error("useless line below map");
+		else
+			ft_error("useless line in map");
+		return (0);
+	}
 }

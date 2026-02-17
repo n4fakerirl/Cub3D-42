@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 17:48:39 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 12:52:16 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	parse_map(t_data *data)
 	if (!is_map(data))
 		return (0);
 	if (!find_size(data))
+		return (0);
+	if (!useless_inmap(data, 0, 0))
 		return (0);
 	if (!nl_inmap(data))
 		return (ft_error("empty line in map"), 0);

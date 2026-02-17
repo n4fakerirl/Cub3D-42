@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:13:52 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 17:38:31 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:55:10 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	nl_inmap(t_data *data)
 	i = 0;
 	while (data->info.map[i])
 	{
-		if (!ft_strcmp(data->info.map[i], "\0") && i <= data->info.lstline_pos)
+		if (!ft_strncmp(data->info.map[i], "\n", 1)
+			&& i <= data->info.lstline_pos)
+			return (0);
+		else if (!ft_strncmp(data->info.map[i], "\0", 1)
+			&& i <= data->info.lstline_pos)
 			return (0);
 		i++;
 	}
@@ -67,5 +71,21 @@ int	is_map(t_data *data)
 		return (ft_error("no map in file or map too small"), 0);
 	if (flag == 0)
 		return (ft_error("no correct map in file"), 0);
+	return (1);
+}
+
+int	useless_inmap(t_data *data, int i, int y)
+{
+	while (data->info.map[y])
+	{
+		i = 0;
+		while (data->info.map[y][i])
+		{
+			if (!allowed_map(data->info.map[y][i], y, data))
+				return (0);
+			i++;
+		}
+		y++;
+	}
 	return (1);
 }

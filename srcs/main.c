@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 10:17:30 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/02/17 12:40:03 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	parsing_start(char *infile, t_data *data)
 	if (fd < 0)
 		return (ft_error("can't open file"), 1);
 	data->info.file = infile;
+	data->info.fstline_pos = -1;
 	if (read_infile(fd, data))
 		return (1);
 	if (txt_init(data, 0))

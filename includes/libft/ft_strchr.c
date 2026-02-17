@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:05:31 by ocviller          #+#    #+#             */
-/*   Updated: 2025/05/12 15:56:16 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 12:19:50 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	}
 	if (c == '\0')
-		return ((char *)s);
+		return (NULL);
 	return (NULL);
 }
 

@@ -106,6 +106,7 @@ typedef struct s_cub
 	int		nl_map;
 	int		flag;
 	int		j;
+	int		fstline_pos;
 	int		lstline_pos;
 	char	**map;
 	char	**full_file;
@@ -164,6 +165,7 @@ char	**make_tab(char *file);
 void	countalnum(t_data *data, char c, int line);
 int		enough_fc(int c, int f);
 int		is_map(t_data *data);
+int		useless_inmap(t_data *data, int i, int y);
 int		parse_ext(int n, int s, int w, int e);
 
 // UTILS
@@ -176,6 +178,7 @@ int		alphastr(char *str);
 int		correct_line(char *line);
 int		try_line(char *line, int flag);
 int		good_format(int i, char *file);
+int		allowed_map(char c, int line, t_data *data);
 int		count_sp(char *str);
 int		atoi_rgb(const char *nptr, int i, int sign);
 

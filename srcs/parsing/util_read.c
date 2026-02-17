@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:26:56 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:09:17 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ void	blank_line(int mpfull, char *line, t_data *data)
 	}
 }
 
+void	first_last_line(t_data *data, int mpfull, int flag, int j)
+{
+	if (data->info.flag == 1 && flag == 1)
+	{
+		if (mpfull == 1 && data->info.fstline_pos == -1)
+			data->info.fstline_pos = j;
+		if (mpfull == 0 && (data->info.nl_full == 0
+				|| data->info.lstline_pos == 0))
+			data->info.lstline_pos = j;
+		else if (mpfull == 1 && (data->info.nl_map == 0
+				|| data->info.lstline_pos == 0))
+			data->info.lstline_pos = j;
+	}
+}
+
 void	last_line(t_data *data, char *line, int j, int mpfull)
 {
 	int		i;
@@ -37,22 +52,16 @@ void	last_line(t_data *data, char *line, int j, int mpfull)
 	flag = 1;
 	search = ft_strchr(line, '1');
 	blank_line(mpfull, line, data);
+	if (line[0] == '\0')
+		flag = 0;
 	while (line[i])
 	{
-		if (line[i] != '1' && line[i] != '\n' && line[i] != ' '
-			&& line[i] != '\t')
-			flag = 0;
-		else if (!search)
+		if (!search || (line[i] != '1' && line[i] != '\n' && line[i] != ' '
+				&& line[i] != '\t'))
 			flag = 0;
 		i++;
 	}
-	if (data->info.flag == 1 && flag == 1)
-	{
-		if (mpfull == 0 && data->info.nl_full == 0)
-			data->info.lstline_pos = j;
-		else if (mpfull == 1 && data->info.nl_map == 0)
-			data->info.lstline_pos = j;
-	}
+	first_last_line(data, mpfull, flag, j);
 }
 
 int	in_between(t_data *data, int line)
