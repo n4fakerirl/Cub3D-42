@@ -1,0 +1,1 @@
+./script_bad.sh && ./script_good.sh && ./script_invalid.sh && ./script_old.sh && ./script_perso.sh && ./script_valid.sh

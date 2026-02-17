@@ -1,7 +1,7 @@
-NO ./textures/cover/astro.xpm
-SO ./textures/cover/ye.xpm
-WE ./textures/cover/heros.xpm
-EA ./textures/cover/goodkidmadcity.xpm
+NO ./textures/N.xpm
+SO ./textures/S.xpm
+WE ./textures/W.xpm
+EA ./textures/E.xpm
 F 169,169,169
 C 49,140,231
 

@@ -1,7 +1,7 @@
-NO ./textures/tonton/brassens.xpm
-SO ./textures/tonton/coluche.xpm
-WE ./textures/tonton/defunes.xpm
-EA ./textures/tonton/edithpiaf.xpm
+NO ./textures/N.xpm
+SO ./textures/S.xpm
+WE ./textures/W.xpm
+EA ./textures/E.xpm
 
 F 210,180,140
 C 0,0,0

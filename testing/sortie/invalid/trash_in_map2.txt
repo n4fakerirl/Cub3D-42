@@ -1,0 +1,20 @@
+==421339== Memcheck, a memory error detector
+==421339== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==421339== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==421339== Command: ./cub3d maps/invalid/trash_in_map2.cub
+==421339== 
+cub3d: error: map is not fully closed
+==421339== 
+==421339== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==421339== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==421339==    <inherited from parent>
+==421339== 
+==421339== 
+==421339== HEAP SUMMARY:
+==421339==     in use at exit: 0 bytes in 0 blocks
+==421339==   total heap usage: 334 allocs, 334 frees, 3,458 bytes allocated
+==421339== 
+==421339== All heap blocks were freed -- no leaks are possible
+==421339== 
+==421339== For lists of detected and suppressed errors, rerun with: -s
+==421339== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
