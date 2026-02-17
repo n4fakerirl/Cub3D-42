@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 12:40:03 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:00:48 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ int	parsing_start(char *infile, t_data *data)
 		return (1);
 	if (!create_map(data, 6, 0))
 		return (1);
-	while (data->info.map[i])
-	{
-		last_line(data, data->info.map[i], i, 1);
-		i++;
-	}
+	first_and_last(data, data->info.map);
 	if (!parse_map(data))
 		return (1);
 	print_data(data);

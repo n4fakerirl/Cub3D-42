@@ -151,7 +151,7 @@ int		parse_map(t_data *data);
 void	add_spaces(t_data *data, int y);
 int		find_size(t_data *data);
 int		create_map(t_data *data, int y, int i);
-void	last_line(t_data *data, char *line, int j, int mpfull);
+void	first_and_last(t_data *data, char **map);
 int		msg_pos(t_data *data);
 void	flood_fill(t_data *data, int x, int y);
 void	find_player(t_data *data);

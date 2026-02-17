@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 17:03:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:25:19 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:00:30 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	match_line(t_data *data, char *line, int fd2)
 		data->info.full_file[data->info.j] = dup_n(line);
 	if (!data->info.full_file[data->info.j])
 		return (m_error(line, data, fd2), 0);
-	last_line(data, line, data->info.j, 0);
+	first_and_last(data, data->info.full_file);
 	data->info.j++;
 	return (1);
 }

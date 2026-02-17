@@ -6,62 +6,48 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 14:09:17 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:59:32 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	blank_line(int mpfull, char *line, t_data *data)
+int	is_map_line(char *str)
 {
-	if (mpfull == 0)
-	{
-		if (space_str(line))
-			data->info.nl_full = 1;
-	}
-	else if (mpfull == 1)
-	{
-		if (space_str(line))
-			data->info.nl_map = 1;
-	}
-}
+	int	i;
 
-void	first_last_line(t_data *data, int mpfull, int flag, int j)
-{
-	if (data->info.flag == 1 && flag == 1)
-	{
-		if (mpfull == 1 && data->info.fstline_pos == -1)
-			data->info.fstline_pos = j;
-		if (mpfull == 0 && (data->info.nl_full == 0
-				|| data->info.lstline_pos == 0))
-			data->info.lstline_pos = j;
-		else if (mpfull == 1 && (data->info.nl_map == 0
-				|| data->info.lstline_pos == 0))
-			data->info.lstline_pos = j;
-	}
-}
-
-void	last_line(t_data *data, char *line, int j, int mpfull)
-{
-	int		i;
-	int		flag;
-	char	*search;
-
-	search = NULL;
 	i = 0;
-	flag = 1;
-	search = ft_strchr(line, '1');
-	blank_line(mpfull, line, data);
-	if (line[0] == '\0')
-		flag = 0;
-	while (line[i])
+	while (str[i])
 	{
-		if (!search || (line[i] != '1' && line[i] != '\n' && line[i] != ' '
-				&& line[i] != '\t'))
-			flag = 0;
+		if (str[i] != '1')
+			return (0);
 		i++;
 	}
-	first_last_line(data, mpfull, flag, j);
+	return (1);
+}
+
+void	first_and_last(t_data *data, char **map)
+{
+	int	i;
+
+	i = 0;
+	data->info.fstline_pos = -1;
+	data->info.lstline_pos = -1;
+	while (map[i])
+	{
+		if (is_map_line(map[i]))
+		{
+			if (data->info.fstline_pos == -1)
+				data->info.fstline_pos = i;
+			else if (i > 0 && space_str(map[i - 1]) && map[i + 1]
+				&& !space_str(map[i + 1]))
+				data->info.fstline_pos = i;
+			else if (i > 0 && !space_str(map[i - 1]) && map[i + 1]
+				&& space_str(map[i + 1]))
+				data->info.lstline_pos = i;
+		}
+		i++;
+	}
 }
 
 int	in_between(t_data *data, int line)
