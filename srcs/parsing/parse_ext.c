@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 15:37:22 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:59:20 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	is_xpm(char *file)
 	return (i);
 }
 
-int	check_ext(char *file, int len, int flag)
+int	check_ext(char *file, int len)
 {
 	char	*ext;
 	int		i;
