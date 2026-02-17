@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 16:45:17 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:03:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,6 @@ int	parse_map(t_data *data)
 		return (0);
 	if (!useless_inmap(data, 0, 0))
 		return (0);
-	for (int i = 0; data->info.map[i]; i++)
-		printf("map[%d][%s]\n", i, data->info.map[i]);
-	printf("FIRST LINE : %d\nLAST LINE %d\n", data->info.fstline_pos, data->info.lstline_pos);
 	if (!nl_inmap(data))
 		return (ft_error("empty line in map"), 0);
 	add_spaces(data, 0);
@@ -134,3 +131,8 @@ int	parse_map(t_data *data)
 		return (0);
 	return (1);
 }
+
+// for (int i = 0; data->info.map[i]; i++)
+// 		printf("map[%d][%s]\n", i, data->info.map[i]);
+// 	printf("FIRST LINE : %d\nLAST LINE %d\n", data->info.fstline_pos,
+		// data->info.lstline_pos);

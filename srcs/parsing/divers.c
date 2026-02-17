@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:56:20 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 15:12:25 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:05:01 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@ void	ft_error(char *message)
 	ft_putstr_fd("cub3d: error: ", 2);
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd("\n", 2);
-}
-
-void	wrong_ext(char *ext)
-{
-	ft_putstr_fd("cub3d: error: ", 2);
-	ft_putstr_fd("wrong extension format, yours : ", 2);
-	ft_putstr_fd(ext, 2);
-	ft_putstr_fd(", expected : .xpm\n", 2);
 }
 
 void	m_error(char *line, t_data *data, int fd2)

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 15:59:20 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:04:52 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,48 +37,6 @@ int	ext_check(t_data *data, int i)
 	}
 	if (!parse_ext(no, so, we, ea))
 		return (0);
-	return (1);
-}
-
-int	is_xpm(char *file)
-{
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (file[i])
-	{
-		if (file[i] == '.')
-		{
-			if (flag == 1)
-				break ;
-			else if (flag == 0)
-				flag = 1;
-		}
-		i++;
-	}
-	return (i);
-}
-
-int	check_ext(char *file, int len)
-{
-	char	*ext;
-	int		i;
-
-	ext = NULL;
-	if (len == 2 && !ft_strncmp(file, "./", 2))
-		return (ft_error("path to the texture not found"), 0);
-	i = is_xpm(file);
-	ext = ft_strdup(file + i);
-	if (!ext)
-		return (ft_error("malloc error"), 0);
-	if (!ft_strcmp(ext, ""))
-		return (ft_error("path to the texture doesn't have any extension"),
-			free(ext), 0);
-	if (ft_strncmp(ext, ".xpm", 4))
-		return (wrong_ext(ext), free(ext), 0);
-	free(ext);
 	return (1);
 }
 

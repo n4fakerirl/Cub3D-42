@@ -175,6 +175,7 @@ void	ft_error(char *message);
 char	*dup_n(const char *str);
 size_t	len_tab(char *str);
 int		alphastr(char *str);
+int		check_ext(char *file, int len);
 int		correct_line(char *line);
 int		try_line(char *line, int flag);
 int		good_format(int i, char *file);
