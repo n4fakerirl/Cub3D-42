@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:32:57 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/10 12:31:29 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 10:18:57 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	timer(t_data *data)
 
 void	mlx_looping(t_data *data)
 {
+	printf("PLAYER X : %f\nPLAYER Y: %f\n", data->player.p_x, data->player.p_y);
 	mlx_loop_hook(data->mx.mlx, timer, data);
 	mlx_hook(data->mx.win, 2, 1L << 0, key_move, data);
 	mlx_hook(data->mx.win, 3, 1L << 1, unkey_move, data);
@@ -70,7 +71,7 @@ int	init_mx(t_data *data)
 	if (!data->mx.img_st->addr)
 		return (1);
 	data->player.p_x = data->info.p_posx * 4 + 0.5;
-	data->player.p_y = data->info.p_posy * 4 - 0.5;
+	data->player.p_y = data->info.p_posy * 4 + 0.5;
 	get_fov(data);
 	if (get_txt_full(&data))
 		return (1);
