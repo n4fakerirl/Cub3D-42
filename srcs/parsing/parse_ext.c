@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:24:40 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/13 15:28:25 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:37:22 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,45 @@ int	ext_check(t_data *data, int i)
 	return (1);
 }
 
-int	check_ext(char *file)
+int	is_xpm(char *file)
 {
-	int	len;
-	int	len_nosp;
 	int	i;
+	int	flag;
 
 	i = 0;
-	len_nosp = 0;
-	len = ft_strlen(file);
+	flag = 0;
 	while (file[i])
 	{
-		if (file[i] != ' ' && file[i] != '\t')
-			len_nosp++;
+		if (file[i] == '.')
+		{
+			if (flag == 1)
+				break ;
+			else if (flag == 0)
+				flag = 1;
+		}
 		i++;
 	}
-	if (ft_strncmp(file + len - 4, ".xpm", 4))
-		return (ft_error("file extension isn't .xpm."), 0);
-	if (len_nosp < 5)
-		return (ft_error("a file name is needed."), 0);
+	return (i);
+}
+
+int	check_ext(char *file, int len, int flag)
+{
+	char	*ext;
+	int		i;
+
+	ext = NULL;
+	if (len == 2 && !ft_strncmp(file, "./", 2))
+		return (ft_error("path to the texture not found"), 0);
+	i = is_xpm(file);
+	ext = ft_strdup(file + i);
+	if (!ext)
+		return (ft_error("malloc error"), 0);
+	if (!ft_strcmp(ext, ""))
+		return (ft_error("path to the texture doesn't have any extension"),
+			free(ext), 0);
+	if (ft_strncmp(ext, ".xpm", 4))
+		return (wrong_ext(ext), free(ext), 0);
+	free(ext);
 	return (1);
 }
 
@@ -94,17 +114,19 @@ int	store_ext(t_data *data, char c, int i, char *file)
 int	grab_ext(t_data *data, char *file, char c, int l)
 {
 	int	i;
+	int	len;
 
+	len = ft_strlen(file);
 	i = 0;
-	if (!check_ext(file))
-		return (0);
-	if (l > 5)
-		return (ft_error("useless line in file or map isn't last"), 0);
 	while (file[i] && ft_isspace(file[i]))
 		i++;
 	i = good_format(i, file);
 	if (i == -1)
 		return (0);
+	if (!check_ext(file, len))
+		return (0);
+	if (l > 5)
+		return (ft_error("useless line in file or map isn't last"), 0);
 	if (!store_ext(data, c, i, file))
 		return (ft_error("malloc error"), 0);
 	return (1);

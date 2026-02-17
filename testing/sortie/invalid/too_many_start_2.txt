@@ -1,20 +1,20 @@
-==498238== Memcheck, a memory error detector
-==498238== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==498238== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==498238== Command: ./cub3d maps/invalid/too_many_start_2.cub
-==498238== 
+==557356== Memcheck, a memory error detector
+==557356== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==557356== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==557356== Command: ./cub3d maps/invalid/too_many_start_2.cub
+==557356== 
 cub3d: error: only one start position is needed
-==498238== 
-==498238== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==498238== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==498238==    <inherited from parent>
-==498238== 
-==498238== 
-==498238== HEAP SUMMARY:
-==498238==     in use at exit: 0 bytes in 0 blocks
-==498238==   total heap usage: 324 allocs, 324 frees, 3,336 bytes allocated
-==498238== 
-==498238== All heap blocks were freed -- no leaks are possible
-==498238== 
-==498238== For lists of detected and suppressed errors, rerun with: -s
-==498238== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==557356== 
+==557356== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==557356== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==557356==    <inherited from parent>
+==557356== 
+==557356== 
+==557356== HEAP SUMMARY:
+==557356==     in use at exit: 0 bytes in 0 blocks
+==557356==   total heap usage: 328 allocs, 328 frees, 3,356 bytes allocated
+==557356== 
+==557356== All heap blocks were freed -- no leaks are possible
+==557356== 
+==557356== For lists of detected and suppressed errors, rerun with: -s
+==557356== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

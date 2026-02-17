@@ -1,58 +1,20 @@
-==478378== Memcheck, a memory error detector
-==478378== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==478378== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==478378== Command: ./cub3d maps/old/parsing.cub
-==478378== 
-=== WHOLE FILE ===
-WE         ./textures/W.xpm
-SO 			   ./textures/S.xpm
-NO            ./textures/N.xpm
-EA           ./textures/E.xpm
-C    ,255,      30,    0
-F    220   ,100,   0,
-111111111111
-100000000001
-100000000001
-100000000001
-100000W000111
-1000000000011
-1111111111111
-
-=== ORIENTATION ===
-NORTH == textures/N.xpm
-SOUTH == textures/S.xpm
-WEST == textures/W.xpm
-EAST == textures/E.xpm
-=== FLOOR && CEILING ===
-F = 220,100,0
-C = 255,30,0
-=== GAME MAP ===
-'111111111111 '
-'100000000001 '
-'100000000001 '
-'100000000001 '
-'100000W000111'
-'1000000000011'
-'1111111111111'
-=== NEW MAP ===
-'111111111111 '
-'1XXXXXXXXXX1 '
-'1XXXXXXXXXX1 '
-'1XXXXXXXXXX1 '
-'1XXXXXXXXX111'
-'1XXXXXXXXXX11'
-'1111111111111'
-==478378== 
-==478378== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==478378== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==478378==    <inherited from parent>
-==478378== 
-==478378== 
-==478378== HEAP SUMMARY:
-==478378==     in use at exit: 0 bytes in 0 blocks
-==478378==   total heap usage: 1,800 allocs, 1,800 frees, 1,476,827 bytes allocated
-==478378== 
-==478378== All heap blocks were freed -- no leaks are possible
-==478378== 
-==478378== For lists of detected and suppressed errors, rerun with: -s
-==478378== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 4 from 1)
+==556302== Memcheck, a memory error detector
+==556302== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==556302== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==556302== Command: ./cub3d maps/old/parsing.cub
+==556302== 
+cub3d: error: wrong extension format, yours : ./textures/W.xpm, expected : .xpm
+==556302== 
+==556302== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==556302== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==556302==    <inherited from parent>
+==556302== 
+==556302== 
+==556302== HEAP SUMMARY:
+==556302==     in use at exit: 0 bytes in 0 blocks
+==556302==   total heap usage: 349 allocs, 349 frees, 4,595 bytes allocated
+==556302== 
+==556302== All heap blocks were freed -- no leaks are possible
+==556302== 
+==556302== For lists of detected and suppressed errors, rerun with: -s
+==556302== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

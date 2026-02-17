@@ -181,6 +181,7 @@ int		good_format(int i, char *file);
 int		allowed_map(char c, int line, t_data *data);
 int		count_sp(char *str);
 int		atoi_rgb(const char *nptr, int i, int sign);
+void	wrong_ext(char *ext);
 
 //  - RENDER
 int		engine(t_data *data);
