@@ -1,12 +1,12 @@
 
-       WE         ./W.xpm     
+       WE         ./textures/W.xpm     
 
-    SO 			   ./S.xpm     
+    SO 			   ./textures/S.xpm     
 
 
-      NO            ./N.xpm   
+      NO            ./textures/N.xpm   
 
-EA           ./E.xpm   
+EA           ./textures/E.xpm   
 
 
    C    ,255,      30,    0

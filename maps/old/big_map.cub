@@ -1,7 +1,7 @@
-NO ./E.xpm
-SO ./N.xpm
-EA ./S.xpm
-WE ./W.xpm
+NO ./textures/N.xpm
+SO ./textures/S.xpm
+EA ./textures/E.xpm
+WE ./textures/W.xpm
 C 150,0,50
 F 0,0,0
 

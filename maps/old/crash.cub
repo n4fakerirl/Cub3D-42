@@ -1,7 +1,7 @@
-NO ./txt_n.xpm
-SO ./txt_s.xpm
-EA ./txt_e.xpm
-WE ./txt_w.xpm
+NO ./textures/N.xpm
+SO ./textures/S.xpm
+EA ./textures/E.xpm
+WE ./textures/W.xpm
 
 C 225,30,50
 F 220,100,50

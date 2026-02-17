@@ -1,13 +1,13 @@
-NO      txt_n.xpm
+NO      ./textures/N.xpm
 
 
 
-WE      ./txt_w.xpm
+WE      ./textures/W.xpm
 
 
-SO     ./txt_s.xpm
+SO     ./textures/S.xpm
 
-EA           ./txt_e.xpm
+EA           ./textures/E.xpm
 
 
 C    250,      30,,,    0
