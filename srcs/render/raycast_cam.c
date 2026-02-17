@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:26:39 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/17 09:57:10 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/17 10:08:44 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	ray_cast_cam(t_data *data)
 	t_vec	i;
 
 	dist.x = 0;
-	fov.f_x = 0;
-	fov.f_y = 0;
-	fov.x = 0;
-	fov.y = 0;
+	// fov.f_x = 0;
+	// fov.f_y = 0;
+	// fov.x = 0;
+	// fov.y = 0;
 	fov_p.f_x = (data->player.fov - ((PI)) / 6);
 	fov_p.f_y = (data->player.fov + ((PI)) / 6);
 	i.f_x = PI / 3 / X_AXIS;
