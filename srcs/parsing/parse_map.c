@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:09:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/19 10:13:59 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/19 10:53:32 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,6 @@ int	columns(t_data *data)
 
 int	parse_map(t_data *data)
 {
-	for (int i = 0; data->info.map[i]; i++)
-		printf("map[%d][%s]\n", i, data->info.map[i]);
-	printf("FIRST LINE[%d][%s]\nLAST LINE[%d][%s]\n", data->info.fstline_pos,
-		data->info.map[data->info.fstline_pos], data->info.lstline_pos,
-		data->info.map[data->info.lstline_pos]);
 	if (!is_map(data))
 		return (0);
 	if (!find_size(data))
