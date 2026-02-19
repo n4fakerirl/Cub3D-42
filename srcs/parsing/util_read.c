@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:42:37 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/17 16:59:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/19 10:13:47 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int	is_map_line(char *str)
 {
-	int	i;
+	int		i;
+	char	*search;
 
 	i = 0;
+	search = NULL;
+	search = ft_strchr(str, '1');
+	if (!search)
+		return (0);
 	while (str[i])
 	{
-		if (str[i] != '1')
+		if (str[i] != '1' && str[i] != '\t' && str[i] != ' ' && str[i] != '\n'
+			&& str[i] != '\r')
 			return (0);
 		i++;
 	}
@@ -42,8 +48,8 @@ void	first_and_last(t_data *data, char **map)
 			else if (i > 0 && space_str(map[i - 1]) && map[i + 1]
 				&& !space_str(map[i + 1]))
 				data->info.fstline_pos = i;
-			else if (i > 0 && !space_str(map[i - 1]) && map[i + 1]
-				&& space_str(map[i + 1]))
+			else if (i > 0 && !space_str(map[i - 1]) && ((map[i + 1]
+						&& space_str(map[i + 1])) || !map[i + 1]))
 				data->info.lstline_pos = i;
 		}
 		i++;

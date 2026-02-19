@@ -1,20 +1,20 @@
-==557095== Memcheck, a memory error detector
-==557095== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==557095== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==557095== Command: ./cub3d maps/bad/player_on_edge.cub
-==557095== 
+==335395== Memcheck, a memory error detector
+==335395== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==335395== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==335395== Command: ./cub3d maps/bad/player_on_edge.cub
+==335395== 
 cub3d: error: map is not fully closed
-==557095== 
-==557095== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==557095== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==557095==    <inherited from parent>
-==557095== 
-==557095== 
-==557095== HEAP SUMMARY:
-==557095==     in use at exit: 0 bytes in 0 blocks
-==557095==   total heap usage: 360 allocs, 360 frees, 3,674 bytes allocated
-==557095== 
-==557095== All heap blocks were freed -- no leaks are possible
-==557095== 
-==557095== For lists of detected and suppressed errors, rerun with: -s
-==557095== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==335395== 
+==335395== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==335395== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==335395==    <inherited from parent>
+==335395== 
+==335395== 
+==335395== HEAP SUMMARY:
+==335395==     in use at exit: 0 bytes in 0 blocks
+==335395==   total heap usage: 360 allocs, 360 frees, 3,674 bytes allocated
+==335395== 
+==335395== All heap blocks were freed -- no leaks are possible
+==335395== 
+==335395== For lists of detected and suppressed errors, rerun with: -s
+==335395== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

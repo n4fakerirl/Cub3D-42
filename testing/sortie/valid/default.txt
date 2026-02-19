@@ -1,20 +1,20 @@
-==556726== Memcheck, a memory error detector
-==556726== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==556726== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==556726== Command: ./cub3d maps/valid/default.cub
-==556726== 
-cub3d: error: wrong extension format, yours : ./textures/N.xpm, expected : .xpm
-==556726== 
-==556726== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==556726== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==556726==    <inherited from parent>
-==556726== 
-==556726== 
-==556726== HEAP SUMMARY:
-==556726==     in use at exit: 0 bytes in 0 blocks
-==556726==   total heap usage: 544 allocs, 544 frees, 8,509 bytes allocated
-==556726== 
-==556726== All heap blocks were freed -- no leaks are possible
-==556726== 
-==556726== For lists of detected and suppressed errors, rerun with: -s
-==556726== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==335208== Memcheck, a memory error detector
+==335208== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==335208== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==335208== Command: ./cub3d maps/valid/default.cub
+==335208== 
+cub3d: error: characters below map, map must be the last element
+==335208== 
+==335208== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==335208== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==335208==    <inherited from parent>
+==335208== 
+==335208== 
+==335208== HEAP SUMMARY:
+==335208==     in use at exit: 0 bytes in 0 blocks
+==335208==   total heap usage: 608 allocs, 608 frees, 10,456 bytes allocated
+==335208== 
+==335208== All heap blocks were freed -- no leaks are possible
+==335208== 
+==335208== For lists of detected and suppressed errors, rerun with: -s
+==335208== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
