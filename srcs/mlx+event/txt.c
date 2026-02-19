@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   txt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 18:19:14 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/13 18:44:25 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/19 12:11:21 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	get_txt_full(t_data **data)
 		return (1);
 	if (get_txt(data, (*data)->txt->we, &(*data)->txt->w) && (*data)->txt->we)
 		return (1);
-	if (get_txt(data, "textures/test/hudcub.xpm", &(*data)->txt->hud))
+	if (get_txt(data, "textures/hudcub.xpm", &(*data)->txt->hud))
 		return (1);
 	if ((*data)->txt->hud->width != 1280 && (*data)->txt->hud->height != 720)
 		return (1);
