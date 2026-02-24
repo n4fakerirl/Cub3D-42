@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:47:02 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/24 18:39:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:26 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	engine(t_data *data)
 		0);
 	skybox(data);
 	ray_cast_cam(data);
+	print_game_map(data, vec);
 	ray_cast(data, vec, player_i);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:36:44 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/24 18:39:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:57:38 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ray_cast(t_data *data, t_vec vec, t_vec player_i)
 		while (!contact(data, player_i.f_x + ((SPEED * vec.f_x)), player_i.f_y
 				+ ((SPEED * vec.f_y)), 0))
 		{
+			scaled_pxl(data, player_i.f_x, player_i.f_y, GREEN);
 			player_i.f_x += ((SPEED * vec.f_x));
 			player_i.f_y += ((SPEED * vec.f_y));
 			if ((player_i.f_x / 8 >= data->info.map_x - 1 || player_i.f_y
