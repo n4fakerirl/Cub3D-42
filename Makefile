@@ -109,6 +109,7 @@ tabfast:
 clean:
 	@$(RM) -r $(OBJ_DIR) $(OBJ_DIR_BONUS)
 	@$(MAKE) -sC $(LIBFT_DIR) clean
+	@$(MAKE) -sC $(MLX_DIR) clean
 	@echo "$(MAGENTA)🧹 Cleaning objects...$(RESET)"
 
 fclean: clean
