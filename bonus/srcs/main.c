@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:51 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/19 10:55:37 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/03/12 00:33:06 by gule-bat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	parsing_start(char *infile, t_data *data)
 {
 	int	fd;
-	int	i;
 
-	i = 0;
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
 		return (ft_error("can't open file"), 1);
