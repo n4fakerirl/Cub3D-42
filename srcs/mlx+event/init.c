@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 01:32:57 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/17 12:21:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/03/12 10:34:58 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	timer(t_data *data)
 		fps = 0;
 	if (!engine(data))
 		return (0);
-	print_img_manual(data, data->txt->hud);
 	mlx_put_image_to_window(data->mx.mlx, data->mx.win, data->mx.img_st->img, 0,
 		0);
 	return (1);

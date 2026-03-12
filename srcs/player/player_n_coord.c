@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:15:58 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/24 18:38:57 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/03/12 10:30:37 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,29 @@ void	player_coord_fov(t_data *data, float v_fov)
 		data->player.fov = 2 * PI;
 }
 
+int	map_limits(t_data *data, float x, float y)
+{
+	int	try_x;
+	int	try_y;
+
+	try_x = (int)(floor(x * 2.0) / 2.0) / 4;
+	try_y = (int)(floor(y * 2.0) / 2.0) / 4;
+	if ((try_x >= data->info.map_x || try_y >= data->info.map_y) || (try_x < 0
+			|| try_y < 0))
+		return (0);
+	return (1);
+}
+
 void	coord_add_or_sub_x(t_data *data, float x, float y, int side)
 {
 	float	hb;
 
 	hb = 0.5;
-	if (((contact(data, data->player.p_x + x + (hb), data->player.p_y + y, 0)
-				&& side == 0) || (contact(data, data->player.p_x + x - (hb),
-					data->player.p_y + y, 0) && side == 0))
-		|| (contact(data, data->player.p_x - x,
-				data->player.p_y - y - (hb), 0) && side == 1) || (contact(data,
-				data->player.p_x - x, data->player.p_y - y + hb, 0)
-			&& side == 1))
+	if (side == 0 && !map_limits(data, (data->player.p_x + x + hb),
+			(data->player.p_y + y + hb)))
+		return ;
+	if (side == 1 && !map_limits(data, (data->player.p_x - x + hb),
+			(data->player.p_y - y + hb)))
 		return ;
 	if (side == 0 && ((data->player.p_x + x || data->player.p_y + y) < 1))
 		return ;
@@ -60,18 +71,13 @@ void	coord_calculator(t_data *data, float csv, float snv)
 
 	sides_y = sin(data->player.fov - PI / 2) * SPEED / 2;
 	sides_x = cos(data->player.fov - PI / 2) * SPEED / 2;
-	if (!contact(data, data->player.p_x + (csv), data->player.p_y + (snv), 0)
-		&& (data->player.z && data->player.p_y - SPEED >= 0))
+	if (data->player.z)
 		coord_add_or_sub_x(data, csv, snv, 0);
-	if (!contact(data, data->player.p_x - (csv), data->player.p_y - (snv), 1)
-		&& (data->player.s && data->player.p_y + SPEED <= (Y_AXIS - 1)))
+	if (data->player.s)
 		coord_add_or_sub_x(data, csv, snv, 1);
-	if (!contact(data, data->player.p_x + (sides_x), data->player.p_y
-			+ (sides_y), 2) && data->player.q && data->player.p_x - SPEED >= 0)
+	if (data->player.q)
 		coord_add_or_sub_x(data, sides_x, sides_y, 0);
-	if (!contact(data, data->player.p_x - (sides_x), data->player.p_y
-			- (sides_y), 3) && data->player.d && data->player.p_x
-		+ SPEED <= (X_AXIS)-1)
+	if (data->player.d)
 		coord_add_or_sub_x(data, sides_x, sides_y, 1);
 }
 

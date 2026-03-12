@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:26:39 by gule-bat          #+#    #+#             */
-/*   Updated: 2026/02/17 10:27:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2026/03/12 10:29:18 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	ray_cast_cam(t_data *data)
 		dist.f_x = fish_eye_eater(data, mv, fov, fov_p);
 		dist.y = (FACTOR / dist.f_x) * (Y_AXIS / 2);
 		calc_textures(data, dist, fov, mv);
-		flash(data, dist);
 		fov_p.f_x += i.f_x;
 		dist.x++;
 	}
