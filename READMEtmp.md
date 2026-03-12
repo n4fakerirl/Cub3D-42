@@ -23,27 +23,28 @@ Controls:
 	esc or cross to close
 
 Maps:
-		NO ./textures/N.xpm      Path to texture.
-		SO ./textures/S.xpm
-		EA ./textures/E.xpm
-		WE ./textures/W.xpm
-	
-		C 35,19,73		Ceiling color:	R,G,B channels;
-		F 15,6,40		Floor color:	R,G,B channels;
-	
-		111111111111111		1 = Wall;
-		111111000111111		0 = Empty space;
-		111110000011111
-		1111000N0001111		The map must be closed so that the
-		111000000000111		player cannot go out of its bounds.
-		110000000000011		The player must be able to move through
-		100001111100001		the map.
-		110000111000011
-		111000010000111
-		111100000001111
-		111110000011111
-		111111000111111
-		111111111111111
+
+	NO ./textures/N.xpm      Path to texture.
+	SO ./textures/S.xpm
+	EA ./textures/E.xpm
+	WE ./textures/W.xpm
+
+	C 35,19,73		Ceiling color:	R,G,B channels;
+	F 15,6,40		Floor color:	R,G,B channels;
+
+	111111111111111		1 = Wall;
+	111111000111111		0 = Empty space;
+	111110000011111
+	1111000N0001111		The map must be closed so that the
+	111000000000111		player cannot go out of its bounds.
+	110000000000011		The player must be able to move through
+	100001111100001		the map.
+	110000111000011
+	111000010000111
+	111100000001111
+	111110000011111
+	111111000111111
+	111111111111111
 
 # Ressources
 
