@@ -16,8 +16,9 @@ To compile and run the game:
 		-./cub3d_bonus "mapfilepath.cub"-
 
 Controls:
-		  w         
-		q s d  and  ←  →
+
+	  w         
+	q s d  and  ←  →
 
 	esc or cross to close
 
