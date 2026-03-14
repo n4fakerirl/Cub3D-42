@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gule-bat <gule-bat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:47:46 by ocviller          #+#    #+#             */
-/*   Updated: 2026/02/09 21:17:16 by gule-bat         ###   ########.fr       */
+/*   Updated: 2026/03/14 16:05:21 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	free_struct2(t_data *data)
 		free(data->txt->floor);
 	if (data->txt->n)
 		free(data->txt->n);
-	if (data->txt->n)
+	if (data->txt->s)
 		free(data->txt->s);
-	if (data->txt->n)
+	if (data->txt->w)
 		free(data->txt->w);
-	if (data->txt->n)
+	if (data->txt->e)
 		free(data->txt->e);
 	if (data->txt->no)
 		free(data->txt->no);

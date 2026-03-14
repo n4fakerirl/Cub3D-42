@@ -1,4 +1,18 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        WE         ./textures/W.xpm     
 
     SO 			   ./textures/S.xpm     
@@ -7,6 +21,13 @@
       NO            ./textures/N.xpm   
 
 EA           ./textures/E.xpm   
+
+
+
+
+
+
+
 
 
    C    ,255,      30,    0
