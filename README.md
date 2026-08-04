@@ -1,58 +1,174 @@
-*This project has been created as part of the 42 curriculum by ocviller, gule-bat*
+# cub3d - 42 (with @gamabuntoo) | [FRENCH VERSION] english below
 
-# Description
+## 📚 Description
 
-Cub3d is *a “realistic” 3D graphical representation of the inside of a maze from a first-person perspective. You have to create this representation using the ray-casting principles mentioned earlier.*
+`cub3D` est un projet graphique de l'école 42 inspiré du jeu **Wolfenstein 3D**.
+Le but est de créer un moteur de rendu 3D en utilisant la technique du **raycasting** avec la bibliothèque **MiniLibX**.
 
-# Instructions
+Le joueur évolue dans un environnement en vue à la première personne, peut se déplacer dans la carte, tourner la caméra et interagir avec un monde généré à partir d'une carte au format `.cub`.
 
-To compile and run the game:
-	- Mandatory:
-		-make all-
-		-./cub3d "mapfilepath.cub"-
-	- Bonus:	
-		-make all-
-		-make bonus-
-		-./cub3d_bonus "mapfilepath.cub"-
+---
 
-Controls:
+## 📦 Objectifs
 
-	  w         
-	q s d  and  ←  →
+* Parser et vérifier une carte au format `.cub`
+* Implémenter un moteur de rendu 3D avec le raycasting
+* Gérer les déplacements et la rotation de la caméra
+* Appliquer les textures sur les murs
+* Gérer les collisions avec les murs
 
-	esc or cross to close
+---
 
-Maps:
+## 🔁 Symboles de la carte
 
-	NO ./textures/N.xpm      Path to texture.
-	SO ./textures/S.xpm
-	EA ./textures/E.xpm
-	WE ./textures/W.xpm
+| Symbole | Signification              |
+| ------- | -------------------------- |
+| `1`     | Mur                        |
+| `0`     | Sol                        |
+| `N`     | Position de départ (Nord)  |
+| `S`     | Position de départ (Sud)   |
+| `E`     | Position de départ (Est)   |
+| `W`     | Position de départ (Ouest) |
 
-	C 35,19,73		Ceiling color:	R,G,B channels;
-	F 15,6,40		Floor color:	R,G,B channels;
+---
 
-	111111111111111		1 = Wall;
-	111111000111111		0 = Empty space;
-	111110000011111
-	1111000N0001111		The map must be closed so that the
-	111000000000111		player cannot go out of its bounds.
-	110000000000011		The player must be able to move through
-	100001111100001		the map.
-	110000111000011
-	111000010000111
-	111100000001111
-	111110000011111
-	111111000111111
-	111111111111111
+## ⌨️ Contrôles
 
-# Ressources
+| Touche | Action                     |
+| ------ | -------------------------- |
+| `W`    | Avancer                    |
+| `S`    | Reculer                    |
+| `A`    | Déplacement vers la gauche |
+| `D`    | Déplacement vers la droite |
+| `←`    | Tourner la caméra à gauche |
+| `→`    | Tourner la caméra à droite |
+| `ESC`  | Quitter le jeu             |
 
-*https://www.youtube.com/watch?v=gYRrGTC7GtA*
-*https://www.youtube.com/watch?v=NbSee-XM7WA*
-*https://lodev.org/cgtutor/raycasting.html*
-*https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/*
+---
 
-*Ai was used to understand and vulgarize some mathematical concepts such as some used in the dda.*
+## ⚙️ Compilation
 
+| Commande      | Description                                  |
+| ------------- | -------------------------------------------- |
+| `make`        | Compile `cub3D`                              |
+| `make clean`  | Supprime les fichiers objets (`.o`)          |
+| `make fclean` | Supprime les fichiers objets et l'exécutable |
+| `make re`     | Nettoie puis recompile entièrement           |
+
+---
+
+## 🚀 Exemple d'exécution
+
+```bash
+./cub3D maps/map.cub
+```
+
+<p align="center">
+  <!-- Remplace cette image par une capture de ton projet -->
+  <img width="1020" alt="cub3D preview" src="YOUR_SCREENSHOT_HERE" />
+</p>
+
+---
+
+## 🖼️ Note du projet
+
+<p align="center">
+  <img width="199" height="169" alt="image" src="YOUR_GRADE_IMAGE_HERE" />
+</p>
+
+---
+
+## 🫐 Auteur
+
+* Guillaume (gule-bat) & Océane (ocviller)
+* Piscine de septembre 2024 (Guillaume) & Piscine de mars 2025 (Océane)
+* Projet réalisé à 42 Paris en 2026
+
+---
+
+# cub3d - 42 (with @gamabuntoo) | [FRENCH VERSION] english below
+
+## 📚 Description
+
+`cub3D` is a graphical project from the 42 curriculum inspired by **Wolfenstein 3D**.
+The goal is to build a 3D rendering engine using the **raycasting** technique with the **MiniLibX** library.
+
+The player explores a first-person environment, can move around the map, rotate the camera, and navigate through a world generated from a `.cub` map file.
+
+---
+
+## 📦 Objectives
+
+* Parse and validate a `.cub` map
+* Implement a 3D rendering engine using raycasting
+* Handle player movement and camera rotation
+* Apply textures to walls
+* Detect and prevent wall collisions
+
+---
+
+## 🔁 Map Symbols
+
+| Symbol | Meaning                          |
+| ------ | -------------------------------- |
+| `1`    | Wall                             |
+| `0`    | Floor                            |
+| `N`    | Player starting position (North) |
+| `S`    | Player starting position (South) |
+| `E`    | Player starting position (East)  |
+| `W`    | Player starting position (West)  |
+
+---
+
+## ⌨️ Controls
+
+| Key   | Action              |
+| ----- | ------------------- |
+| `W`   | Move Forward        |
+| `S`   | Move Backward       |
+| `A`   | Strafe Left         |
+| `D`   | Strafe Right        |
+| `←`   | Rotate Camera Left  |
+| `→`   | Rotate Camera Right |
+| `ESC` | Quit the game       |
+
+---
+
+## ⚙️ Compilation
+
+| Command       | Description                             |
+| ------------- | --------------------------------------- |
+| `make`        | Compiles `cub3D`                        |
+| `make clean`  | Removes object files (`.o`)             |
+| `make fclean` | Removes object files and the executable |
+| `make re`     | Cleans and recompiles the project       |
+
+---
+
+## 🚀 Example
+
+```bash
+./cub3D maps/map.cub
+```
+
+<p align="center">
+  <!-- Replace this image with a screenshot of your project -->
+  <img width="1020" alt="cub3D preview" src="YOUR_SCREENSHOT_HERE" />
+</p>
+
+---
+
+## 🖼️ Project Grade
+
+<p align="center">
+  <img width="199" height="169" alt="image" src="YOUR_GRADE_IMAGE_HERE" />
+</p>
+
+---
+
+## 🫐 Author
+
+* Guillaume (gule-bat) & Océane (ocviller)
+* September 2024 Piscine (Guillaume) & March 2025 Piscine (Océane)
+* Project completed at 42 Paris in 2026
 
