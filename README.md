@@ -64,16 +64,15 @@ Le joueur évolue dans un environnement en vue à la première personne, peut se
 ```
 
 <p align="center">
-  <!-- Remplace cette image par une capture de ton projet -->
-  <img width="1020" alt="cub3D preview" src="YOUR_SCREENSHOT_HERE" />
+ <img width="2528" height="1410" alt="image" src="https://github.com/user-attachments/assets/4dbe0fec-4b2d-4205-9fbb-ba9c124c5f08" />
 </p>
 
 ---
 
-## 🖼️ Note du projet
+## 🖼️ Project Grade
 
 <p align="center">
-  <img width="199" height="169" alt="image" src="YOUR_GRADE_IMAGE_HERE" />
+  <img width="199" height="169" alt="image" src="https://github.com/user-attachments/assets/3cb12a00-dc57-4f96-a6b9-66bbfe7cd7b8" />
 </p>
 
 ---
@@ -152,8 +151,7 @@ The player explores a first-person environment, can move around the map, rotate 
 ```
 
 <p align="center">
-  <!-- Replace this image with a screenshot of your project -->
-  <img width="1020" alt="cub3D preview" src="YOUR_SCREENSHOT_HERE" />
+ <img width="2528" height="1410" alt="image" src="https://github.com/user-attachments/assets/4dbe0fec-4b2d-4205-9fbb-ba9c124c5f08" />
 </p>
 
 ---
@@ -161,7 +159,7 @@ The player explores a first-person environment, can move around the map, rotate 
 ## 🖼️ Project Grade
 
 <p align="center">
-  <img width="199" height="169" alt="image" src="YOUR_GRADE_IMAGE_HERE" />
+  <img width="199" height="169" alt="image" src="https://github.com/user-attachments/assets/3cb12a00-dc57-4f96-a6b9-66bbfe7cd7b8" />
 </p>
 
 ---
